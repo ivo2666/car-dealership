@@ -1,19 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import Flags from '../../components/flags'
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-size: 17px;
-    font-weight: 68px;
-    text-align: right;
-    color: white;
-    &:hover {
-    color: #2752E1; 
-  }
-`
+import Link from '../link';
 
 const Nav = styled.ul`
 list-style-type: none;
@@ -29,16 +17,16 @@ export default () => (
     <nav>
         <Nav>
             <Item>
-                <StyledLink to="/">АВТОМОБИЛИ</StyledLink>
+                <Link to="/">АВТОМОБИЛИ</Link>
             </Item>
             <Item>
-                <StyledLink to="/">ЗА НАС</StyledLink>
+                <Link to="/">ЗА НАС</Link>
             </Item>
             <Item>
-                <StyledLink to="/">УСЛУГИ</StyledLink>
+                <Link to="/">УСЛУГИ</Link>
             </Item>
             <Item>
-                <StyledLink to="/">КОНТАКТИ</StyledLink>
+                <Link to="/">КОНТАКТИ</Link>
             </Item>
             <Item>
                 <Flags />
