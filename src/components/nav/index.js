@@ -17,7 +17,7 @@ export default () => (
     <nav>
         <Nav>
             <Item>
-                <Link to="/">АВТОМОБИЛИ</Link>
+                <Link to="/cars">АВТОМОБИЛИ</Link>
             </Item>
             <Item>
                 <Link to="/">ЗА НАС</Link>

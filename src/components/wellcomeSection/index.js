@@ -35,7 +35,7 @@ text-decoration: none;
 export default () => (
     <>
         <Wellcome>
-            <StyledLink to="#">
+            <StyledLink to="/cars">
             РАЗГЛЕДАЙТЕ НАШИТЕ ПРЕДЛОЖЕНИЯ
             </StyledLink>
         </Wellcome>
