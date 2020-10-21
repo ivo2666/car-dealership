@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import H1 from '../carSectionH1';
 
 const Section = styled.section`
 display: flex;
@@ -17,14 +18,7 @@ div {
     font-weight: 700;
 }
 
-h1 {
-    color: #4f4f4f;
-    margin: 0px;
-    line-height: 36px;
-    font-size: 30px;
-    font-weight: 100;
-    margin: 0 0 15px 0;
-}
+
 
 a {
     text-decoration: none;
@@ -38,7 +32,7 @@ export default () => (
         </a>
         <div>
         <a href='/details'>
-            <h1>Audi A4 Automat/Navi/LED/Подгрев</h1>
+            <H1>Audi A4 Automat/Navi/LED/Подгрев</H1>
             </a>
             <span>лв.11,900.00</span>
         </div>
