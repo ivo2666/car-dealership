@@ -8,13 +8,18 @@ const Flag = styled.img`
 width: 30px;
 margin: 5px;
 `
+
+const Flags = styled.div`
+width: 100px;
+`
+
 export default () => (
-    <>
-    <Link to="#">
+    <Flags>
+        <Link to="#">
         <Flag src={uk} alt='flag'/>
     </Link>
     <Link to="#">
         <Flag src={bul} alt='flag'/>
     </Link>
-    </>
+    </Flags>
 )

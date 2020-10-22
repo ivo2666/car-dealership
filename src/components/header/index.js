@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-//import Link from 'react-router-dom';
 import Logo from '../logo';
 import Nav from '../nav';
 
@@ -9,9 +8,7 @@ const StyledHeader = () => {
         <Header>
             <Logo />
             <Nav />
-
         </Header>
-        
     )
 }
 
