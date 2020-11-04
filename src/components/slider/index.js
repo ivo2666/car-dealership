@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -51,23 +51,38 @@ img {
 `
 
 const Slider = (props) => {
-    const [slideIndex, setSlideIndex] = useState(1);
-
-    const showSlides = (n) => {
-        const slides = props.children;
-        if (n > slides.length) { setSlideIndex(1) };
-        if (n < 1) { setSlideIndex(slides.length) };
-        return slides[slideIndex - 1];
-    }
+    const [slideIndex, setSlideIndex] = useState(0);
+    const [ startIndex, setStartIndex] = useState(-1);
+    const slides = props.images;
 
 
+    useEffect(() => {
+        setStartIndex(props.startIndex)
+        if (startIndex > -1) {
+            setSlideIndex(startIndex)
+        }
+        return () => {
+            setStartIndex(-1)
+        }
+    }, [startIndex, slideIndex, props.startIndex])
 
+    useEffect(
+        () => {
+            console.log(slideIndex);
+            if (slideIndex > slides.length - 1) { setSlideIndex(0) };
+            if (slideIndex < 0) { setSlideIndex(slides.length - 1) };
+        }, [slideIndex, slides]
+    )
+    
     return (
+        <>
     <StyledSlider>
-        {showSlides(slideIndex)}
+        {slides[slideIndex]}
         <Link className='prev' to='#' onClick={() => setSlideIndex(slideIndex - 1)}>&#10094;</Link>
         <Link className='next' to='#' onClick={() => setSlideIndex(slideIndex + 1)}>&#10095;</Link>
     </StyledSlider>    
+
+    </>
     )
 }
 
