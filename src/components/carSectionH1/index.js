@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const H1 = styled.h1`
-width: 100%;
     color: #4f4f4f;
     margin-right: 20px;
     line-height: 36px;
