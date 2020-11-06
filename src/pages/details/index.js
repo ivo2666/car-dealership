@@ -3,16 +3,11 @@ import styled from 'styled-components';
 import H1 from '../../components/carSectionH1';
 import Layout from '../../components/pageLayout'
 import Slideshow from '../../components/detailsSlideshow'
+import CarInf from '../../components/carInformation'
 
 
 const Details = styled.main`
 margin: 20px 0 20px 2%;
-`
-
-
-const Description = styled.div`
-width: 200px;
-margin: 10px 0 0 20px;
 `
 
 export default () => (
@@ -31,10 +26,7 @@ export default () => (
                     <img src='https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' alt='car' />
 
 </Slideshow>
-                    <Description>
-                    <H1>Описание:</H1>
-                    <p>opisaniefsafhfhaiaoisfh oajfofjo joafj ojao jj ojajfo dj </p>
-                </Description>
+<CarInf />
         </Details>
     </Layout>
 )
