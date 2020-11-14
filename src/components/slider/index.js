@@ -68,7 +68,6 @@ const Slider = (props) => {
 
     useEffect(
         () => {
-            console.log(slideIndex);
             if (slideIndex > slides.length - 1) { setSlideIndex(0) };
             if (slideIndex < 0) { setSlideIndex(slides.length - 1) };
         }, [slideIndex, slides]
@@ -77,7 +76,7 @@ const Slider = (props) => {
     return (
         <>
     <StyledSlider>
-        {slides[slideIndex]}
+        <img alt='car' src={slides[slideIndex]} />
         <Link className='prev' to='#' onClick={() => setSlideIndex(slideIndex - 1)}>&#10094;</Link>
         <Link className='next' to='#' onClick={() => setSlideIndex(slideIndex + 1)}>&#10095;</Link>
     </StyledSlider>    
