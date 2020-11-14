@@ -4,10 +4,6 @@ import H1 from '../../components/carSectionH1';
 import Layout from '../../components/pageLayout'
 import Slideshow from '../../components/detailsSlideshow'
 import { Title, CarTable, Description, Extras } from '../../components/carInformation'
-//import probe from 'probe-image-size';
-
-
-
 
 //const cloudinaryUpload = (file, preset) => {
 //    const formData = new FormData();
@@ -22,12 +18,6 @@ import { Title, CarTable, Description, Extras } from '../../components/carInform
 //}
 
 //cloudinaryUpload('https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80', 'clientCars')
-
-//probe(`https://res.cloudinary.com/retro-cars/image/upload/v1605297751/cars/qxlzctrkhaqjtpvbjaof.jpg`)
-//.then(  
-//    result => console.log(result)
-//)
-    
 
 const Details = styled.main`
 margin: 20px 0 20px 2%;
