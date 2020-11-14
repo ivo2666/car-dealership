@@ -1,5 +1,9 @@
 import React from 'react';
-import Home from '../pages/home';
+import {
+    Home,
+    Cars,
+    Details
+} from '../pages';
 import {
     BrowserRouter,
   Switch,
@@ -12,6 +16,12 @@ export default function Router() {
         <Switch>
             <Route path="/" exact>
                 <Home />
+            </Route>
+            <Route path="/cars">
+                <Cars />
+            </Route>
+            <Route path="/details">
+                <Details />
             </Route>
         </Switch>
         </BrowserRouter>

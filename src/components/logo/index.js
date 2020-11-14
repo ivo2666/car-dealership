@@ -5,7 +5,7 @@ import logo from '../../images/logo-white.png';
 
 const Logo = styled.img`
 height: ${props => props.height ? props.height : "100px"};
-margin-left: 110px;
+margin-left: 13%;
 `
 
 export default () => (

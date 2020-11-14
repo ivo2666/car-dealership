@@ -5,7 +5,7 @@ import WellcomeSection from '../../components/wellcomeSection';
 const Home = () => {
     return (
         <PageLayot>
-            <WellcomeSection />        
+            <WellcomeSection />     
         </PageLayot>
     )
 }
