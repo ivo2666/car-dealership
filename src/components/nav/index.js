@@ -14,9 +14,9 @@ align-items: center;
 export default () => (
         <Nav>
                 <Link to="/cars">АВТОМОБИЛИ</Link>
-                <Link to="/">ЗА НАС</Link>
-                <Link to="/">УСЛУГИ</Link>
-                <Link to="/">КОНТАКТИ</Link>
+                <Link to="/forUs">ЗА НАС</Link>
+                <Link to="/service">УСЛУГИ</Link>
+                <Link to="/contacts">КОНТАКТИ</Link>
                 <Flags />
         </Nav>
 )
