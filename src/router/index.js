@@ -3,7 +3,8 @@ import {
     Home,
     Cars,
     Details,
-    ForUs
+    ForUs,
+    Servises
 } from '../pages';
 import {
     BrowserRouter,
@@ -26,6 +27,9 @@ export default function Router() {
             </Route>
             <Route path="/forUs">
                 <ForUs />
+            </Route>
+            <Route path="/servises">
+                <Servises />
             </Route>
         </Switch>
         </BrowserRouter>
