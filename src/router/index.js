@@ -4,7 +4,8 @@ import {
     Cars,
     Details,
     ForUs,
-    Servises
+    Servises,
+    Lizing
 } from '../pages';
 import {
     BrowserRouter,
@@ -28,8 +29,11 @@ export default function Router() {
             <Route path="/forUs">
                 <ForUs />
             </Route>
-            <Route path="/servises">
+            <Route exact path="/servises">
                 <Servises />
+            </Route>
+            <Route path="/servises/lizing">
+                <Lizing />
             </Route>
         </Switch>
         </BrowserRouter>

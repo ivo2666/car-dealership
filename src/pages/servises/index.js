@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import PageLayot from '../../components/pageLayout'
 import car from '../../images/ferrary.jpg'
@@ -34,16 +35,16 @@ background-color: black;
 
 
 export default () => {
+    let { url } = useRouteMatch();
     return (
         <PageLayot>
             <Servises>
             <div className='servCont'>
-            <Servise href='barter' title='Изкупуване и замяна на автомобили' src={barter} />
-            <Servise href='lizing' title='Лизинг' src={lizing} />
-            <Servise href='insurance' title='Регистрация и застраховка' src={insurance} />
-
-            <Servise href='consultation' title='Консултация при покупка на автомобил' src={consultation} />
-            <Servise href='delivery' title='Поръчка на нови и използвани автомобили' src={delivery} />
+            <Servise href={`${url}/barter`} title='Изкупуване и замяна на автомобили' src={barter} />
+            <Servise href={`${url}/lizing`} title='Лизинг' src={lizing} />
+            <Servise href={`${url}/insurance`} title='Регистрация и застраховка' src={insurance} />
+            <Servise href={`${url}/consultation`} title='Консултация при покупка на автомобил' src={consultation} />
+            <Servise href={`${url}/delivery`} title='Поръчка на нови и използвани автомобили' src={delivery} />
         </div>
                 <img className='background' alt='car' src={car} />
             </Servises>
