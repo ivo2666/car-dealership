@@ -5,7 +5,12 @@ import {
     Details,
     ForUs,
     Servises,
-    Lizing
+    Insurance,
+    Lizing,
+    Barter,
+    Consultation,
+    Delivery
+
 } from '../pages';
 import {
     BrowserRouter,
@@ -34,6 +39,18 @@ export default function Router() {
             </Route>
             <Route path="/servises/lizing">
                 <Lizing />
+            </Route>
+            <Route path="/servises/insurance">
+                <Insurance />
+            </Route>
+            <Route path="/servises/barter">
+                <Barter />
+            </Route>
+            <Route path="/servises/consultation">
+                <Consultation />
+            </Route>
+            <Route path="/servises/delivery">
+                <Delivery />
             </Route>
         </Switch>
         </BrowserRouter>
