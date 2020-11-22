@@ -15,7 +15,7 @@ export default () => (
         <Nav>
                 <Link to="/cars">АВТОМОБИЛИ</Link>
                 <Link to="/forUs">ЗА НАС</Link>
-                <Link to="/service">УСЛУГИ</Link>
+                <Link to="/servises">УСЛУГИ</Link>
                 <Link to="/contacts">КОНТАКТИ</Link>
                 <Flags />
         </Nav>
