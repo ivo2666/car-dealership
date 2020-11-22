@@ -2,7 +2,8 @@ import React from 'react';
 import {
     Home,
     Cars,
-    Details
+    Details,
+    ForUs
 } from '../pages';
 import {
     BrowserRouter,
@@ -22,6 +23,9 @@ export default function Router() {
             </Route>
             <Route path="/details">
                 <Details />
+            </Route>
+            <Route path="/forUs">
+                <ForUs />
             </Route>
         </Switch>
         </BrowserRouter>
