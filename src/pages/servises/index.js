@@ -14,6 +14,7 @@ import {
 import Servise from './servise';
 
 const Servises = styled.main`
+min-height: 550px;
 position: relative;
 background-color: black;
 .servCont {
