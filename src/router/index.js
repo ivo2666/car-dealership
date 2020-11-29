@@ -10,7 +10,9 @@ import {
     Barter,
     Consultation,
     Delivery,
-    Contacts
+    Contacts,
+    Admin,
+    Login
 
 } from '../pages';
 import {
@@ -23,38 +25,22 @@ export default function Router() {
     return (
         <BrowserRouter>
         <Switch>
-            <Route path="/" exact>
-                <Home />
+            <Route path="/" exact component={Home}/>
+            <Route path="/cars" component={Cars}/>
+            <Route path="/details" component={Details}/>
+            <Route path="/forUs" component={ForUs}/>
+            <Route path="/servises" exact component={Servises}/>
+            <Route path="/servises/lizing" component={Lizing}/>
+            <Route path="/servises/insurance"component={Insurance}/>
+            <Route path="/servises/barter" component={Barter}/>
+            <Route path="/servises/consultation" component={Consultation}/>
+            <Route path="/servises/delivery" component={Delivery}/>
+            <Route path="/contacts" component={Contacts}/>
+            <Route path="/admin">
+                <Admin />    
             </Route>
-            <Route path="/cars">
-                <Cars />
-            </Route>
-            <Route path="/details">
-                <Details />
-            </Route>
-            <Route path="/forUs">
-                <ForUs />
-            </Route>
-            <Route exact path="/servises">
-                <Servises />
-            </Route>
-            <Route path="/servises/lizing">
-                <Lizing />
-            </Route>
-            <Route path="/servises/insurance">
-                <Insurance />
-            </Route>
-            <Route path="/servises/barter">
-                <Barter />
-            </Route>
-            <Route path="/servises/consultation">
-                <Consultation />
-            </Route>
-            <Route path="/servises/delivery">
-                <Delivery />
-            </Route>
-            <Route path="/contacts">
-                <Contacts />    
+            <Route path="/login">
+                <Login />    
             </Route>
         </Switch>
         </BrowserRouter>
