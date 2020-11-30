@@ -12,7 +12,8 @@ import {
     Delivery,
     Contacts,
     Admin,
-    Login
+    Login,
+    AddCar
 
 } from '../pages';
 import {
@@ -36,6 +37,7 @@ export default function Router() {
             <Route path="/servises/consultation" component={Consultation}/>
             <Route path="/servises/delivery" component={Delivery}/>
             <Route path="/contacts" component={Contacts}/>
+            <Route path="/addCar" component={AddCar}/>
             <Route path="/admin">
                 <Admin />    
             </Route>
