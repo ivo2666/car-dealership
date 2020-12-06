@@ -16,18 +16,18 @@ function dataArr(data) {
 function myFormat(data) {
     let dataObj = {};
 data.map(item => {
-if(!dataObj.hasOwnProperty(item.Make)) {
-   dataObj[item.Make] = {};
+if(!dataObj.hasOwnProperty(item.brand)) {
+   dataObj[item.brand] = {};
 }
-if (!dataObj[item.Make].hasOwnProperty(item.Model)) {
-    dataObj[item.Make][item.Model] = item.Model;
+if (!dataObj[item.brand].hasOwnProperty(item.model)) {
+    dataObj[item.brand][item.model] = item.model;
 }
-    return dataObj[item.Model];
+    return dataObj[item.model];
 })
 return dataArr(dataObj);
 }
 
-export default myFormat(oldData.results)
+export default myFormat(oldData)
 
 
 
