@@ -11,19 +11,14 @@ margin: 100px auto;
 
 export default () => {
   const [models, setModels] = useState([])
-const [selectModel, setSelectModel] = useState(true)
+  const [selectModel, setSelectModel] = useState(true)
 
-let modelField;
-
-
-
-  
-
+  let modelField;
 
   const addModels = (e) => {
     if (brands[e.target.options.selectedIndex - 1]) {
-        setModels(brands[e.target.options.selectedIndex - 1].models)
-        setSelectModel(true)
+      setModels(brands[e.target.options.selectedIndex - 1].models)
+      setSelectModel(true)
     }
   }
 
@@ -34,13 +29,13 @@ let modelField;
   }
 
   if (selectModel) {
-    modelField = <Field onChange={addNewModel} type='select' label='Модел'  as={Col} controlId="formGridModel" >
-    <option>Избери</option>
-    <option>Напиши сам</option>
-    {models.map((model, index) => <option key={index} value={model}>{model}</option>)}
-  </Field>
-  }else {
-    modelField = <Field label='Модел' as={Col} controlId="formGridModel" ></Field>
+    modelField = <Field onChange={addNewModel} type='select' label='Модел' name='model'  as={Col} controlId="formGridModel"  >
+      <option>Избери</option>
+      <option>Напиши сам</option>
+      {models.map((model, index) => <option key={index} value={model}>{model}</option>)}
+    </Field>
+  } else {
+    modelField = <Field label='Модел' as={Col} controlId="formGridModel" name='model'></Field>
   }
 
   return (
@@ -49,7 +44,7 @@ let modelField;
 
         <Form.Row>
 
-          <Field onChange={addModels} type='select' label='Марка' as={Col} controlId="formGridBrand">
+          <Field onChange={addModels} type='select' label='Марка' name='make' as={Col} controlId="formGridBrand">
             <option>Избери</option>
             {brands.map((car, index) => <option id={index} key={index} value={car.brand}>{car.brand}</option>)}
           </Field>
@@ -60,9 +55,9 @@ let modelField;
 
         <Form.Row>
 
-          <Field as={Col} controlId="formGridModification" label='Модификация' />
+          <Field as={Col} controlId="formGridModification" label='Модификация' name='modification' />
 
-          <Field type='select' label='Двигател' as={Col} controlId="formGridEngine">
+          <Field type='select' label='Двигател' as={Col} controlId="formGridEngine" name='engine'>
             <option>Избери</option>
             <option>Бензин</option>
             <option>Дизел</option>
@@ -74,9 +69,9 @@ let modelField;
 
         <Form.Row>
 
-          <Field as={Col} controlId="formGridPower" label='Мощност [к.с.]'  />
+          <Field as={Col} controlId="formGridPower" label='Мощност [к.с.]' name='power'/>
 
-          <Field type='select' label='Евростандарт' as={Col} controlId="formGridEurostandart">
+          <Field type='select' label='Евростандарт' as={Col} controlId="formGridEurostandart" name='eurostandart'>
             <option>Евро 1</option>
             <option>Евро 2</option>
             <option>Евро 3</option>
@@ -89,13 +84,13 @@ let modelField;
 
         <Form.Row>
 
-          <Field type='select' as={Col} controlId="formGridTransmition" label='Скоросна кутия'>
+          <Field type='select' as={Col} controlId="formGridTransmition" label='Скоросна кутия' name='gearbox'>
             <option>Ръчна</option>
             <option>Автоматична</option>
             <option>Полуавтоматична</option>
           </Field>
 
-          <Field type='select' as={Col} controlId="formGridCategory" label='Категория'>
+          <Field type='select' as={Col} controlId="formGridCategory" label='Категория' name='category'>
             <option>Ван</option>
             <option>Джип</option>
             <option>Кабрио</option>
@@ -111,16 +106,16 @@ let modelField;
         </Form.Row>
 
         <Form.Row>
-        
-        <Field as={Col} controlId="formGridPrice" label='Цена' />
 
-        <Field as={Col} controlId="formGridMileage" label='пробег' />
+          <Field as={Col} controlId="formGridPrice" label='Цена' name='price'/>
+
+          <Field as={Col} controlId="formGridMileage" label='пробег' name='km'/>
 
         </Form.Row>
 
         <Form.Row>
 
-        <Field type='select' as={Col} controlId="formGridBirdayDate" label='Дата на производство' >
+          <Field type='select' as={Col} controlId="formGridBirdayDate" label='Дата на производство' name='birdayMont' >
             <option>Януари</option>
             <option>Февруари</option>
             <option>Март</option>
@@ -135,14 +130,14 @@ let modelField;
             <option>Декември</option>
           </Field>
 
-          <Field as={Col} controlId="formGridYear" label='Година' />
-          
+          <Field as={Col} controlId="formGridYear" label='Година' name='birdayYear'/>
+
         </Form.Row>
 
         <Form.Row>
 
-        <Field as={Col} controlId="formGridColor" label='Цвят' />          
-        
+          <Field as={Col} controlId="formGridColor" label='Цвят' name='color'/>
+
         </Form.Row>
 
         <Button variant="primary" type="submit">
