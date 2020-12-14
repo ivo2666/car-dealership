@@ -3,29 +3,29 @@ const config = require('../config/config');
 const utils = require('../utils');
 
 module.exports = {
-    get: (req, res, next) => {
-        models.User.find()
-            .then((users) => res.send(users))
-            .catch(next)
-    },
+    //get: (req, res, next) => {
+    //    models.User.find()
+    //        .then((users) => res.send(users))
+    //        .catch(next)
+    //},
 
     post: {
-        register: (req, res, next) => {
-            const { username, password } = req.body;
-            models.User.create({ username, password })
-                .then((createdUser) => {
-                  const token = utils.jwt.createToken({ id: createdUser._id });
-                  res.header("Authorization", token).send(createdUser);
-                })
-                .catch((err) => {
-                    if (err.code === 11000) {
-                        res.sendStatus(302);
-                    }else {
-                        console.log(err)
-                    }
-                  
-                })
-        },
+    //    register: (req, res, next) => {
+    //        const { username, password } = req.body;
+    //        models.User.create({ username, password })
+    //            .then((createdUser) => {
+    //              const token = utils.jwt.createToken({ id: createdUser._id });
+    //              res.header("Authorization", token).send(createdUser);
+    //            })
+    //            .catch((err) => {
+    //                if (err.code === 11000) {
+    //                    res.sendStatus(302);
+    //                }else {
+    //                    console.log(err)
+    //                }
+    //              
+    //            })
+    //    },
 
         login: (req, res, next) => {
             const { username, password } = req.body;
@@ -38,7 +38,7 @@ module.exports = {
                     }
 
                     const token = utils.jwt.createToken({ id: user._id });
-                    res.header("Authorization", token).send(user);
+                    res.header("Authorization", token).send(user._id);
                 })
                 .catch(err => {
                     if (err.message === "Cannot read property 'matchPassword' of null") {
@@ -63,7 +63,7 @@ module.exports = {
                     models.User.findById(data.id).populate('cars')
                         .then((user) => {
                             return res.send(
-                                user
+                                user._id
                               )
                         });
                 })
@@ -82,9 +82,6 @@ module.exports = {
 
         logout: (req, res, next) => {
             const token = req.cookies[config.authCookieName];
-            console.log('-'.repeat(100));
-            console.log(token);
-            console.log('-'.repeat(100));
             models.TokenBlacklist.create({ token })
                 .then(() => {
                     res.clearCookie(config.authCookieName).send('Logout successfully!');
