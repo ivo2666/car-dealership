@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UserContext from '.././context';
 import {
     Home,
     Cars,
@@ -19,10 +20,14 @@ import {
 import {
     BrowserRouter,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 
 export default function Router() {
+    const context = useContext(UserContext);
+    const loggedIn = context.user;
+    
     return (
         <BrowserRouter>
         <Switch>
@@ -37,12 +42,14 @@ export default function Router() {
             <Route path="/servises/consultation" component={Consultation}/>
             <Route path="/servises/delivery" component={Delivery}/>
             <Route path="/contacts" component={Contacts}/>
-            <Route path="/addCar" component={AddCar}/>
             <Route path="/admin">
-                <Admin />    
+                {loggedIn ? (<Admin />) : (<Redirect to='/login' /> )}
+            </Route>
+            <Route path="/addCar">
+            {loggedIn ? (<AddCar />) : (<Redirect to='/login' /> )}
             </Route>
             <Route path="/login">
-                <Login />    
+            {loggedIn ? (<Redirect to='/login' /> ) : (<Login />)}
             </Route>
         </Switch>
         </BrowserRouter>

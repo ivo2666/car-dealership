@@ -3,30 +3,30 @@ const config = require('../config/config');
 const utils = require('../utils');
 
 module.exports = {
-    //get: (req, res, next) => {
-    //    models.User.find()
-    //        .then((users) => res.send(users))
-    //        .catch(next)
-    //},
+    get: (req, res, next) => {
+        const user = res.body.username;
+        models.User.find({user})
+            .then((users) => res.send(users))
+            .catch(next)
+    },
 
     post: {
-    //    register: (req, res, next) => {
-    //        const { username, password } = req.body;
-    //        models.User.create({ username, password })
-    //            .then((createdUser) => {
-    //              const token = utils.jwt.createToken({ id: createdUser._id });
-    //              res.header("Authorization", token).send(createdUser);
-    //            })
-    //            .catch((err) => {
-    //                if (err.code === 11000) {
-    //                    res.sendStatus(302);
-    //                }else {
-    //                    console.log(err)
-    //                }
-    //              
-    //            })
-    //    },
-
+        register: (req, res, next) => {
+            const { username, password } = req.body;
+            models.User.create({ username, password })
+                .then((createdUser) => {
+                  const token = utils.jwt.createToken({ id: createdUser._id });
+                  res.header("Authorization", token).send(createdUser);
+                })
+                .catch((err) => {
+                    if (err.code === 11000) {
+                        res.sendStatus(302);
+                    }else {
+                        console.log(err)
+                    }
+                  
+                })
+        },
         login: (req, res, next) => {
             const { username, password } = req.body;
             models.User.findOne({ username })
@@ -38,7 +38,8 @@ module.exports = {
                     }
 
                     const token = utils.jwt.createToken({ id: user._id });
-                    res.header("Authorization", token).send(user._id);
+                    const {username, _id} = user;
+                    res.header("Authorization", token).send({username, _id});
                 })
                 .catch(err => {
                     if (err.message === "Cannot read property 'matchPassword' of null") {
@@ -90,18 +91,18 @@ module.exports = {
         }
     },
 
-    put: (req, res, next) => {
-        const id = req.params.id;
-        const { username, password } = req.body;
-        models.User.update({ _id: id }, { username, password })
-            .then((updatedUser) => res.send(updatedUser))
-            .catch(next)
-    },
-
-    delete: (req, res, next) => {
-        const id = req.params.id;
-        models.User.deleteOne({ _id: id })
-            .then((removedUser) => res.send(removedUser))
-            .catch(next)
-    }
+  //  put: (req, res, next) => {
+  //      const id = req.params.id;
+  //      const { username, password } = req.body;
+  //      models.User.update({ _id: id }, { username, password })
+  //          .then((updatedUser) => res.send(updatedUser))
+  //          .catch(next)
+  //  },
+//
+  //  delete: (req, res, next) => {
+  //      const id = req.params.id;
+  //      models.User.deleteOne({ _id: id })
+  //          .then((removedUser) => res.send(removedUser))
+  //          .catch(next)
+  //  }
 };
