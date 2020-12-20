@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flags from '../../components/flags'
+import Flags from '../flags'
 import Link from '../link';
 
 const Nav = styled.nav`

@@ -26,7 +26,7 @@ import {
 
 export default function Router() {
     const context = useContext(UserContext);
-    const loggedIn = context.user;
+    const loggedIn = context.user && context.user.loggedIn;
     
     return (
         <BrowserRouter>
@@ -49,7 +49,7 @@ export default function Router() {
             {loggedIn ? (<AddCar />) : (<Redirect to='/login' /> )}
             </Route>
             <Route path="/login">
-            {loggedIn ? (<Redirect to='/login' /> ) : (<Login />)}
+            {loggedIn ? (<Redirect to='/admin' /> ) : (<Login />)}
             </Route>
         </Switch>
         </BrowserRouter>

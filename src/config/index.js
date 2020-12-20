@@ -1,3 +1,7 @@
-const loginUrl = 'http://localhost:9999/api/user/login';
+const urls = {
 
-export { loginUrl }
+login: 'http://localhost:9999/api/user/login',
+verify: 'http://localhost:9999/api/user/verify'
+}
+
+export default urls 

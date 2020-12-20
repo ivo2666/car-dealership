@@ -52,7 +52,7 @@ module.exports = {
         },
 
         verify: (req, res, next) => {
-            const token = req.body.token || '';
+            const token = req.headers.authorization || '';
   
             Promise.all([
                 utils.jwt.verifyToken(token),
@@ -63,9 +63,10 @@ module.exports = {
   
                     models.User.findById(data.id).populate('cars')
                         .then((user) => {
-                            return res.send(
-                                user._id
-                              )
+                            return res.send({
+                                status: true,
+                                user
+                              })
                         });
                 })
                 .catch(err => {
