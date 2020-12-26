@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import Field from '../../components/forms'
@@ -10,8 +10,9 @@ margin: 100px auto;
 `
 
 export default () => {
-  
-
+  const [values, setValues] = useState({
+    
+  })
   return (
     <FormContainer>
       <Form>

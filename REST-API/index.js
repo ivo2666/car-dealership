@@ -14,7 +14,7 @@ dbConnection().then(() => {
         res.status(500).send(err.message);
         console.log('*'.repeat(90))
     });
-
+//require('./models/carBrands')()
     app.listen(config.port, console.log(`Listening on port ${config.port}!`))
 
 }).catch(console.error);
