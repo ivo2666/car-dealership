@@ -61,9 +61,15 @@ return dataObj
 
 //brand.create({brands})
 
-module.exports = function () {
+const createData =  function () {
     const data = myFormat(oldData);
     dataArr(data)
     return brand.create({'brands': brands})
+}
+
+module.exports = {
+    createData,
+    brand,
+    model
 }
 

@@ -49,7 +49,7 @@ export default (props) => {
   }, [])
 
   
-  console.log('user', user)
+  //console.log('user', user)
 
   return (
     <UserContext.Provider value={{

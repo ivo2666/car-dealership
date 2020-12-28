@@ -1,7 +1,11 @@
+const server = 'http://localhost:9999/api'
+
 const urls = {
 
-login: 'http://localhost:9999/api/user/login',
-verify: 'http://localhost:9999/api/user/verify'
+login: `${server}/user/login`,
+verify: `${server}/user/verify`,
+getBrands: `${server}/brands`,
+getModels: `${server}/models`
 }
 
 export default urls 

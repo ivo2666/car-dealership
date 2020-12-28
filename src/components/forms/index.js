@@ -5,7 +5,7 @@ export default (props) => {
     return (
 <Form.Group {...props} >
       <Form.Label>{props.label}</Form.Label>
-      <Form.Control as={props.type} placeholder={props.placeholder} defaultValue={props.defaultValue} >
+      <Form.Control as={props.type} value={props.value} placeholder={props.placeholder} >
           {props.children}
       </Form.Control>
     </Form.Group>        

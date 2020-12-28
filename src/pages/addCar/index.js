@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState }from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import Field from '../../components/forms'
-import BrandModel from './brandModel';
+import ModelField from './modelField';
+import BrandField from './brandfield';
 
 const FormContainer = styled.div`
 width: 80%;
@@ -10,16 +11,18 @@ margin: 100px auto;
 `
 
 export default () => {
-  const [values, setValues] = useState({
-    
-  })
+const [brand, setBrand] = useState('Mercedes')
+
+const onBrandChange = (brand) => {
+   setBrand(brand) 
+}
   return (
     <FormContainer>
       <Form>
 
         <Form.Row>
-
-          <BrandModel Col={Col}/>
+          <BrandField onBrandChange={onBrandChange} Col={Col} />
+          <ModelField brand={brand} Col={Col} />
 
         </Form.Row>
 
@@ -39,7 +42,7 @@ export default () => {
 
         <Form.Row>
 
-          <Field as={Col} controlId="formGridPower" label='Мощност [к.с.]' name='power'/>
+          <Field as={Col} controlId="formGridPower" label='Мощност [к.с.]' name='power' />
 
           <Field type='select' label='Евростандарт' as={Col} controlId="formGridEurostandart" name='eurostandart'>
             <option>Евро 1</option>
@@ -77,9 +80,9 @@ export default () => {
 
         <Form.Row>
 
-          <Field as={Col} controlId="formGridPrice" label='Цена' name='price'/>
+          <Field as={Col} controlId="formGridPrice" label='Цена' name='price' />
 
-          <Field as={Col} controlId="formGridMileage" label='пробег' name='km'/>
+          <Field as={Col} controlId="formGridMileage" label='пробег' name='km' />
 
         </Form.Row>
 
@@ -100,13 +103,13 @@ export default () => {
             <option>Декември</option>
           </Field>
 
-          <Field as={Col} controlId="formGridYear" label='Година' name='birdayYear'/>
+          <Field as={Col} controlId="formGridYear" label='Година' name='birdayYear' />
 
         </Form.Row>
 
         <Form.Row>
 
-          <Field as={Col} controlId="formGridColor" label='Цвят' name='color'/>
+          <Field as={Col} controlId="formGridColor" label='Цвят' name='color' />
 
         </Form.Row>
 
