@@ -3,9 +3,8 @@ import Field from '../../components/forms'
 import urls from '../../config'
 
 
-export default ({Col, brand}) => {
+export default ({Col, brand, onModelChange, model}) => {
     const [models, setModels] = useState([])
-  const [value, setValue] = useState('Избери')
   const [selectModel, setSelectModel] = useState(true)
 
   useEffect(() => {
@@ -23,26 +22,26 @@ export default ({Col, brand}) => {
   //  }
   //}
 
-  const handleChange = (e) => {
-    if (e.target.value === 'Напиши сам') {
+  const handleChange = (data) => {
+    if (data === 'Напиши сам') {
       return setSelectModel(false)
     }else {
-      return setValue(e.target.value)
+      return onModelChange(data)
     }
   }
 
-  const handletextChange = (e) => {
-      return setValue(e.target.value)
+  const handletextChange = (data) => {
+      return onModelChange(data)
   }
 
   if (selectModel) {
-    return <Field value={value} onChange={handleChange} type='select' label='Модел' name='model'  as={Col} controlId="formGridModel"  >
+    return <Field value={model} onValueChg={handleChange} type='select' label='Модел' name='model'  as={Col} controlId="formGridModel"  >
       <option value="Избери">Избери</option>
       <option value='Напиши сам'>Напиши сам</option>
       {models.map((model, index) => <option key={index} value={model}>{model}</option>)}
     </Field>
   } else {
-    return <Field value={value} onChange={handletextChange} label='Модел' as={Col} controlId="formGridModel" name='model'></Field>
+    return <Field value={model} onChange={handletextChange} label='Модел' as={Col} controlId="formGridModel" name='model'></Field>
   }
     
 } 

@@ -12,25 +12,43 @@ margin: 100px auto;
 
 export default () => {
 const [brand, setBrand] = useState('Mercedes')
+const [model, setModel] = useState('')
+const [modification, setModification] = useState('')
+const [engine, setEngine] = useState('Избери')
+const [power, setPower] = useState('')
+const [eurostandart, setEurostandart] = useState('Избери')
+const [gearbox, setGearbox] = useState('Избери')
+const [category, setCategory] = useState('Избери')
+const [price, setPrice] = useState('')
+const [km, setKm] = useState('')
+const [birdayMont, setBirdayMont] = useState('Избери')
+const [birdayYear, setBirdayYear] = useState('')
+const [color, setColor] = useState('')
 
 const onBrandChange = (brand) => {
    setBrand(brand) 
 }
+
+
+const submitHandler = (x) => {
+  x.preventDefault()
+  
+}
   return (
     <FormContainer>
-      <Form>
+      <Form onSubmit={submitHandler}>
 
         <Form.Row>
           <BrandField onBrandChange={onBrandChange} Col={Col} />
-          <ModelField brand={brand} Col={Col} />
+          <ModelField brand={brand} model={model} onModelChange={d => setModel(d)} Col={Col} />
 
         </Form.Row>
 
-        <Form.Row>
+        <Form.Row>  
 
-          <Field as={Col} controlId="formGridModification" label='Модификация' name='modification' />
+          <Field as={Col} onValueChg={d => setModification(d)} value={modification} controlId="formGridModification" label='Модификация' name='modification' />
 
-          <Field type='select' label='Двигател' as={Col} controlId="formGridEngine" name='engine'>
+          <Field type='select' label='Двигател' as={Col}  onValueChg={d => setEngine(d)} value={engine} controlId="formGridEngine" name='engine'>
             <option>Избери</option>
             <option>Бензин</option>
             <option>Дизел</option>
@@ -42,9 +60,9 @@ const onBrandChange = (brand) => {
 
         <Form.Row>
 
-          <Field as={Col} controlId="formGridPower" label='Мощност [к.с.]' name='power' />
+          <Field as={Col} onValueChg={d => setPower(d)} value={power} controlId="formGridPower" label='Мощност [к.с.]' name='power' />
 
-          <Field type='select' label='Евростандарт' as={Col} controlId="formGridEurostandart" name='eurostandart'>
+          <Field type='select' onValueChg={d => setEurostandart(d)} value={eurostandart} label='Евростандарт' as={Col} controlId="formGridEurostandart" name='eurostandart'>
             <option>Евро 1</option>
             <option>Евро 2</option>
             <option>Евро 3</option>
@@ -57,13 +75,13 @@ const onBrandChange = (brand) => {
 
         <Form.Row>
 
-          <Field type='select' as={Col} controlId="formGridTransmition" label='Скоросна кутия' name='gearbox'>
+          <Field type='select' as={Col} onValueChg={d => setGearbox(d)} value={gearbox} controlId="formGridTransmition" label='Скоросна кутия' name='gearbox'>
             <option>Ръчна</option>
             <option>Автоматична</option>
             <option>Полуавтоматична</option>
           </Field>
 
-          <Field type='select' as={Col} controlId="formGridCategory" label='Категория' name='category'>
+          <Field type='select' as={Col} onValueChg={d => setCategory(d)} value={category} controlId="formGridCategory" label='Категория' name='category'>
             <option>Ван</option>
             <option>Джип</option>
             <option>Кабрио</option>
@@ -80,15 +98,15 @@ const onBrandChange = (brand) => {
 
         <Form.Row>
 
-          <Field as={Col} controlId="formGridPrice" label='Цена' name='price' />
+          <Field as={Col} onValueChg={d => setPrice(d)} value={price} controlId="formGridPrice" label='Цена' name='price' />
 
-          <Field as={Col} controlId="formGridMileage" label='пробег' name='km' />
+          <Field as={Col} onValueChg={d => setKm(d)} value={km} controlId="formGridMileage" label='пробег' name='km' />
 
         </Form.Row>
 
         <Form.Row>
 
-          <Field type='select' as={Col} controlId="formGridBirdayDate" label='Дата на производство' name='birdayMont' >
+          <Field type='select' as={Col} onValueChg={d => setBirdayMont(d)} value={birdayMont} controlId="formGridBirdayDate" label='Дата на производство' name='birdayMont' >
             <option>Януари</option>
             <option>Февруари</option>
             <option>Март</option>
@@ -103,13 +121,13 @@ const onBrandChange = (brand) => {
             <option>Декември</option>
           </Field>
 
-          <Field as={Col} controlId="formGridYear" label='Година' name='birdayYear' />
+          <Field as={Col} onValueChg={d => setBirdayYear(d)} value={birdayYear} controlId="formGridYear" label='Година' name='birdayYear' />
 
         </Form.Row>
 
         <Form.Row>
 
-          <Field as={Col} controlId="formGridColor" label='Цвят' name='color' />
+          <Field as={Col} onValueChg={d => setColor(d)} value={color} controlId="formGridColor" label='Цвят' name='color' />
 
         </Form.Row>
 

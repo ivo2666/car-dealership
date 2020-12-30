@@ -13,13 +13,13 @@ useEffect(() => {
     .catch(err => console.log(err))
 },[])
 
-const handleChange = (e) => {
+const handleChange = (value) => {
     //setValue(e.target.value);
-    onBrandChange(e.target.value)
+    onBrandChange(value)
 } 
 
     return (
-        <Field onChange={handleChange} value={value} type='select' label='Марка' name='make' as={Col} controlId="formGridBrand">
+        <Field onValueChg={handleChange} value={value} type='select' label='Марка' name='brand' as={Col} controlId="formGridBrand">
             <option value='Избери'>Избери</option>
             {brands.map((brand, index) => <option id={index} key={index} value={brand}>{brand}</option>)}
           </Field>
