@@ -17,10 +17,10 @@ module.exports = {
     },
 
     post: (req, res, next) => {
-        const { make, model, details, year, images, price, phone } = req.body;
+        const { brand, model, modification, engine, power, eurostandart, gearbox, category, price, km, birdayMont, birdayYear, color } = req.body;
         const { _id } = req.user;
 
-        models.Cars.create({ make, model, details, year, images, price, phone, user: _id })
+        models.Cars.create({ brand, model, modification, engine, power, eurostandart, gearbox, category, price, km, birdayMont, birdayYear, color })
             .then((createdcars) => {
                 return Promise.all([
                     models.User.updateOne({ _id }, { $push: { cars: createdcars } }),

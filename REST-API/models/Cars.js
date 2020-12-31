@@ -6,7 +6,7 @@ const { String, Number, Boolean, ObjectId } = Schema.Types;
 
 const carsSchema = new Schema({
 
-    make: {
+    brand: {
         type: String,
         required: true,
     },
@@ -76,9 +76,13 @@ const carsSchema = new Schema({
         ref: "User"
     },
 
+    extras: {
+        type: [String],
+        //required: true
+    },
     images: {
         type: [String],
-        required: true
+        //required: true
     }
 
 });

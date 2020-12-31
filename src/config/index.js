@@ -5,7 +5,8 @@ const urls = {
 login: `${server}/user/login`,
 verify: `${server}/user/verify`,
 getBrands: `${server}/brands`,
-getModels: `${server}/models`
+getModels: `${server}/models`,
+postCar: `${server}/cars/car`
 }
 
 export default urls 

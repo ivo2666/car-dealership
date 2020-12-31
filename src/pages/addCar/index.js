@@ -5,7 +5,8 @@ import Field from '../../components/forms'
 import ModelField from './modelField';
 import BrandField from './brandfield';
 import validationChek from './validationChek';
-
+import urls from '../../config';
+import getCookie from '../../helpers/cookie';
 
 const FormContainer = styled.div`
 width: 80%;
@@ -33,28 +34,54 @@ export default () => {
   }
 
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
     const data = {
-      Марка : brand,
-      Модел : model,
-      Модификация : modification,
-      Двигател : engine,
-      Мошност : power,
-      Евростандарт : eurostandart,
-      'Скоростна кутия' : gearbox,
-      Категория : category,
-      Цена : price,
-      Пробег : km,
-      'Дата на производство' : birdayMont,
-      Година : birdayYear,
-      Цвят : color,
+      brand,
+      model,
+      modification,
+      engine,
+      power,
+      eurostandart,
+      gearbox,
+      category,
+      price,
+      km,
+      birdayMont,
+      birdayYear,
+      color
+    }
+    const validationObj = {
+      Марка: brand,
+      Модел: model,
+      Модификация: modification,
+      Двигател: engine,
+      Мошност: power,
+      Евростандарт: eurostandart,
+      'Скоростна кутия': gearbox,
+      Категория: category,
+      Цена: price,
+      Пробег: km,
+      'Дата на производство': birdayMont,
+      Година: birdayYear,
+      Цвят: color,
     };
-    const valid = validationChek(data)
+    const valid = validationChek(validationObj)
     if (valid) {
       setValidation(<Alert variant='danger'>{valid}</Alert>)
-    } else {
-      console.log(data);
+    }
+    else {
+      await fetch(urls.postCar, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': getCookie('x-auth-token')
+        }
+      })
+        .then(x => x.json())
+        .then(x => console.log(x))
+      //console.log(data);
     }
   }
 
