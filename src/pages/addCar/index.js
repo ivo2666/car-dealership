@@ -1,9 +1,11 @@
-import React, { useState }from 'react';
-import { Form, Col, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Form, Col, Button, Alert } from 'react-bootstrap';
 import styled from 'styled-components';
 import Field from '../../components/forms'
 import ModelField from './modelField';
 import BrandField from './brandfield';
+import validationChek from './validationChek';
+
 
 const FormContainer = styled.div`
 width: 80%;
@@ -11,44 +13,66 @@ margin: 100px auto;
 `
 
 export default () => {
-const [brand, setBrand] = useState('Mercedes')
-const [model, setModel] = useState('')
-const [modification, setModification] = useState('')
-const [engine, setEngine] = useState('Избери')
-const [power, setPower] = useState('')
-const [eurostandart, setEurostandart] = useState('Избери')
-const [gearbox, setGearbox] = useState('Избери')
-const [category, setCategory] = useState('Избери')
-const [price, setPrice] = useState('')
-const [km, setKm] = useState('')
-const [birdayMont, setBirdayMont] = useState('Избери')
-const [birdayYear, setBirdayYear] = useState('')
-const [color, setColor] = useState('')
+  const [validation, setValidation] = useState(<></>)
+  const [brand, setBrand] = useState('Mercedes')
+  const [model, setModel] = useState('')
+  const [modification, setModification] = useState('')
+  const [engine, setEngine] = useState('Бензин')
+  const [power, setPower] = useState('')
+  const [eurostandart, setEurostandart] = useState('Евро 1')
+  const [gearbox, setGearbox] = useState('Ръчна')
+  const [category, setCategory] = useState('Ван')
+  const [price, setPrice] = useState('')
+  const [km, setKm] = useState('')
+  const [birdayMont, setBirdayMont] = useState('Януари')
+  const [birdayYear, setBirdayYear] = useState('')
+  const [color, setColor] = useState('')
 
-const onBrandChange = (brand) => {
-   setBrand(brand) 
-}
+  const onBrandChange = (brand) => {
+    setBrand(brand)
+  }
 
 
-const submitHandler = (x) => {
-  x.preventDefault()
-  
-}
+  const submitHandler = (e) => {
+    e.preventDefault()
+    const data = {
+      Марка : brand,
+      Модел : model,
+      Модификация : modification,
+      Двигател : engine,
+      Мошност : power,
+      Евростандарт : eurostandart,
+      'Скоростна кутия' : gearbox,
+      Категория : category,
+      Цена : price,
+      Пробег : km,
+      'Дата на производство' : birdayMont,
+      Година : birdayYear,
+      Цвят : color,
+    };
+    const valid = validationChek(data)
+    if (valid) {
+      setValidation(<Alert variant='danger'>{valid}</Alert>)
+    } else {
+      console.log(data);
+    }
+  }
+
   return (
     <FormContainer>
+      {validation}
       <Form onSubmit={submitHandler}>
-
         <Form.Row>
           <BrandField onBrandChange={onBrandChange} Col={Col} />
           <ModelField brand={brand} model={model} onModelChange={d => setModel(d)} Col={Col} />
 
         </Form.Row>
 
-        <Form.Row>  
+        <Form.Row>
 
           <Field as={Col} onValueChg={d => setModification(d)} value={modification} controlId="formGridModification" label='Модификация' name='modification' />
 
-          <Field type='select' label='Двигател' as={Col}  onValueChg={d => setEngine(d)} value={engine} controlId="formGridEngine" name='engine'>
+          <Field type='select' label='Двигател' as={Col} onValueChg={d => setEngine(d)} value={engine} controlId="formGridEngine" name='engine'>
             <option>Избери</option>
             <option>Бензин</option>
             <option>Дизел</option>
@@ -100,7 +124,7 @@ const submitHandler = (x) => {
 
           <Field as={Col} onValueChg={d => setPrice(d)} value={price} controlId="formGridPrice" label='Цена' name='price' />
 
-          <Field as={Col} onValueChg={d => setKm(d)} value={km} controlId="formGridMileage" label='пробег' name='km' />
+          <Field as={Col} onValueChg={d => setKm(d)} value={km} controlId="formGridMileage" label='Пробег' name='km' />
 
         </Form.Row>
 
