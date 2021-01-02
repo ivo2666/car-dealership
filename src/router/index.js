@@ -14,8 +14,8 @@ import {
     Contacts,
     Admin,
     Login,
-    AddCar
-
+    AddCar,
+    Extras
 } from '../pages';
 import {
     BrowserRouter,
@@ -45,11 +45,14 @@ export default function Router() {
             <Route path="/admin">
                 {loggedIn ? (<Admin />) : (<Redirect to='/login' /> )}
             </Route>
-            <Route path="/addCar">
-            {loggedIn ? (<AddCar />) : (<Redirect to='/login' /> )}
+            <Route exact path="/addCar">
+            {loggedIn ? (<AddCar />) : (<Home />)}
             </Route>
             <Route path="/login">
             {loggedIn ? (<Redirect to='/admin' /> ) : (<Login />)}
+            </Route>
+            <Route path="/addCar/extras/:carid">
+            {loggedIn ? (<Extras />) : (<Login />)}
             </Route>
         </Switch>
         </BrowserRouter>

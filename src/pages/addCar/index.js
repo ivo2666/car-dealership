@@ -7,6 +7,7 @@ import BrandField from './brandfield';
 import validationChek from './validationChek';
 import urls from '../../config';
 import getCookie from '../../helpers/cookie';
+import { useHistory } from "react-router-dom"
 
 const FormContainer = styled.div`
 width: 80%;
@@ -29,6 +30,8 @@ export default () => {
   const [birdayYear, setBirdayYear] = useState('')
   const [color, setColor] = useState('')
 
+  const history = useHistory();
+
   const onBrandChange = (brand) => {
     setBrand(brand)
   }
@@ -36,6 +39,7 @@ export default () => {
 
   const submitHandler = async (e) => {
     e.preventDefault()
+    
     const data = {
       brand,
       model,
@@ -80,8 +84,8 @@ export default () => {
         }
       })
         .then(x => x.json())
-        .then(x => console.log(x))
-      //console.log(data);
+        .then((x) => history.push(`/addCar/extras/${x._id}`))
+      
     }
   }
 

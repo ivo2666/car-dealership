@@ -12,5 +12,6 @@ import Contacts from './contacts';
 import Admin from './admin';
 import Login from './login';
 import AddCar from './addCar';
+import Extras from './extras';
 
-export { Home, Admin, Login, AddCar, Cars, Details, ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts };
+export { Home, Extras, Admin, Login, AddCar, Cars, Details, ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts };

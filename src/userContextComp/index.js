@@ -10,7 +10,7 @@ export default (props) => {
   const logIn = (user) => {
     setUser({
       ...user,
-      loggedIn: true
+      loggedIn: true,
     })
   }
 
