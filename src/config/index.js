@@ -6,7 +6,7 @@ login: `${server}/user/login`,
 verify: `${server}/user/verify`,
 getBrands: `${server}/brands`,
 getModels: `${server}/models`,
-postCar: `${server}/cars/car`
+postCar: `${server}/cars`
 }
 
 export default urls 

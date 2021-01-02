@@ -35,9 +35,9 @@ module.exports = {
 
     put: (req, res, next) => {
         const id = req.params.id;
-        const { description } = req.body;
-        models.Cars.updateOne({ _id: id }, { description })
-            .then((updatedcars) => res.send(updatedcars))
+        const { extras } = req.body;
+        models.Cars.updateOne({ _id: id }, { extras })
+            .then((updatedcars) => res.send({id}))
             .catch(next)
     },
 

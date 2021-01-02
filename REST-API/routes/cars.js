@@ -6,7 +6,7 @@ router.get('/', controllers.cars.get);
 
 router.get('/details/:id', auth(), controllers.cars.getOne);
 
-router.post('/car', auth(), controllers.cars.post);
+router.post('/', auth(), controllers.cars.post);
 
 router.put('/:id', auth(), controllers.cars.put);
 

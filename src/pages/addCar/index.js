@@ -75,17 +75,16 @@ export default () => {
       setValidation(<Alert variant='danger'>{valid}</Alert>)
     }
     else {
-      await fetch(urls.postCar, {
+      const promis = await fetch(urls.postCar, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': getCookie('x-auth-token')
         }
-      })
-        .then(x => x.json())
-        .then((x) => history.push(`/addCar/extras/${x._id}`))
-      
+      });
+        const resCar =  await promis.json();
+        history.push(`/addCar/extras/${resCar._id}`)
     }
   }
 
@@ -187,7 +186,7 @@ export default () => {
         </Form.Row>
 
         <Button variant="primary" type="submit">
-          Добави
+          Към добавяне на екстри
   </Button>
       </Form>
     </FormContainer>

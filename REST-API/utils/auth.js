@@ -1,5 +1,5 @@
 const jwt = require('./jwt');
-const config = require('../config/config');
+//const config = require('../config/config');
 const models = require('../models');
 
 module.exports = (redirectAuthenticated = true) => {

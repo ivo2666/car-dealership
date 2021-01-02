@@ -51,7 +51,7 @@ export default function Router() {
             <Route path="/login">
             {loggedIn ? (<Redirect to='/admin' /> ) : (<Login />)}
             </Route>
-            <Route path="/addCar/extras/:carid">
+            <Route path="/addCar/extras/:id">
             {loggedIn ? (<Extras />) : (<Login />)}
             </Route>
         </Switch>
