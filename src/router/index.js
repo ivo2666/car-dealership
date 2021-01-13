@@ -15,7 +15,8 @@ import {
     Admin,
     Login,
     AddCar,
-    Extras
+    Extras,
+    Images
 } from '../pages';
 import {
     BrowserRouter,
@@ -54,7 +55,10 @@ export default function Router() {
             <Route path="/addCar/extras/:id">
             {loggedIn ? (<Extras />) : (<Login />)}
             </Route>
+            <Route path="/addCar/images/:id">
+            {loggedIn ? (<Images />) : (<Login />)}
+            </Route>
         </Switch>
         </BrowserRouter>
     )
-}
+    }

@@ -10,5 +10,7 @@ module.exports = (app) => {
 
     app.use('/api/models', router.model);
 
+    app.use('/api/images', router.images);
+
     app.use('*', (req, res, next) => res.send('<h1> Something weeent wrong. Try again. :thumbsup: </h1>'))
 };
