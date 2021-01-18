@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import UserContext from '.././context';
+
 import {
     Home,
     Cars,
@@ -10,53 +12,54 @@ import {
     Barter,
     Consultation,
     Delivery,
-    Contacts
-
+    Contacts,
+    Admin,
+    Login,
+    AddCar,
+    Extras,
+    Images
 } from '../pages';
 import {
     BrowserRouter,
   Switch,
-  Route
+  Route,
+  Redirect
 } from "react-router-dom";
 
 export default function Router() {
+    const context = useContext(UserContext);
+    const loggedIn = context.user && context.user.loggedIn;
+    
     return (
         <BrowserRouter>
         <Switch>
-            <Route path="/" exact>
-                <Home />
+            <Route path="/" exact component={Home}/>
+            <Route path="/cars" component={Cars}/>
+            <Route path="/details" component={Details}/>
+            <Route path="/forUs" component={ForUs}/>
+            <Route path="/servises" exact component={Servises}/>
+            <Route path="/servises/lizing" component={Lizing}/>
+            <Route path="/servises/insurance"component={Insurance}/>
+            <Route path="/servises/barter" component={Barter}/>
+            <Route path="/servises/consultation" component={Consultation}/>
+            <Route path="/servises/delivery" component={Delivery}/>
+            <Route path="/contacts" component={Contacts}/>
+            <Route path="/admin">
+                {loggedIn ? (<Admin />) : (<Login /> )}
             </Route>
-            <Route path="/cars">
-                <Cars />
+            <Route exact path="/addCar">
+            {loggedIn ? (<AddCar />) : (<Login />)}
             </Route>
-            <Route path="/details">
-                <Details />
+            <Route path="/login">
+            {loggedIn ? (<Redirect to='/admin' /> ) : (<Login />)}
             </Route>
-            <Route path="/forUs">
-                <ForUs />
+            <Route path="/addCar/extras/:id">
+            {loggedIn ? (<Extras />) : (<Login />)}
             </Route>
-            <Route exact path="/servises">
-                <Servises />
-            </Route>
-            <Route path="/servises/lizing">
-                <Lizing />
-            </Route>
-            <Route path="/servises/insurance">
-                <Insurance />
-            </Route>
-            <Route path="/servises/barter">
-                <Barter />
-            </Route>
-            <Route path="/servises/consultation">
-                <Consultation />
-            </Route>
-            <Route path="/servises/delivery">
-                <Delivery />
-            </Route>
-            <Route path="/contacts">
-                <Contacts />    
+            <Route path="/addCar/images/:id">
+            {loggedIn ? (<Images />) : (<Login />)}
             </Route>
         </Switch>
         </BrowserRouter>
     )
-}
+    }

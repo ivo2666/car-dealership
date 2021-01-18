@@ -9,5 +9,10 @@ import Barter from './barter';
 import Delivery from './delivery';
 import Consultation from './consultation';
 import Contacts from './contacts';
+import Admin from './admin';
+import Login from './login';
+import AddCar from './addCar';
+import Extras from './extras';
+import Images from './images';
 
-export { Home, Cars, Details, ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts };
+export { Home, Extras, Images, Admin, Login, AddCar, Cars, Details, ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts };
