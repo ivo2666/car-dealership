@@ -8,5 +8,6 @@ import Insurance from './insurance';
 import Barter from './barter';
 import Delivery from './delivery';
 import Consultation from './consultation';
+import Contacts from './contacts';
 
-export { Home, Cars, Details, ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery };
+export { Home, Cars, Details, ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts };

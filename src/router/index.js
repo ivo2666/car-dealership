@@ -9,7 +9,8 @@ import {
     Lizing,
     Barter,
     Consultation,
-    Delivery
+    Delivery,
+    Contacts
 
 } from '../pages';
 import {
@@ -51,6 +52,9 @@ export default function Router() {
             </Route>
             <Route path="/servises/delivery">
                 <Delivery />
+            </Route>
+            <Route path="/contacts">
+                <Contacts />    
             </Route>
         </Switch>
         </BrowserRouter>
