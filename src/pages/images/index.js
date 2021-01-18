@@ -57,15 +57,20 @@ const Container = styled.div`
 
 export default () => {
   const [selectedFile, setSelectedFile] = useState([]);
+  const [img, setImg] = useState('');
   const params = useParams()
 
   const handleChange = (files) => {
     const fileArr = [];
+    const imgArr = [];
 for (let i = 0; i < files.length; i++) {
   const file = files[i];
+  console.log();
   fileArr.push(file)
+  imgArr.push(URL.createObjectURL(file))
 }
     setSelectedFile(fileArr)
+    setImg(imgArr)
     console.log(fileArr)
     console.log(params.id)
   }
@@ -88,9 +93,9 @@ for (let i = 0; i < files.length; i++) {
   }
 const imageReview = () => {
   if (selectedFile.length > 0) {
-   return selectedFile.map(image => {
-     console.log(image);
-     return <img src={image.name} alt='car' key={image.name}/>
+   return selectedFile.map((file, index) => {
+    
+     return <img src={img[index]} alt='car' key={file.name}/>
    })   
   }
 }
