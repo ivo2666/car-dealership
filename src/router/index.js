@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import UserContext from '.././context';
+
 import {
     Home,
     Cars,
@@ -44,10 +45,10 @@ export default function Router() {
             <Route path="/servises/delivery" component={Delivery}/>
             <Route path="/contacts" component={Contacts}/>
             <Route path="/admin">
-                {loggedIn ? (<Admin />) : (<Redirect to='/login' /> )}
+                {loggedIn ? (<Admin />) : (<Login /> )}
             </Route>
             <Route exact path="/addCar">
-            {loggedIn ? (<AddCar />) : (<Home />)}
+            {loggedIn ? (<AddCar />) : (<Login />)}
             </Route>
             <Route path="/login">
             {loggedIn ? (<Redirect to='/admin' /> ) : (<Login />)}

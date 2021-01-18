@@ -1,4 +1,5 @@
 const router = require('../routes');
+const express = require('express')
 
 module.exports = (app) => {
 
@@ -10,7 +11,9 @@ module.exports = (app) => {
 
     app.use('/api/models', router.model);
 
-    app.use('/api/images', router.images);
+    app.use('/api/uploadImage', router.images);
+
+    app.use('/static', express.static('public'))
 
     app.use('*', (req, res, next) => res.send('<h1> Something weeent wrong. Try again. :thumbsup: </h1>'))
 };

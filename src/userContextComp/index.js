@@ -34,9 +34,11 @@ export default (props) => {
         'Content-Type': 'application/json',
         'Authorization': token
       }
-    }).then(promise => {
+    })
+    .then(promise => {
       return promise.json()
-    }).then(response => {
+    })
+    .then(response => {
       if(response.status) {
         logIn({
           username: response.user.username,
@@ -46,6 +48,7 @@ export default (props) => {
         logOut()
       }
     })
+    .catch(err => console.log(err))
   }, [])
 
   

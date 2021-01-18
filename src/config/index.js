@@ -7,7 +7,7 @@ verify: `${server}/user/verify`,
 getBrands: `${server}/brands`,
 getModels: `${server}/models`,
 postCar: `${server}/cars`,
-postImage: `${server}/upload`
+postImage: `${server}/uploadImage`
 }
 
 export default urls 
