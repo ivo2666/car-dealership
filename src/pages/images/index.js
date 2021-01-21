@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import Container from './styledContainer'
 import { Form, Button, Image, Alert } from 'react-bootstrap';
 import getCookie from '../../helpers/cookie';
-import url from '../../config'
+import urls from '../../config'
+import { useParams, useHistory } from 'react-router-dom';
+
 
 export default () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validation, setValidation] = useState(false);
+
+  const { id } = useParams();
+  const history = useHistory();
 
   const handleChange = (files) => {
     const fileArr = [];
@@ -26,10 +31,12 @@ export default () => {
 
   const handleClick = (e) => {
     const data = new FormData()
-
-    data.append('file', selectedFiles)
-
-    fetch(url.postImage, {
+//console.log(selectedFiles);
+    selectedFiles.map(fileObj => {
+      return data.append('file', fileObj.file)
+    })
+  //  console.log(data);
+    fetch(`${urls.postImage}/${id}`, {
       method: 'POST',
       body: data,
       headers: {
@@ -37,7 +44,7 @@ export default () => {
       }
     })
       .then(x => x.json())
-      .then(x => console.log(x))
+      .then(x => history.push(`/admin`))
       .catch(err => console.log(err))
   }
   const imageReview = () => {

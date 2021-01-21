@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import urls from '../../config'
 import { useHistory, useParams } from 'react-router-dom';
 import getCookie from '../../helpers/cookie'
+
 const Container = styled.div`
 form {
     margin: 3%;
@@ -22,16 +23,24 @@ export default () => {
     const submitHandler = async (e) => {
         e.preventDefault()
         
-        const promis = await fetch(`${urls.postCar}/${id}`, {
+        fetch(`${urls.postCar}/${id}`, {
             method: 'PUT',
                 body: JSON.stringify({extras: extras}),
             headers: {
               'Content-Type': 'application/json',
               'Authorization': getCookie('x-auth-token')
             }
-          });
-            const resCar = await promis.json();
-            history.push(`/addCar/images/${resCar.id}`)
+          })
+          .then(promis => {
+            return promis.json();
+          })
+        .then(resCar => {
+            return history.push(`/addCar/images/${resCar.id}`)
+        })
+        .catch(err => {
+            return console.log(err);
+        }) 
+            
     }
 
     const changeHandler = (e) => {

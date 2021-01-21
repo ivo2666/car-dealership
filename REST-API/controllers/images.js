@@ -1,6 +1,7 @@
 const models = require('../models');
 const formidable = require('formidable');
 const fs = require('fs');
+const config = require('../config/config');
 
     module.exports = {
     get: (req, res, next) => {
@@ -9,24 +10,36 @@ const fs = require('fs');
 
     post: (req, res, next) => {
         const form = formidable({ multiples: true, uploadDir: `${process.cwd()}/uploadImages` });
-
+        const id = req.params.id;
+        
         form.on('file', function (field, file) {
             //rename the incoming file to the file's name
             fs.rename(file.path, `${form.uploadDir}/${file.name}`, (err) => {
                 if (err) {
                     throw err
                 }
-                console.log('rename complte');
+                
+                //console.log('rename complete');
             });
         });
 
 
-        form.parse(req, (err, fields, files) => {
+        form.parse(req, (err, fields, file) => {
+            console.log(file);
             if (err) {
                 next(err);
                 return;
             }
-            res.json({ fields, files });
+            const filesUrls = [];
+            for (let i = 0; i < file.file.length; i++) {
+                const f = file.file[i];
+                filesUrls.push(`${config.host}/${f.name}`)
+            }
+                 
+            models.Cars.updateOne({ _id: id }, { images: filesUrls })
+            .then((updatedcar) => res.send(filesUrls))
+            .catch(next)
+            
         });
     },
 
