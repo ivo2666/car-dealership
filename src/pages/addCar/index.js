@@ -29,6 +29,7 @@ export default () => {
   const [birdayMont, setBirdayMont] = useState('Януари')
   const [birdayYear, setBirdayYear] = useState('')
   const [color, setColor] = useState('')
+  const [description, setDescription] = useState('')
 
   const history = useHistory();
 
@@ -186,6 +187,11 @@ export default () => {
         <Form.Row>
 
           <Field as={Col} onChange={d => setColor(d)} value={color} controlId="formGridColor" label='Цвят' name='color' />
+
+        </Form.Row>
+        <Form.Row>
+
+          <Field as={Col} type="textarea" onChange={d => setDescription(d)} value={description} controlId="formGridDescription" label='Описание' name='description' />
 
         </Form.Row>
 

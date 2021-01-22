@@ -83,6 +83,10 @@ const carsSchema = new Schema({
     images: {
         type: [String],
         //required: true
+    },
+    description: {
+        type: String,
+        required: true,
     }
 
 });

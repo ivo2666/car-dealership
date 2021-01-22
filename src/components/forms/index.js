@@ -8,7 +8,7 @@ export default (props) => {
     return (
         <Form.Group as={props.as}>
             <Form.Label>{props.label}</Form.Label>
-            <Form.Control onChange={handleChange} name={props.name} as={props.type} value={props.value} placeholder={props.placeholder} >
+            <Form.Control  onChange={handleChange} name={props.name} as={props.type} value={props.value} placeholder={props.placeholder} >
                 {props.children}
             </Form.Control>
         </Form.Group>
