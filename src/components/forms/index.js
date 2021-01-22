@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 
 export default (props) => {
     const handleChange = (e) => {
-        props.onValueChg(e.target.value)
+        props.onChange(e.target.value)
     }
     return (
         <Form.Group as={props.as}>

@@ -25,7 +25,7 @@ const config = require('../config/config');
 
 
         form.parse(req, (err, fields, file) => {
-            console.log(file);
+            //console.log(file);
             if (err) {
                 next(err);
                 return;

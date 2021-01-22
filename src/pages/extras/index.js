@@ -11,7 +11,11 @@ form {
     margin: 3%;
     font-family: Verdana, Geneva, Tahoma, sans-serif
 }
+input, label {
+    cursor: pointer;
+}
 `
+
 
 
 export default () => {
@@ -45,31 +49,30 @@ export default () => {
 
     const changeHandler = (e) => {
         const value = e.target.value;
+        const arr = Array.from(extras)
         if (e.target.checked) {
-            setExtras([...extras, value])
-            
+            arr.push(value)
+            setExtras(arr)
         }else {
-            const index = extras.findIndex(x => x === value)
-            extras.splice(index, 1)
+            const index = arr.findIndex(x => x === value)
+            arr.splice(index, 1)
             return setExtras(
-                extras
+                arr
             )
         }
     }
     return (
         <Container>
             <Form onSubmit={submitHandler}>
-                <Form.Group controlId="formBasicCheckbox">
                     <Row>
-                        {data.map((x, index) => {
+                        {data.map((i, index) => {
                             return (
-                                <Col key={index} sm={3}>
-                                    <Form.Check onChange={changeHandler} value={x} type="checkbox" label={x} />
+                             <Col key={index} sm={3}>
+                                    <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" label={i} />
                                 </Col>
                             )
                         })}
                     </Row>
-                </Form.Group>
                 <Button variant="primary" type="submit">
                     Към качване на снимки
   </Button>
