@@ -42,7 +42,7 @@ export default () => {
   }
 
 
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault()
     
     const data = {
@@ -58,7 +58,8 @@ export default () => {
       km,
       birdayMont,
       birdayYear,
-      color
+      color,
+      description
     }
     const validationObj = {
       Марка: brand,
@@ -74,22 +75,26 @@ export default () => {
       'Дата на производство': birdayMont,
       Година: birdayYear,
       Цвят: color,
+      Описание: description
     };
     const valid = validationChek(validationObj)
     if (valid) {
       setValidation(<Alert variant='danger'>{valid}</Alert>)
     }
     else {
-      const promis = await fetch(urls.postCar, {
+      fetch(urls.postCar, {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': getCookie('x-auth-token')
         }
-      });
-        const resCar =  await promis.json();
-        history.push(`/addCar/extras/${resCar._id}`)
+      })
+      .then(promis => promis.json())
+      .then(resCar => {
+        return history.push(`/addCar/extras/${resCar._id}`)
+      })
+        .catch(err => console.log(err))
     }
   }
 

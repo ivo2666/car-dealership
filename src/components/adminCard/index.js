@@ -13,8 +13,7 @@ export default (props) => {
   <Card.Body>
     <Card.Title>{`${props.brand} ${props.model}`}</Card.Title>
     <Card.Text>
-      Some quick example text to build on the card title and make up the bulk of
-      the card's content.
+      {props.description}
     </Card.Text>
     <MyButton variant="primary">Промени</MyButton>
     <MyButton variant="primary">Изтий</MyButton>

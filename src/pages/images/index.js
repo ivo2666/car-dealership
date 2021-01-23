@@ -31,11 +31,9 @@ export default () => {
 
   const handleClick = (e) => {
     const data = new FormData()
-//console.log(selectedFiles);
     selectedFiles.map(fileObj => {
       return data.append('file', fileObj.file)
     })
-  //  console.log(data);
     fetch(`${urls.postImage}/${id}`, {
       method: 'POST',
       body: data,

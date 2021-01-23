@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import Card from '../../components/adminCard';
 import { Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import urls from '../../config';
 
 const CardWrapper = styled.section`
 display: flex;
@@ -21,11 +22,26 @@ const Admin = styled.main`
   width: 70%;
   margin: 70px auto 30px auto;
 }
+
+.card {
+  margin: 10px;
+}
 `
 
 
 
 export default () => {
+const [cars, setCars] = useState([]);
+
+useEffect(() => {
+  fetch(urls.getCars)
+  .then(x => x.json())
+  .then(data => {
+    return setCars(data)
+  })
+  .catch(err => console.log(err))
+},[])
+
   return (
     <Admin>
       <Link id='add-car-link' to='/addCar'>
@@ -34,10 +50,17 @@ export default () => {
   </Button>
       </Link>
       <CardWrapper>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        {cars.map(car => {
+          return <Card
+          className="card"
+          img={car.images[0]}
+          brand={car.brand}
+          model={car.model}
+          description={car.description}
+          key={car._id}
+           /> 
+        })}
+        
       </CardWrapper>
 
     </Admin>
