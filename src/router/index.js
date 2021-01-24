@@ -59,6 +59,9 @@ export default function Router() {
             <Route path="/addCar/images/:id">
             {loggedIn ? (<Images />) : (<Login />)}
             </Route>
+            <Route path="/addCar/:id">
+            {loggedIn ? (<AddCar />) : (<Login />)}
+            </Route>
         </Switch>
         </BrowserRouter>
     )

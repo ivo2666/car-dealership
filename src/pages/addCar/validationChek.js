@@ -2,7 +2,7 @@ export default function (data) {
     let err = false;
   
     for (const [key, value] of Object.entries(data)) {
-      if (value === '') {
+      if (value === '' || value === undefined) {
         err = `Полето ${key} не е попълнено!`
       } else if (key === 'km' || key === 'price' || key === 'birdayYear' || key === 'power'){
         if (isNaN(value)) {

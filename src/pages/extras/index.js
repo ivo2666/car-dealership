@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import data from './data'
 import styled from 'styled-components'
 import urls from '../../config'
 import { useHistory, useParams } from 'react-router-dom';
 import getCookie from '../../helpers/cookie'
+import getCar from '../../helpers/getCar'
 
 const Container = styled.div`
 form {
@@ -20,9 +21,14 @@ input, label {
 
 export default () => {
     const [extras, setExtras] = useState([]);
+    const [car, setCar] = useState({});
 
     const { id } = useParams();
     const history = useHistory();
+
+    useEffect(() => {
+         getCar(id, setCar);
+      }, [id] );
 
     const submitHandler = async (e) => {
         e.preventDefault()
@@ -61,16 +67,25 @@ export default () => {
             )
         }
     }
+    
     return (
         <Container>
             <Form onSubmit={submitHandler}>
                     <Row>
                         {data.map((i, index) => {
-                            return (
-                             <Col key={index} sm={3}>
-                                    <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" label={i} />
-                                </Col>
-                            )
+                            if (car.extras && car.extras.includes(i)) {
+                                return (
+                                    <Col key={index} sm={3}>
+                                           <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" defaultChecked label={i} />
+                                       </Col>
+                                   )
+                            }else {
+                                return (
+                                    <Col key={index} sm={3}>
+                                           <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" label={i} />
+                                       </Col>
+                                   )
+                            }
                         })}
                     </Row>
                 <Button variant="primary" type="submit">

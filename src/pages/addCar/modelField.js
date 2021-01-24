@@ -3,7 +3,7 @@ import Field from '../../components/forms'
 import urls from '../../config'
 
 
-export default ({Col, brand, onModelChange, model}) => {
+export default ({Col, brand, onModelChange, model, value}) => {
     const [models, setModels] = useState([])
   const [selectModel, setSelectModel] = useState(true)
 

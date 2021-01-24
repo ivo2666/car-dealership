@@ -9,9 +9,14 @@ import { useParams, useHistory } from 'react-router-dom';
 export default () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validation, setValidation] = useState(false);
+ 
 
   const { id } = useParams();
   const history = useHistory();
+
+
+ 
+
 
   const handleChange = (files) => {
     const fileArr = [];

@@ -32,15 +32,16 @@ const Admin = styled.main`
 
 export default () => {
 const [cars, setCars] = useState([]);
+const [counter, setCounter] = useState(0);
 
 useEffect(() => {
   fetch(urls.getCars)
   .then(x => x.json())
   .then(data => {
-    return setCars(data)
+     setCars(data)
   })
   .catch(err => console.log(err))
-},[])
+},[counter])
 
   return (
     <Admin>
@@ -58,6 +59,8 @@ useEffect(() => {
           model={car.model}
           description={car.description}
           key={car._id}
+          carId={car._id}
+          onDel={x => setCounter(counter + x)}
            /> 
         })}
         
