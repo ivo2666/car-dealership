@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from './styledContainer'
 import { Form, Button, Image, Alert } from 'react-bootstrap';
 import getCookie from '../../helpers/cookie';
 import urls from '../../config'
 import { useParams, useHistory } from 'react-router-dom';
+import getCar from '../../helpers/getCar'
 
 
 export default () => {
@@ -14,7 +15,13 @@ export default () => {
   const { id } = useParams();
   const history = useHistory();
 
+  useEffect(() => {
+    getCar(id, getImages);
+ }, [id] );
 
+const getImages = (car) => {
+  return 
+}
  
 
 

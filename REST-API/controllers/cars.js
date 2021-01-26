@@ -1,4 +1,5 @@
 const models = require('../models');
+const fs = require('fs')
 
 module.exports = {
     get: (req, res, next) => {
@@ -43,8 +44,24 @@ module.exports = {
 
     delete: (req, res, next) => {
         const id = req.params.id;
+        models.Cars.findById({ _id: id })
+        .then((removedcars) => {
+            removedcars.images.map(image => {
+                const arr = image.split('/')
+                const path = `${process.cwd()}/uploadImages/${arr[3]}` 
+                return fs.unlink(path, (err) => {
+                    if (err) {
+                      console.error(err)
+                      return
+                    }
+                })
+            })
+        })
+        .catch(next)
         models.Cars.deleteOne({ _id: id })
-            .then((removedcars) => res.send(removedcars))
+            .then((removedcars) => {
+                return res.send(removedcars)
+            })
             .catch(next)
     }
 };
