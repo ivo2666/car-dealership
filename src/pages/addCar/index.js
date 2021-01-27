@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Col, Button, Alert } from 'react-bootstrap';
 import styled from 'styled-components';
 import Field from '../../components/forms'
 import ModelField from './modelField';
 import BrandField from './brandfield';
 import validationChek from './validationChek';
-import urls from '../../config';
-import getCookie from '../../helpers/cookie';
-import { useHistory } from "react-router-dom"
+import getCar from '../../helpers/getCar'
+import getCookie from '../../helpers/cookie'
+import urls from '../../config'
+import { useHistory, useParams } from "react-router-dom"
 
 const FormContainer = styled.div`
 width: 80%;
@@ -15,76 +16,77 @@ margin: 100px auto;
 `
 
 export default () => {
-  const [validation, setValidation] = useState(<></>)
-  const [brand, setBrand] = useState('Mercedes')
-  const [model, setModel] = useState('')
-  const [modification, setModification] = useState('')
-  const [engine, setEngine] = useState('Бензин')
-  const [power, setPower] = useState('')
-  const [eurostandart, setEurostandart] = useState('Евро 1')
-  const [gearbox, setGearbox] = useState('Ръчна')
-  const [category, setCategory] = useState('Ван')
-  const [price, setPrice] = useState('')
-  const [km, setKm] = useState('')
-  const [birdayMont, setBirdayMont] = useState('Януари')
-  const [birdayYear, setBirdayYear] = useState('')
-  const [color, setColor] = useState('')
+    const [validation, setValidation] = useState(<></>)
+    const [car, setCar] = useState({
+brand: 'Mercedes',
+model: '',
+modification: '',
+engine: 'Бензин',
+power : '',
+eurostandar: 'Евро 1',
+gearbox: 'Ръчна',
+category: 'Ван',
+price: '',
+km: '',
+birdayMont: 'Януари',
+birdayYear: '',
+color: '',
+description: ''
+    });
 
+  const { id } = useParams();
   const history = useHistory();
+  const method = id ? "PUT" : "POST";
 
-  const onBrandChange = (brand) => {
-    setBrand(brand)
+  useEffect(() => {
+    if (id) {
+     getCar(id, setCar);
+    }
+  }, [id] );
+
+
+
+  const handleChange = (field) => {
+    setCar({...car, ...field})
   }
 
-
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault()
-    
-    const data = {
-      brand,
-      model,
-      modification,
-      engine,
-      power,
-      eurostandart,
-      gearbox,
-      category,
-      price,
-      km,
-      birdayMont,
-      birdayYear,
-      color
-    }
     const validationObj = {
-      Марка: brand,
-      Модел: model,
-      Модификация: modification,
-      Двигател: engine,
-      Мошност: power,
-      Евростандарт: eurostandart,
-      'Скоростна кутия': gearbox,
-      Категория: category,
-      Цена: price,
-      Пробег: km,
-      'Дата на производство': birdayMont,
-      Година: birdayYear,
-      Цвят: color,
+      Марка: car.brand,
+      Модел: car.model,
+      Модификация: car.modification,
+      Двигател: car.engine,
+      Мошност: car.power,
+      Евростандарт: car.eurostandart,
+      'Скоростна кутия': car.gearbox,
+      Категория: car.category,
+      Цена: car.price,
+      Пробег: car.km,
+      'Дата на производство': car.birdayMont,
+      Година: car.birdayYear,
+      Цвят: car.color,
+      Описание: car.description
     };
     const valid = validationChek(validationObj)
     if (valid) {
       setValidation(<Alert variant='danger'>{valid}</Alert>)
     }
     else {
-      const promis = await fetch(urls.postCar, {
-        method: 'POST',
-        body: JSON.stringify(data),
+      fetch(`${urls.postCar}/${id}`, {
+        method: method,
+        body: JSON.stringify(car),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': getCookie('x-auth-token')
         }
-      });
-        const resCar =  await promis.json();
-        history.push(`/addCar/extras/${resCar._id}`)
+      })
+      .then(promis => promis.json())
+      .then(resCar => {
+        const _id = id ? id : resCar._id;
+        return history.push(`/addCar/extras/${_id}`)
+      })
+        .catch(err => console.log(err))
     }
   }
 
@@ -93,16 +95,16 @@ export default () => {
       {validation}
       <Form onSubmit={submitHandler}>
         <Form.Row>
-          <BrandField onBrandChange={onBrandChange} Col={Col} />
-          <ModelField brand={brand} model={model} onModelChange={d => setModel(d)} Col={Col} />
+          <BrandField onBrandChange={handleChange} Col={Col} value={car.brand} />
+          <ModelField brand={car.brand} model={car.model} onModelChange={handleChange} Col={Col} />
 
         </Form.Row>
 
         <Form.Row>
 
-          <Field as={Col} onValueChg={d => setModification(d)} value={modification} controlId="formGridModification" label='Модификация' name='modification' />
+          <Field as={Col} onChange={handleChange} value={car.modification} controlId="formGridModification" label='Модификация' name='modification' />
 
-          <Field type='select' label='Двигател' as={Col} onValueChg={d => setEngine(d)} value={engine} controlId="formGridEngine" name='engine'>
+          <Field type='select' label='Двигател' as={Col} onChange={handleChange} value={car.engine} controlId="formGridEngine" name='engine'>
             <option>Избери</option>
             <option>Бензин</option>
             <option>Дизел</option>
@@ -114,9 +116,9 @@ export default () => {
 
         <Form.Row>
 
-          <Field as={Col} onValueChg={d => setPower(d)} value={power} controlId="formGridPower" label='Мощност [к.с.]' name='power' />
+          <Field as={Col} onChange={handleChange} value={car.power} controlId="formGridPower" label='Мощност [к.с.]' name='power' />
 
-          <Field type='select' onValueChg={d => setEurostandart(d)} value={eurostandart} label='Евростандарт' as={Col} controlId="formGridEurostandart" name='eurostandart'>
+          <Field type='select' onChange={handleChange} value={car.eurostandart} label='Евростандарт' as={Col} controlId="formGridEurostandart" name='eurostandart'>
             <option>Евро 1</option>
             <option>Евро 2</option>
             <option>Евро 3</option>
@@ -129,13 +131,13 @@ export default () => {
 
         <Form.Row>
 
-          <Field type='select' as={Col} onValueChg={d => setGearbox(d)} value={gearbox} controlId="formGridTransmition" label='Скоросна кутия' name='gearbox'>
+          <Field type='select' as={Col} onChange={handleChange} value={car.gearbox} controlId="formGridTransmition" label='Скоросна кутия' name='gearbox'>
             <option>Ръчна</option>
             <option>Автоматична</option>
             <option>Полуавтоматична</option>
           </Field>
 
-          <Field type='select' as={Col} onValueChg={d => setCategory(d)} value={category} controlId="formGridCategory" label='Категория' name='category'>
+          <Field type='select' as={Col} onChange={handleChange} value={car.category} controlId="formGridCategory" label='Категория' name='category'>
             <option>Ван</option>
             <option>Джип</option>
             <option>Кабрио</option>
@@ -152,15 +154,15 @@ export default () => {
 
         <Form.Row>
 
-          <Field as={Col} onValueChg={d => setPrice(d)} value={price} controlId="formGridPrice" label='Цена' name='price' />
+          <Field as={Col} onChange={handleChange} value={car.price} controlId="formGridPrice" label='Цена' name='price' />
 
-          <Field as={Col} onValueChg={d => setKm(d)} value={km} controlId="formGridMileage" label='Пробег' name='km' />
+          <Field as={Col} onChange={handleChange} value={car.km} controlId="formGridMileage" label='Пробег' name='km' />
 
         </Form.Row>
 
         <Form.Row>
 
-          <Field type='select' as={Col} onValueChg={d => setBirdayMont(d)} value={birdayMont} controlId="formGridBirdayDate" label='Дата на производство' name='birdayMont' >
+          <Field type='select' as={Col} onChange={handleChange} value={car.birdayMont} controlId="formGridBirdayDate" label='Дата на производство' name='birdayMont' >
             <option>Януари</option>
             <option>Февруари</option>
             <option>Март</option>
@@ -175,13 +177,18 @@ export default () => {
             <option>Декември</option>
           </Field>
 
-          <Field as={Col} onValueChg={d => setBirdayYear(d)} value={birdayYear} controlId="formGridYear" label='Година' name='birdayYear' />
+          <Field as={Col} onChange={handleChange} value={car.birdayYear} controlId="formGridYear" label='Година' name='birdayYear' />
 
         </Form.Row>
 
         <Form.Row>
 
-          <Field as={Col} onValueChg={d => setColor(d)} value={color} controlId="formGridColor" label='Цвят' name='color' />
+          <Field as={Col} onChange={handleChange} value={car.color} controlId="formGridColor" label='Цвят' name='color' />
+
+        </Form.Row>
+        <Form.Row>
+
+          <Field as={Col} type="textarea" onChange={handleChange} value={car.description} controlId="formGridDescription" label='Описание' name='description' />
 
         </Form.Row>
 

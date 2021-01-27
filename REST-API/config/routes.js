@@ -13,7 +13,7 @@ module.exports = (app) => {
 
     app.use('/api/uploadImage', router.images);
 
-    app.use('/static', express.static('public'))
+    app.use('/', express.static('uploadImages'))
 
     app.use('*', (req, res, next) => res.send('<h1> Something weeent wrong. Try again. :thumbsup: </h1>'))
 };

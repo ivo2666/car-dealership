@@ -1,81 +1,45 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
-import { Form, Button } from 'react-bootstrap';
+import Container from './styledContainer'
+import { Form, Button, Image, Alert } from 'react-bootstrap';
 import getCookie from '../../helpers/cookie';
-import url from '../../config'
+import urls from '../../config'
+import { useParams, useHistory } from 'react-router-dom';
 
-const Container = styled.div`
-.files input {
-    outline: 2px dashed #92b0b3;
-    outline-offset: -10px;
-    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    padding: 120px 0px 85px 35%;
-    text-align: center !important;
-    margin: 0;
-    width: 100% !important;
-}
-.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
-    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
- }
-.files{ position:relative}
-.files:after {  pointer-events: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 50px;
-    right: 0;
-    height: 56px;
-    content: "";
-    background-image: url('https://image.flaticon.com/icons/png/128/109/109612.png');
-    display: block;
-    margin: 0 auto;
-    background-size: 100%;
-    background-repeat: no-repeat;
-}
-.color input{
-   background-color:#f1f1f1;
-   }
-.files:before {
-    position: absolute;
-    bottom: 10px;
-    left: 0;  pointer-events: none;
-    width: 100%;
-    right: 0;
-    height: 57px;
-    content: " or drag it here. ";
-    display: block;
-    margin: 0 auto;
-    color: #2ea591;
-    font-weight: 600;
-    text-transform: capitalize;
-    text-align: center;
-}
-  `
 
 export default () => {
-  const [selectedFile, setSelectedFile] = useState([]);
-  const params = useParams()
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const [validation, setValidation] = useState(false);
+ 
+
+  const { id } = useParams();
+  const history = useHistory();
+
+
+ 
+
 
   const handleChange = (files) => {
     const fileArr = [];
-for (let i = 0; i < files.length; i++) {
-  const file = files[i];
-  fileArr.push(file)
-}
-    setSelectedFile(fileArr)
-    console.log(fileArr)
-    console.log(params.id)
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      if (!file.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+        setValidation('Please select valid image.');
+      }else if (file.size > 1240000) {
+        setValidation('Някой от файловете е прекалено голям!')
+      }else {
+        setValidation(false);
+      }
+      fileArr.push({ file, href: URL.createObjectURL(file) })
+    }
+    setSelectedFiles(fileArr)
   }
 
   const handleClick = (e) => {
     const data = new FormData()
-
-    data.append('file', selectedFile)
-
-    fetch(url.postImage, {
+    selectedFiles.map(fileObj => {
+      return data.append('file', fileObj.file)
+    })
+    fetch(`${urls.postImage}/${id}`, {
       method: 'POST',
       body: data,
       headers: {
@@ -83,32 +47,32 @@ for (let i = 0; i < files.length; i++) {
       }
     })
       .then(x => x.json())
-      .then(x => console.log(x))
+      .then(x => history.push(`/admin`))
       .catch(err => console.log(err))
   }
-const imageReview = () => {
-  if (selectedFile.length > 0) {
-   return selectedFile.map(image => {
-     console.log(image);
-     return <img src={image.name} alt='car' key={image.name}/>
-   })   
+  const imageReview = () => {
+    if (selectedFiles.length > 0) {
+      if (validation) {
+        return <Alert variant='danger' >{validation}</Alert>
+      }
+      return selectedFiles.map(fileObj => {
+        return <Image src={fileObj.href} alt='car' rounded key={fileObj.file.name} />
+      })
+    }
   }
-}
-  
+
 
 
   return (
     <Container>
-    <Form>
-      
-    <div className="form-group files">
-                <Form.Label>Качване на файлове</Form.Label>
-                
-                <Form.Control onChange={e => handleChange(e.target.files)} type="file" className="form-control" multiple />
-              </div>
-    </Form>
-    {imageReview()}
-    <Button onClick={handleClick} >Качи файловете</Button>
+      <Form>
+        <div className="form-group files">
+          <Form.Label>Качване на файлове</Form.Label>
+          <Form.Control accept=".png, .jpg, .jpeg" onChange={e => handleChange(e.target.files)} type="file" className="form-control" multiple />
+        </div>
+      </Form>
+      <div className='imageReview'>{imageReview()}</div>
+      <Button onClick={handleClick} >Качи файловете</Button>
     </Container>
   )
 }

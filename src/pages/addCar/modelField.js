@@ -3,7 +3,7 @@ import Field from '../../components/forms'
 import urls from '../../config'
 
 
-export default ({Col, brand, onModelChange, model}) => {
+export default ({Col, brand, onModelChange, model, value}) => {
     const [models, setModels] = useState([])
   const [selectModel, setSelectModel] = useState(true)
 
@@ -35,7 +35,7 @@ export default ({Col, brand, onModelChange, model}) => {
   }
 
   if (selectModel) {
-    return <Field value={model} onValueChg={handleChange} type='select' label='Модел' name='model'  as={Col} controlId="formGridModel"  >
+    return <Field value={model} onChange={handleChange} type='select' label='Модел' name='model'  as={Col} controlId="formGridModel"  >
       <option value="Избери">Избери</option>
       <option value='Напиши сам'>Напиши сам</option>
       {models.map((model, index) => <option key={index} value={model}>{model}</option>)}

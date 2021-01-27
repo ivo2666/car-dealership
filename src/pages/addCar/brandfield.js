@@ -19,7 +19,7 @@ const handleChange = (value) => {
 } 
 
     return (
-        <Field onValueChg={handleChange} value={value} type='select' label='Марка' name='brand' as={Col} controlId="formGridBrand">
+        <Field onChange={handleChange} value={value} type='select' label='Марка' name='brand' as={Col} controlId="formGridBrand">
             <option value='Избери'>Избери</option>
             {brands.map((brand, index) => <option id={index} key={index} value={brand}>{brand}</option>)}
           </Field>
