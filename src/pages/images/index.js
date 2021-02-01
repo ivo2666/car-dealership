@@ -37,7 +37,7 @@ export default () => {
       const file = files[i];
       if (!file.name.match(/\.(jpg|jpeg|png|gif)$/)) {
         setValidation('Please select valid image.');
-      }else if (file.size > 1240000) {
+      }else if (file.size > 1640000) {
         setValidation('Някой от файловете е прекалено голям!')
       }else {
         setValidation(false);
