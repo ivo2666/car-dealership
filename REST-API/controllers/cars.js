@@ -1,5 +1,6 @@
 const models = require('../models');
 const fs = require('fs')
+const cleanUploadImages = require('../utils/cleanUploadImages')
 
 module.exports = {
     get: (req, res, next) => {
@@ -19,17 +20,11 @@ module.exports = {
 
     post: (req, res, next) => {
         const { brand, model, modification, engine, power, eurostandart, gearbox, category, price, km, birdayMont, birdayYear, color, description } = req.body;
-        const { _id } = req.user;
+        //const { _id } = req.user;
 
         models.Cars.create({ brand, model, modification, engine, power, eurostandart, gearbox, category, price, km, birdayMont, birdayYear, color, description })
             .then((createdcars) => {
-                return Promise.all([
-                    models.User.updateOne({ _id }, { $push: { cars: createdcars } }),
-                    models.Cars.findOne({ _id: createdcars._id })
-                ]);
-            })
-            .then(([modifiedObj, carsObj]) => {
-                res.send(carsObj);
+                res.send(createdcars);
             })
             .catch(next);
     },
@@ -44,20 +39,7 @@ module.exports = {
 
     delete: (req, res, next) => {
         const id = req.params.id;
-        models.Cars.findById({ _id: id })
-        .then((removedcars) => {
-            removedcars.images.map(image => {
-                const arr = image.split('/')
-                const path = `${process.cwd()}/uploadImages/${arr[3]}` 
-                return fs.unlink(path, (err) => {
-                    if (err) {
-                      console.error(err)
-                      return
-                    }
-                })
-            })
-        })
-        .catch(next)
+        cleanUploadImages(models, id, fs, next);
         models.Cars.deleteOne({ _id: id })
             .then((removedcars) => {
                 return res.send(removedcars)

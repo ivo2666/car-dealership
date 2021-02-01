@@ -16,12 +16,18 @@ export default () => {
   const history = useHistory();
 
   useEffect(() => {
-    getCar(id, getImages);
- }, [id] );
+    getCar(id, (car) => {
+      if (car.images.length > 0) {
+        const arr = [];
+        car.images.map(image => {
+          return arr.push({'href': image}) 
+        })
+        setSelectedFiles(arr)
+      }
+      return 
+    });
+ },[id] );
 
-const getImages = (car) => {
-  return 
-}
  
 
 
@@ -42,6 +48,10 @@ const getImages = (car) => {
   }
 
   const handleClick = (e) => {
+    if (!selectedFiles[0].file) {
+      history.push(`/admin`)
+      return
+    }  
     const data = new FormData()
     selectedFiles.map(fileObj => {
       return data.append('file', fileObj.file)
@@ -62,8 +72,8 @@ const getImages = (car) => {
       if (validation) {
         return <Alert variant='danger' >{validation}</Alert>
       }
-      return selectedFiles.map(fileObj => {
-        return <Image src={fileObj.href} alt='car' rounded key={fileObj.file.name} />
+      return selectedFiles.map((fileObj, index) => {
+        return <Image src={fileObj.href} alt='car' rounded key={index} />
       })
     }
   }

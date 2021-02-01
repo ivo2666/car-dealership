@@ -2,6 +2,7 @@ const models = require('../models');
 const formidable = require('formidable');
 const fs = require('fs');
 const config = require('../config/config');
+const cleanUploadImages = require('../utils/cleanUploadImages')
 
     module.exports = {
     get: (req, res, next) => {
@@ -12,6 +13,8 @@ const config = require('../config/config');
         const form = formidable({ multiples: true, uploadDir: `${process.cwd()}/uploadImages` });
         const id = req.params.id;
         const filesUrls = [];
+
+        cleanUploadImages(models, id, fs, next);
         
         form.on('file', function (field, file) {
             //rename the incoming file to the file's name
@@ -36,6 +39,7 @@ const config = require('../config/config');
                     filesUrls.push(`${config.host}/${f.name}`)
                 }
             }
+            
             models.Cars.updateOne({ _id: id }, { images: filesUrls })
             .then((updatedcar) => res.send(filesUrls))
             .catch(next)
