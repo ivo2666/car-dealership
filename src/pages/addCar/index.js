@@ -23,7 +23,7 @@ model: '',
 modification: '',
 engine: 'Бензин',
 power : '',
-eurostandar: 'Евро 1',
+eurostandart: 'Евро 1',
 gearbox: 'Ръчна',
 category: 'Ван',
 price: '',
@@ -73,7 +73,7 @@ description: ''
       setValidation(<Alert variant='danger'>{valid}</Alert>)
     }
     else {
-      fetch(`${urls.postCar}/${id}`, {
+      fetch( id ? `${urls.postCar}/${id}` : `${urls.postCar}`, {
         method: method,
         body: JSON.stringify(car),
         headers: {

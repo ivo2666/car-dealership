@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from './styledContainer'
 import { Form, Button, Image, Alert } from 'react-bootstrap';
 import getCookie from '../../helpers/cookie';
 import urls from '../../config'
 import { useParams, useHistory } from 'react-router-dom';
+import getCar from '../../helpers/getCar'
 
 
 export default () => {
@@ -14,6 +15,18 @@ export default () => {
   const { id } = useParams();
   const history = useHistory();
 
+  useEffect(() => {
+    getCar(id, (car) => {
+      if (car.images.length > 0) {
+        const arr = [];
+        car.images.map(image => {
+          return arr.push({'href': image}) 
+        })
+        setSelectedFiles(arr)
+      }
+      return 
+    });
+ },[id] );
 
  
 
@@ -35,6 +48,10 @@ export default () => {
   }
 
   const handleClick = (e) => {
+    if (!selectedFiles[0].file) {
+      history.push(`/admin`)
+      return
+    }  
     const data = new FormData()
     selectedFiles.map(fileObj => {
       return data.append('file', fileObj.file)
@@ -55,8 +72,8 @@ export default () => {
       if (validation) {
         return <Alert variant='danger' >{validation}</Alert>
       }
-      return selectedFiles.map(fileObj => {
-        return <Image src={fileObj.href} alt='car' rounded key={fileObj.file.name} />
+      return selectedFiles.map((fileObj, index) => {
+        return <Image src={fileObj.href} alt='car' rounded key={index} />
       })
     }
   }
