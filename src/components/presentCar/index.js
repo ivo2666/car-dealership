@@ -15,11 +15,12 @@ export default (props) => (
         <Col >
         <div>
         <a href='/details'>
-            <h1>{`${props.brand} / ${props.engine} / ${props.engine}`}</h1>
+            <h1>{`${props.brand} / ${props.model} / ${props.engine}`}</h1>
             </a>
             <span>{props.price}</span>
         </div>
         </Col>
         </Row>
+        <Row>{props.children}</Row>
     </Container>
 ) 

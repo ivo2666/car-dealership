@@ -1,12 +1,15 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap';
 import Container from './styledContainer';
-import StyledBtn from './styledButton'
 import urls from '../../config'
 import getCookie from '../../helpers/cookie'
 
 export default (props) => {
+  const history = useHistory();
+
+  const clickHandler = () => history.push(`/addCar/${props.carId}`)
+
   const deleteHandler = () => {
     fetch(`${urls.postCar}/${props.carId}`, {
       method: 'DELETE',
@@ -26,21 +29,11 @@ export default (props) => {
       return console.log(err);
   })
   }
+
     return( 
       <Container>
-        <Card style={{ width: '25rem' }}>
-  <Card.Img className='image' variant="top" src={props.img} />
-  <Card.Body>
-    <Card.Title>{`${props.brand} ${props.model}`}</Card.Title>
-    <Card.Text>
-      {props.description}
-    </Card.Text>
-    <StyledBtn variant="primary">
-      <Link to={`/addCar/${props.carId}`}>Промени</Link>
-      </StyledBtn>
-    <StyledBtn onClick={deleteHandler} variant="primary">Изтий</StyledBtn>
-  </Card.Body>
-</Card>
+    <Button onClick={clickHandler} variant="primary">Промени</Button>
+    <Button onClick={deleteHandler} variant="primary">Изтий</Button>
 </Container>
     )
 }
