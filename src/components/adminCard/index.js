@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
+import Container from './styledContainer';
 import StyledBtn from './styledButton'
 import urls from '../../config'
 import getCookie from '../../helpers/cookie'
@@ -26,8 +27,9 @@ export default (props) => {
   })
   }
     return( 
-        <Card style={{ width: '18rem' }}>
-  <Card.Img variant="top" src={props.img} />
+      <Container>
+        <Card style={{ width: '25rem' }}>
+  <Card.Img className='image' variant="top" src={props.img} />
   <Card.Body>
     <Card.Title>{`${props.brand} ${props.model}`}</Card.Title>
     <Card.Text>
@@ -39,5 +41,6 @@ export default (props) => {
     <StyledBtn onClick={deleteHandler} variant="primary">Изтий</StyledBtn>
   </Card.Body>
 </Card>
+</Container>
     )
 }
