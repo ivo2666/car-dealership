@@ -4,35 +4,32 @@ export default styled.div`
 display: flex;
 flex-wrap: wrap;
 padding: 20px;
-border-bottom: 1px solid red;
+border-bottom: 1px solid skyblue;
 
-//.imageWraper {
-//    width: 25rem    
-//}
+.info {
+    color: #4f4f4f;
+    cursor: pointer;
+    &:hover {
+        color: #2752E1;
+    }
+    button {
+        margin-top: 10px;
+    }
+}
 
 h1 {
-    color: #4f4f4f;
     margin-right: 20px;
     line-height: 36px;
-    font-size: 3.5vw;
+    font-size: 36px;
     font-weight: 100;
-    //margin: 0 0 15px 0;
 }
 
 img {
     width: 100%;
-}
-//div {
-//    width: 596px;
-//    margin: 0px 0 0 30px;
-//    font-family: 'Roboto', sans-serif;
-//    color: #4f4f4f;
-//    font-weight: 700;
-//}
-
-
-
-a {
-    text-decoration: none;
+    border: 1px solid white;
+    cursor: pointer;
+    &:hover {
+        border: 1px solid skyblue;
+    }
 }
 `
