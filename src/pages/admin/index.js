@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../../components/presentCar';
+import Card from '../../components/carReview';
 import { Button } from 'react-bootstrap'
-import AdminCard from '../../components/adminCard'
+import AdminCard from '../../components/edit/delContainer'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import urls from '../../config';

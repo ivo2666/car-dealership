@@ -2,8 +2,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom'
 import { Button, Col } from 'react-bootstrap';
 import Container from './styledContainer';
-import urls from '../../config'
-import getCookie from '../../helpers/cookie'
+import urls from '../../../config'
+import getCookie from '../../../helpers/cookie'
 
 export default (props) => {
   const history = useHistory();

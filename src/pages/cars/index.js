@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PageLayot from '../../components/pageLayout'
-import Card from '../../components/presentCar'
+import Card from '../../components/carReview'
 import urls from '../../config';
 const Cars = () => {
     const [cars, setCars] = useState([]);
