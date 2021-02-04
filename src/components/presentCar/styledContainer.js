@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export default styled.div`
 display: flex;
-padding: 40px;
+flex-wrap: wrap;
+padding: 20px;
 border-bottom: 1px solid red;
 
 //.imageWraper {
@@ -12,9 +13,9 @@ border-bottom: 1px solid red;
 h1 {
     color: #4f4f4f;
     margin-right: 20px;
-    //line-height: 36px;
-    font-size: 3vw;
-    //font-weight: 100;
+    line-height: 36px;
+    font-size: 3.5vw;
+    font-weight: 100;
     //margin: 0 0 15px 0;
 }
 

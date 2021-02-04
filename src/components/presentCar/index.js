@@ -1,18 +1,17 @@
 import React from 'react';
 import Container from './styledContainer';
-import { Image, Row, Col } from 'react-bootstrap';
+import { Image, Col } from 'react-bootstrap';
 
 
 
 export default (props) => (
     <Container>
-        <Row>
-            <Col >
+            <Col md={5} xs={12}>
         <a href='/details' className='imageWraper'>
         <Image alt='car' src={props.src} />
         </a>
         </Col>
-        <Col >
+        <Col md={5} xs={12}>
         <div>
         <a href='/details'>
             <h1>{`${props.brand} / ${props.model} / ${props.engine}`}</h1>
@@ -20,7 +19,6 @@ export default (props) => (
             <span>{props.price}</span>
         </div>
         </Col>
-        </Row>
-        <Row>{props.children}</Row>
+        <Col>{props.children}</Col>
     </Container>
 ) 

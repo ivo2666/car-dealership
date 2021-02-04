@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PageLayot from '../../components/pageLayout'
-import Presentcar from '../../components/presentCar'
-
+import Card from '../../components/presentCar'
+import urls from '../../config';
 const Cars = () => {
+    const [cars, setCars] = useState([]);
+
+    useEffect(() => {
+        fetch(urls.getCars)
+          .then(x => x.json())
+          .then(data => {
+            setCars(data)
+          })
+          .catch(err => console.log(err))
+      }, [])
+
     return (
         <PageLayot>
-            <Presentcar />
-            <Presentcar />
-            <Presentcar />     
+            {cars.map(car => {
+          return <Card
+            className="card"
+            src={car.images[0]}
+            brand={car.brand}
+            model={car.model}
+            engine={car.modification}
+            price={car.price}
+            key={car._id}
+          />})}
         </PageLayot>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'
-import { Button } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 import Container from './styledContainer';
 import urls from '../../config'
 import getCookie from '../../helpers/cookie'
@@ -32,8 +32,12 @@ export default (props) => {
 
     return( 
       <Container>
-    <Button onClick={clickHandler} variant="primary">Промени</Button>
-    <Button onClick={deleteHandler} variant="primary">Изтий</Button>
+        <Col md={12} xs={6}>
+        <Button onClick={clickHandler} variant="primary">Промени</Button>
+        </Col>
+        <Col >
+        <Button onClick={deleteHandler} variant="primary">Изтий</Button>
+        </Col>
 </Container>
     )
 }
