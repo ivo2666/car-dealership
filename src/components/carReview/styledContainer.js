@@ -4,18 +4,20 @@ export default styled.div`
 display: flex;
 flex-wrap: wrap;
 padding: 20px;
-border-bottom: 1px solid skyblue;
 
-.info {
-    color: #4f4f4f;
-    cursor: pointer;
-    &:hover {
+border-bottom: 1px solid skyblue;
+    a {
+        color: #4f4f4f;
+        text-decoration: none;
+        &:hover {
         color: #2752E1;
     }
+    }
+    
+    
     button {
         margin-top: 10px;
     }
-}
 
 h1 {
     margin-right: 20px;
