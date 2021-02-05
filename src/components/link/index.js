@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-size: 17px;
-    font-weight: 68px;
-    color: white;
+    font-family: ${props => props.fontFamily ? props.fontFamily : "'Roboto', sans-serif"};
+    font-size: ${props => props.fontSize ? props.fontSize : '17px'};
+    font-weight: ${props => props.fontWeight ? props.fontWeight : '68px'};
+    color: ${props => props.color ? props.color : 'white'};
     &:hover {
-    color: #2752E1; 
+    color: ${props => props.hoverColor ? props.hoverColor : '#2752E1'}; 
     text-decoration: none;
   }
 `
+
+
 
 export default StyledLink
