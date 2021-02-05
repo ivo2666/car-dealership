@@ -4,11 +4,15 @@ import Flags from '../flags'
 import Link from '../link';
 
 const Nav = styled.nav`
-width: 50%;
+width:60%;
+min-width: 300px;
 list-style-type: none;
 display: flex;
 justify-content: space-around;
 align-items: center;
+a {
+        font-size: 1.5vw;
+}
 `
 
 export default () => (

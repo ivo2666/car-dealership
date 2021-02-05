@@ -1,23 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import StyledContainer from './styleContainer';
+
 import Logo from '../logo';
 import Nav from '../nav';
 
-const StyledHeader = () => {
+export default () => {
     return (
-        <Header>
+        <StyledContainer>
             <Logo />
             <Nav />
-        </Header>
+        </StyledContainer>
     )
 }
-
-const Header = styled.header`
-height: 100px;
-background: black;
-display: flex;
-justify-content: space-between;
-align-items: center;
-`
-
-export default StyledHeader
