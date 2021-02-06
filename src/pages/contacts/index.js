@@ -5,27 +5,12 @@ import ContactInf from '../../components/contactInf';
 import ContactMap from '../../components/contactMap';
 
 const Contats = styled.main`
-height: 600px;
+min-height: 550px;
 display: flex;
+flex-wrap: wrap;
 justify-content: space-around;
 background-color: #4f4f4f;
-color: white;
 padding: 2% 5% 0 5%;
-font-family: Roboto, sans-serif;
-font-size: 20px;
-
-a{
-    padding: 0 0 20px 0;
-}
-
-div {
-    width: 40%;
-}
-
-iframe {
-    width: 100%;
-    height: 50%;
-}
 `
 
 
