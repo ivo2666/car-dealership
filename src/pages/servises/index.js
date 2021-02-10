@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import PageLayot from '../../components/pageLayout'
 import car from '../../images/ferrary.jpg'
@@ -14,40 +13,31 @@ import {
 import Servise from './servise';
 
 const Servises = styled.main`
-min-height: 550px;
-position: relative;
-background-color: black;
-.servCont {
-    position: absolute;
-    //width: 75%;
-    top: 10%;
-    left: 12%;
-    right: 12%;
-    display: flex;
+//min-height: 550px;
+background: #212121;
+background-image: url(${car});
+background-size: cover;
+background-repeat: no-repeat;
+background-position: bottom center;
+
+display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-}
+    align-items: center;
 
-.background {
-    width:100%;
-}
 `
 
 
 
 export default () => {
-    let { url } = useRouteMatch();
     return (
         <PageLayot>
             <Servises>
-            <div className='servCont'>
-            <Servise href={`${url}/barter`} title='Изкупуване и замяна на автомобили' src={barter} />
-            <Servise href={`${url}/lizing`} title='Лизинг' src={lizing} />
-            <Servise href={`${url}/insurance`} title='Регистрация и застраховка' src={insurance} />
-            <Servise href={`${url}/consultation`} title='Консултация при покупка на автомобил' src={consultation} />
-            <Servise href={`${url}/delivery`} title='Поръчка на нови и използвани автомобили' src={delivery} />
-        </div>
-                <img className='background' alt='car' src={car} />
+            <Servise href="/servises/barter" title='Изкупуване и замяна на автомобили' src={barter} />
+            <Servise href={`/servises/lizing`} title='Лизинг' src={lizing} />
+            <Servise href={`/servises/insurance`} title='Регистрация и застраховка' src={insurance} />
+            <Servise href={`/servises/consultation`} title='Консултация при покупка на автомобил' src={consultation} />
+            <Servise href={`/servises/delivery`} title='Поръчка на нови и използвани автомобили' src={delivery} />
             </Servises>
         </PageLayot>
     )

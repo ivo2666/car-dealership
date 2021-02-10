@@ -8,7 +8,7 @@ const StyledLink = styled(Link)`
     font-weight: ${props => props.fontWeight ? props.fontWeight : '68px'};
     color: ${props => props.color ? props.color : 'white'};
     &:hover {
-    color: ${props => props.hoverColor ? props.hoverColor : '#2752E1'}; 
+    color: ${props => props.hoverColor ? props.hoverColor : 'skyblue'}; 
     text-decoration: none;
   }
 `

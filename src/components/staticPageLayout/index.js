@@ -5,11 +5,12 @@ import Layout from '../../components/pageLayout';
 const Page = styled.main`
 width: 100%;
 background-image: ${props => props.background };
-background-size: 100% 100%;
+background-size: cover;
 background-repeat: no-repeat;
+background-position: bottom center;
 
 .content {
-    height: 700px;
+    min-height: 700px;
     background: rgba(0, 0, 0, 0.8);
     font-family: "Roboto Condensed", sans-serif;
     color: white;
