@@ -4,8 +4,13 @@ import { Link } from 'react-router-dom';
 import logo from '../../images/logo-white.png';
 
 const Logo = styled.img`
-height: ${props => props.height ? props.height : "100px"};
-margin-left: 13%;
+//width: 250px;
+height: 45px;
+display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 `
 
 export default () => (

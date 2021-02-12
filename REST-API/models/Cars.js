@@ -56,7 +56,7 @@ const carsSchema = new Schema({
         required: true,
     },
 
-    birdayMont: {
+    birdayMonth: {
         type: String,
         required: true,
     },

@@ -5,11 +5,14 @@ const Section = styled.div`
     flex-direction: column;
     color: white;
     font-family: 'Roboto', sans-serif;
-    font-size: 1em;
+    margin: 15px;
 
     a {
         text-decoration: none;
         color: white;
+        &:hover {
+            color: #2752E1;
+        }
     }
 `
 export default Section;

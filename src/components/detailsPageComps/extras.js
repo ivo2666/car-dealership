@@ -1,0 +1,26 @@
+import React from 'react';
+import styled from 'styled-components';
+
+const Extras = styled.ul`
+font-size: 15px;
+color: black;
+display: flex;
+flex-wrap: wrap;
+line-height: 20px;
+li {
+    margin: 0 60px 15px 0;
+    width: 160px;
+}
+span {
+    color: #2752E1;
+}
+`
+
+export default ({extras}) => (
+    <Extras>
+        {
+            extras.map((extra, index) => (<li key={index}><span>{extra}</span></li>))
+        }
+        
+    </Extras>
+)

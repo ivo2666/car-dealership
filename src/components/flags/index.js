@@ -11,6 +11,9 @@ margin: 5px;
 
 const Flags = styled.div`
 width: 100px;
+a {
+    border-bottom: none ;
+}
 `
 
 export default () => (

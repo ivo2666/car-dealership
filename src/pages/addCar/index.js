@@ -5,8 +5,7 @@ import Field from '../../components/forms'
 import ModelField from './modelField';
 import BrandField from './brandfield';
 import validationChek from './validationChek';
-import getCar from '../../helpers/getCar'
-import getCookie from '../../helpers/cookie'
+import { getCar, getCookie } from '../../helpers'
 import urls from '../../config'
 import { useHistory, useParams } from "react-router-dom"
 
@@ -28,7 +27,7 @@ gearbox: 'Ръчна',
 category: 'Ван',
 price: '',
 km: '',
-birdayMont: 'Януари',
+birdayMonth: 'Януари',
 birdayYear: '',
 color: '',
 description: ''
@@ -63,7 +62,7 @@ description: ''
       Категория: car.category,
       Цена: car.price,
       Пробег: car.km,
-      'Дата на производство': car.birdayMont,
+      'Дата на производство': car.birdayMonth,
       Година: car.birdayYear,
       Цвят: car.color,
       Описание: car.description
@@ -162,7 +161,7 @@ description: ''
 
         <Form.Row>
 
-          <Field type='select' as={Col} onChange={handleChange} value={car.birdayMont} controlId="formGridBirdayDate" label='Дата на производство' name='birdayMont' >
+          <Field type='select' as={Col} onChange={handleChange} value={car.birdayMonth} controlId="formGridBirdayDate" label='Дата на производство' name='birdayMonth' >
             <option>Януари</option>
             <option>Февруари</option>
             <option>Март</option>
