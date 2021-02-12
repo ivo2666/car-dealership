@@ -24,6 +24,7 @@ const Cars = () => {
             model={car.model}
             engine={car.modification}
             price={car.price}
+            id={car._id}
             key={car._id}
           />})}
         </PageLayot>

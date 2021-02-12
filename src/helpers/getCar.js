@@ -1,12 +1,10 @@
 import urls from '../config';
-import getCookie from '../helpers/cookie';
 
-export default async (id, setCar) => {
+export default (id, setCar) => {
      fetch(`${urls.getCars}/details/${id}`,{
         method: 'GET',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': getCookie('x-auth-token')
+      'Content-Type': 'application/json'
     }
       })
       .then(x => x.json())

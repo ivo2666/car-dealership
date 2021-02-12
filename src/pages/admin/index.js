@@ -63,6 +63,7 @@ export default () => {
             engine={car.modification}
             price={car.price}
             key={car._id}
+            id={car._id}
           >
             <AdminCard
               carId={car._id}

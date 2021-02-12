@@ -35,7 +35,7 @@ export default function Router() {
         <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/cars" component={Cars}/>
-            <Route path="/details" component={Details}/>
+            <Route path="/details/:id" component={Details}/>
             <Route path="/forUs" component={ForUs}/>
             <Route path="/servises" exact component={Servises}/>
             <Route path="/servises/lizing" component={Lizing}/>

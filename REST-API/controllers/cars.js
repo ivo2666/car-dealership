@@ -19,10 +19,10 @@ module.exports = {
     },
 
     post: (req, res, next) => {
-        const { brand, model, modification, engine, power, eurostandart, gearbox, category, price, km, birdayMont, birdayYear, color, description } = req.body;
+        const { brand, model, modification, engine, power, eurostandart, gearbox, category, price, km, birdayMonth, birdayYear, color, description } = req.body;
         //const { _id } = req.user;
 
-        models.Cars.create({ brand, model, modification, engine, power, eurostandart, gearbox, category, price, km, birdayMont, birdayYear, color, description })
+        models.Cars.create({ brand, model, modification, engine, power, eurostandart, gearbox, category, price, km, birdayMonth, birdayYear, color, description })
             .then((createdcars) => {
                 res.send(createdcars);
             })

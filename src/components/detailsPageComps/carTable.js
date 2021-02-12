@@ -26,36 +26,36 @@ table, tr {
 `
 
 
-export default () => (
+export default ({car}) => (
     <AdditionalInf>
         <tbody>
         <tr>
             <th>Дата на производство</th>
-            <td>октомври 2008 г.</td>
+            <td>{`${car.birdayMonth} ${car.birdayYear}` }</td>
         </tr>
         <tr>
             <th>Двигател</th>
-            <td>Дизелов</td>
+            <td>{car.engine}</td>
         </tr>
         <tr>
             <th>Категория</th>
-            <td>Седан</td>
+            <td>{car.category}</td>
         </tr>
         <tr>    
             <th>Скоростна кутия</th>
-            <td>Автоматична</td>
+            <td>{car.gearbox}</td>
         </tr>
         <tr>
             <th>Мощност</th>
-            <td>190 к.с.</td>
+            <td>{car.power}</td>
         </tr>
         <tr>
             <th>Пробег</th>
-            <td>200 000</td>
+            <td>{car.km}</td>
         </tr>
         <tr>
             <th>Цвят</th>
-            <td>Син</td>
+            <td>{car.color}</td>
         </tr>
         </tbody>
     </AdditionalInf>

@@ -24,7 +24,6 @@ export default () => {
     const mobile = width < 550;
     return (
         <StyledContainer>
-        {console.log(mobile)}
         <Row>
             <Col  md={4} xs={6} ><Logo /></Col>
             <Col  className="iconCont">

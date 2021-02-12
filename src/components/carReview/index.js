@@ -9,12 +9,12 @@ export default (props) => {
     return (
         <Container>
                 <Col md={5} xs={12}>
-                    <Link to={`/details${props.carId}`}>
+                    <Link to={`/details/${props.id}`}>
             <Image alt='car' src={props.src} />
             </Link>
             </Col>
             <Col md={5} xs={12}>
-            <Link to={`/details${props.carId}`}>
+            <Link to={`/details/${props.id}`}>
             <h1>
                 {`${props.brand} / ${props.model} / ${props.engine}`}
                 </h1>
