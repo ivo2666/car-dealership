@@ -20,7 +20,6 @@ input, label {
 
 
 export default () => {
-    const [extras, setExtras] = useState([]);
     const [car, setCar] = useState({});
 
     const { id } = useParams();
@@ -35,7 +34,7 @@ export default () => {
         
         fetch(`${urls.postCar}/${id}`, {
             method: 'PUT',
-                body: JSON.stringify({extras: extras}),
+                body: JSON.stringify({extras: car.extras}),
             headers: {
               'Content-Type': 'application/json',
               'Authorization': getCookie('x-auth-token')
@@ -55,38 +54,38 @@ export default () => {
 
     const changeHandler = (e) => {
         const value = e.target.value;
-        const arr = Array.from(extras)
+        const arr = Array.from(car.extras)
         if (e.target.checked) {
             arr.push(value)
-            setExtras(arr)
+            setCar({...car, extras: arr})
         }else {
             const index = arr.findIndex(x => x === value)
             arr.splice(index, 1)
-            return setExtras(
-                arr
-            )
+            return setCar({...car, extras: arr})
         }
     }
+
+    const items = data.map((i, index) => {
+        if (car.extras && car.extras.includes(i)) {
+            return (
+                <Col key={index} sm={3}>
+                       <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" defaultChecked label={i} />
+                   </Col>
+               )
+        }else {
+            return (
+                <Col key={index} sm={3}>
+                       <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" label={i} />
+                   </Col>
+               )
+        }
+    })
     
     return (
         <Container>
             <Form onSubmit={submitHandler}>
                     <Row>
-                        {data.map((i, index) => {
-                            if (car.extras && car.extras.includes(i)) {
-                                return (
-                                    <Col key={index} sm={3}>
-                                           <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" defaultChecked label={i} />
-                                       </Col>
-                                   )
-                            }else {
-                                return (
-                                    <Col key={index} sm={3}>
-                                           <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" label={i} />
-                                       </Col>
-                                   )
-                            }
-                        })}
+                        {items}
                     </Row>
                 <Button variant="primary" type="submit">
                     Към качване на снимки
