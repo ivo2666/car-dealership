@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import Title from './title';
 
 const Extras = styled.ul`
+text-align:center;
 font-size: 15px;
 color: black;
 display: flex;
@@ -17,10 +19,12 @@ span {
 `
 
 export default ({extras}) => (
+    <><Title>Екстри</Title>
     <Extras>
         {
             extras.map((extra, index) => (<li key={index}><span>{extra}</span></li>))
         }
         
     </Extras>
+    </>
 )
