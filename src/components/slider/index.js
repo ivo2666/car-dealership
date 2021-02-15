@@ -63,6 +63,8 @@ img {
 
 const Slider = (props) => {
     const [slideIndex, setSlideIndex] = useState(0);
+    let startTouch = 0;
+    let endTouch = 0;
     const slides = props.images;
 
 
@@ -86,11 +88,23 @@ const Slider = (props) => {
         setSlideIndex(props.slideIndex)
     },[props.slideIndex])
 
+    const touchStartHandle = (e) => {
+        startTouch = e.touches[0].clientX
+        //console.log(e.touches);
+    }
+
+    const touchendHandler = (e) => {
+        
+        if (startTouch < endTouch) {
+            nextHandler()
+        }else if(startTouch > endTouch) {prevHandler()}
+    }
+
     return (
         <>
             <StyledSlider>
                 
-      <img alt='car' src={slides[slideIndex]} />
+      <img onTouchEnd={touchendHandler} onTouchMove={e => endTouch = e.touches[0].clientX} onTouchStart={touchStartHandle} alt='car' src={slides[slideIndex]} />
       
                 <Link className='prev' to='#' onClick={prevHandler}>&#10094;</Link>
                 <Link className='next' to='#' onClick={nextHandler}>&#10095;</Link>
