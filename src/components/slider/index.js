@@ -64,7 +64,7 @@ img {
 const Slider = (props) => {
     const [slideIndex, setSlideIndex] = useState(0);
     let startTouch = 0;
-    let endTouch = 0;
+    let endTouch = null;
     const slides = props.images;
 
 
@@ -99,7 +99,12 @@ const Slider = (props) => {
     const touchendHandler = (e) => {
         if (startTouch < endTouch) {
             nextHandler()
-        }else if(startTouch > endTouch) {prevHandler()}
+        }else if(endTouch === null) {
+            return
+        }else if(startTouch > endTouch) {
+            prevHandler()
+        }
+        
     }
 
     return (
