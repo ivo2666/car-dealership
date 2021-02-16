@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-
 const StyledSlider = styled.div`
-height: 430px;
-width: 700px;
-overflow: hidden;
-display: flex;
-justify-content: center;
-position: relative;
-
-img {
-    height: 95%;
+@media only screen and (max-width: 600px){
+    height: 190px;
+    width: 100%;
+    .prev, .next {
+        display: none;
+    }
+    
 }
+@media only screen and (min-width: 600px){
+    height: 430px;
+width: 700px;    
 
 .prev, .next {
   cursor: pointer;
@@ -48,40 +48,73 @@ img {
 .prev:hover, .next:hover {
   
 }
+}
+overflow: hidden;
+display: flex;
+justify-content: center;
+position: relative;
+
+img {
+    height: 95%;
+}
+
+
 `
 
 const Slider = (props) => {
     const [slideIndex, setSlideIndex] = useState(0);
-    const [ startIndex, setStartIndex] = useState(-1);
+    let startTouch = 0;
+    let endTouch = null;
     const slides = props.images;
 
 
-    useEffect(() => {
-        setStartIndex(props.startIndex)
-        if (startIndex > -1) {
-            setSlideIndex(startIndex)
+    const prevHandler = () => {
+        if (slideIndex - 1 < 0) {
+            setSlideIndex(props.images.length - 1)
+        } else {
+            setSlideIndex(slideIndex - 1)
         }
-        return () => {
-            setStartIndex(-1)
-        }
-    }, [startIndex, slideIndex, props.startIndex])
+    }
 
-    useEffect(
-        () => {
-            if (slideIndex > slides.length - 1) { setSlideIndex(0) };
-            if (slideIndex < 0) { setSlideIndex(slides.length - 1) };
-        }, [slideIndex, slides]
-    )
-    
+    const nextHandler = () => {
+        if (slideIndex + 1 >= props.images.length) {
+            setSlideIndex(0)
+        } else {
+            setSlideIndex(slideIndex +1)
+        }
+    }
+
+    useEffect(() => {
+        setSlideIndex(props.slideIndex)
+    },[props.slideIndex])
+
+    const touchStartHandler = (e) => {
+        startTouch = e.touches[0].clientX
+    }
+
+    const touchMoveHandler = (e) => {
+        endTouch = e.touches[0].clientX;
+    }
+
+    const touchendHandler = (e) => {
+        if (startTouch < endTouch) {
+            nextHandler()
+        }else if(endTouch === null) {
+            return
+        }else if(startTouch > endTouch) {
+            prevHandler()
+        }
+        
+    }
+
     return (
         <>
-    <StyledSlider>
-        <img alt='car' src={slides[slideIndex]} />
-        <Link className='prev' to='#' onClick={() => setSlideIndex(slideIndex - 1)}>&#10094;</Link>
-        <Link className='next' to='#' onClick={() => setSlideIndex(slideIndex + 1)}>&#10095;</Link>
-    </StyledSlider>    
-
-    </>
+            <StyledSlider>
+      <img onTouchEnd={touchendHandler} onTouchMove={touchMoveHandler} onTouchStart={touchStartHandler} alt='car' src={slides[slideIndex]} />
+                <Link className='prev' to='#' onClick={prevHandler}>&#10094;</Link>
+                <Link className='next' to='#' onClick={nextHandler}>&#10095;</Link>
+            </StyledSlider>
+        </>
     )
 }
 

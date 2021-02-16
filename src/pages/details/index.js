@@ -2,10 +2,10 @@ import React from 'react';
 import Container from './styledContainer';
 import Layout from '../../components/pageLayout'
 import Slideshow from '../../components/detailsSlideshow'
-import { Title, CarTable, Description, Extras } from '../../components/detailsPageComps'
+import { CarTable, Description, Extras } from '../../components/detailsPageComps'
 import { getCar } from '../../helpers';
 import { useParams } from 'react-router-dom';
-
+import { Col, Row } from 'react-bootstrap';
 //const cloudinaryUpload = (file, preset) => {
 //    const formData = new FormData();
 //formData.append("file", file);
@@ -35,14 +35,14 @@ export default () => {
     return(
     <Layout>
         <Container>
-            <h1>{`${car.brand} ${car.model}`}</h1>
-<Slideshow images={car.images ? car.images : []}/>
-<Title>Допълнителна нформация</Title>
-<CarTable car={car}/>
-<Title>Екстри</Title>
-<Extras extras={car.extras ? car.extras : []}/>
-<Title>Описание</Title>
-<Description>{car.description}</Description>
+        <h1>{`${car.brand} ${car.model}`}</h1>
+       <Row noGutters={true}>     
+       <Col><Slideshow images={car.images ? car.images : []}/></Col>
+<Col ><CarTable car={car}/></Col>
+<Col><Extras extras={car.extras ? car.extras : []}/></Col>
+<Col><Description>{car.description}</Description></Col>
+</Row>
         </Container>
+       
     </Layout>
 )}

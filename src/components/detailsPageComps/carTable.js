@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import Title from './title'
 
 const AdditionalInf = styled.table`
+text-align:center;
 tbody {
     display: flex;
     flex-wrap: wrap;
@@ -27,6 +29,8 @@ table, tr {
 
 
 export default ({car}) => (
+    <>
+    <Title>Допълнителна нформация</Title>
     <AdditionalInf>
         <tbody>
         <tr>
@@ -59,4 +63,5 @@ export default ({car}) => (
         </tr>
         </tbody>
     </AdditionalInf>
+    </>
 )
