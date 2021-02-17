@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Layout from '../../components/pageLayout';
-import ContactInf from '../../components/contactInf';
-import ContactMap from '../../components/contactMap';
+import Layout from '../../../components/pageLayout';
+import ContactInf from '../../../components/contactInf';
+import ContactMap from '../../../components/contactMap';
 
 const Contats = styled.main`
 min-height: 550px;

@@ -14,14 +14,6 @@ export default ({Col, brand, onModelChange, model, value}) => {
     .catch(err => console.log(err))
 },[brand])
 
-
-  //const addModels = (e) => {
-  //  if (brands[e.target.options.selectedIndex - 1]) {
-  //    setModels(brands[e.target.options.selectedIndex - 1].models)
-  //    setSelectModel(true)
-  //  }
-  //}
-
   const handleChange = (data) => {
     if (data === 'Напиши сам') {
       return setSelectModel(false)

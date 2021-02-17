@@ -1,30 +1,15 @@
 import React, { useContext } from 'react';
 import UserContext from '.././context';
 
-import {
-    Home,
-    Cars,
-    Details,
-    ForUs,
-    Servises,
-    Insurance,
-    Lizing,
-    Barter,
-    Consultation,
-    Delivery,
-    Contacts,
-    Admin,
-    Login,
-    AddCar,
-    Extras,
-    Images
-} from '../pages';
+import { Home, Extras, Images, Admin, Login, AddCar, Cars, Details, Static } from '../pages';
 import {
     BrowserRouter,
   Switch,
   Route,
   Redirect
 } from "react-router-dom";
+
+const { ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts } = Static;
 
 export default function Router() {
     const context = useContext(UserContext);
@@ -35,6 +20,7 @@ export default function Router() {
         <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/cars" component={Cars}/>
+            
             <Route path="/details/:id" component={Details}/>
             <Route path="/forUs" component={ForUs}/>
             <Route path="/servises" exact component={Servises}/>
@@ -44,6 +30,7 @@ export default function Router() {
             <Route path="/servises/consultation" component={Consultation}/>
             <Route path="/servises/delivery" component={Delivery}/>
             <Route path="/contacts" component={Contacts}/>
+
             <Route path="/admin">
                 {loggedIn ? (<Admin />) : (<Login /> )}
             </Route>

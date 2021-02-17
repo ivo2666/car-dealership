@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Col, Button, Alert } from 'react-bootstrap';
 import styled from 'styled-components';
+import PageLayout from '../../components/pageLayout'
 import Field from '../../components/forms'
 import ModelField from './modelField';
 import BrandField from './brandfield';
@@ -51,23 +52,8 @@ description: ''
 
   const submitHandler = (e) => {
     e.preventDefault()
-    const validationObj = {
-      Марка: car.brand,
-      Модел: car.model,
-      Модификация: car.modification,
-      Двигател: car.engine,
-      Мошност: car.power,
-      Евростандарт: car.eurostandart,
-      'Скоростна кутия': car.gearbox,
-      Категория: car.category,
-      Цена: car.price,
-      Пробег: car.km,
-      'Дата на производство': car.birdayMonth,
-      Година: car.birdayYear,
-      Цвят: car.color,
-      Описание: car.description
-    };
-    const valid = validationChek(validationObj)
+    
+    const valid = validationChek(car)
     if (valid) {
       setValidation(<Alert variant='danger'>{valid}</Alert>)
     }
@@ -90,6 +76,7 @@ description: ''
   }
 
   return (
+    <PageLayout>
     <FormContainer>
       {validation}
       <Form onSubmit={submitHandler}>
@@ -196,5 +183,6 @@ description: ''
   </Button>
       </Form>
     </FormContainer>
+    </PageLayout>
   )
 }

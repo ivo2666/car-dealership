@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import PageLayot from '../../components/pageLayout'
-import car from '../../images/ferrary.jpg'
+import PageLayot from '../../../components/pageLayout'
+import car from '../../../images/ferrary.jpg'
 import {
     insurance,
     lizing,
@@ -9,7 +9,7 @@ import {
     consultation,
     delivery
 
-} from '../../images/services png'; 
+} from '../../../images/services png'; 
 import Servise from './servise';
 
 const Servises = styled.main`

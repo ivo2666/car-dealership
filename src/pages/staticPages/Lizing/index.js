@@ -1,6 +1,6 @@
 import React from 'react';
-import mercedes from '../../images/forUsMercedes.jpg'
-import StaticPageLayout from '../../components/staticPageLayout';
+import mercedes from '../../../images/forUsMercedes.jpg'
+import StaticPageLayout from '../../../components/staticPageLayout';
 
 const title = 'Лизинг с индивидуални условия';
 
