@@ -1,24 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import data from './data'
-import styled from 'styled-components'
+import Container from './styledCont';
 import PageLayout from '../../components/pageLayout'
-import urls from '../../config'
 import { useHistory, useParams } from 'react-router-dom';
-import getCookie from '../../helpers/cookie'
-import getCar from '../../helpers/getCar'
-
-const Container = styled.div`
-form {
-    margin: 3%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
-}
-input, label {
-    cursor: pointer;
-}
-`
-
-
+import {getCar, postCar} from '../../helpers'
 
 export default () => {
     const [car, setCar] = useState({});
@@ -30,27 +16,9 @@ export default () => {
          getCar(id, setCar);
       }, [id] );
 
-    const submitHandler = async (e) => {
+    const submitHandler = (e) => {
         e.preventDefault()
-        
-        fetch(`${urls.postCar}/${id}`, {
-            method: 'PUT',
-                body: JSON.stringify({extras: car.extras}),
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': getCookie('x-auth-token')
-            }
-          })
-          .then(promis => {
-            return promis.json();
-          })
-        .then(resCar => {
-            return history.push(`/addCar/images/${resCar.id}`)
-        })
-        .catch(err => {
-            return console.log(err);
-        }) 
-            
+        postCar({extras: car.extras}, 'PUT', id, history); 
     }
 
     const changeHandler = (e) => {
