@@ -4,7 +4,7 @@ import data from './data'
 import Container from './styledCont';
 import PageLayout from '../../components/pageLayout'
 import { useHistory, useParams } from 'react-router-dom';
-import {getCar, postCar} from '../../helpers'
+import {getOne, put} from '../../helpers/carRequests'
 
 export default () => {
     const [car, setCar] = useState({});
@@ -13,12 +13,12 @@ export default () => {
     const history = useHistory();
 
     useEffect(() => {
-         getCar(id, setCar);
+         getOne(id, setCar);
       }, [id] );
 
-    const submitHandler = (e) => {
+    const submitHandler = async (e) => {
         e.preventDefault()
-        postCar({extras: car.extras}, 'PUT', id, history); 
+        put({extras: car.extras}, id, ({id}) => history.push(`/addCar/images/${id}`))
     }
 
     const changeHandler = (e) => {

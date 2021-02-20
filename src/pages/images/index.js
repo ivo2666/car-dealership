@@ -4,7 +4,7 @@ import { Form, Button, Image, Alert } from 'react-bootstrap';
 import getCookie from '../../helpers/cookie';
 import urls from '../../config'
 import { useParams, useHistory } from 'react-router-dom';
-import getCar from '../../helpers/getCar'
+import { getOne } from '../../helpers/carRequests'
 
 
 export default () => {
@@ -16,7 +16,7 @@ export default () => {
   const history = useHistory();
 
   useEffect(() => {
-    getCar(id, (car) => {
+    getOne(id, (car) => {
       if (car.images.length > 0) {
         const arr = [];
         car.images.map(image => {

@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PageLayot from '../../components/pageLayout'
 import Card from '../../components/carReview'
-import urls from '../../config';
+import { get as getCars } from '../../helpers/carRequests'
+
 const Cars = () => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
-        fetch(urls.getCars)
-          .then(x => x.json())
-          .then(data => {
-            setCars(data)
-          })
-          .catch(err => console.log(err))
+        getCars(setCars)
       }, [])
 
     return (

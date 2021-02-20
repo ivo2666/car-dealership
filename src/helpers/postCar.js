@@ -1,7 +1,7 @@
 import urls from '../config'
 import getCookie from './cookie'
 
-export default (data, method, id, history) => {
+export default (data, method, id) => {
     return fetch( id ? `${urls.postCar}/${id}` : `${urls.postCar}`, {
         method: method,
         body: JSON.stringify(data),
@@ -12,8 +12,7 @@ export default (data, method, id, history) => {
       })
       .then(promis => promis.json())
       .then(resCar => {
-        const _id = id ? id : resCar._id;
-        return history.push(`/addCar/extras/${_id}`)
+        return resCar
       })
         .catch(err => console.log(err))
     

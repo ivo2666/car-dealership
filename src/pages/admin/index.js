@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../../components/carReview';
 import { Button } from 'react-bootstrap'
-import AdminCard from '../../components/edit/delContainer'
+import EditDeletePanel from '../../components/editDeletePanel'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import urls from '../../config';
 import Header from '../../components/header'
+import { get as getCars } from '../../helpers/carRequests'
 
 const CardWrapper = styled.section`
 display: flex;
@@ -37,12 +37,7 @@ export default () => {
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    fetch(urls.getCars)
-      .then(x => x.json())
-      .then(data => {
-        setCars(data)
-      })
-      .catch(err => console.log(err))
+    getCars(setCars)
   }, [counter])
 
   return (
@@ -65,7 +60,7 @@ export default () => {
             key={car._id}
             id={car._id}
           >
-            <AdminCard
+            <EditDeletePanel
               carId={car._id}
               onDel={x => setCounter(counter + x)}
             />

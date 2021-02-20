@@ -6,7 +6,7 @@ import Field from '../../components/forms'
 import ModelField from './modelField';
 import BrandField from './brandfield';
 import validationChek from './validationChek';
-import { getCar, postCar } from '../../helpers'
+import { getOne, put, post } from '../../helpers/carRequests'
 import { useHistory, useParams } from "react-router-dom"
 
 export default () => {
@@ -30,11 +30,11 @@ export default () => {
 
   const { id } = useParams();
   const history = useHistory();
-  const method = id ? "PUT" : "POST";
+  const method = id ? (data, cb) => put(data, id, cb) : (data, cb) => post(data, cb);
 
-  useEffect(() => {
+  useEffect( () => {
     if (id) {
-      getCar(id, setCar);
+    getOne(id, setCar)
     }
   }, [id]);
 
@@ -50,7 +50,8 @@ export default () => {
       setValidation(<Alert variant='danger'>{valid}</Alert>)
     }
     else {
-      postCar(car, method, id, history)
+      method(car, ({id}) => history.push(`/addCar/extras/${id}`))
+         
     }
   }
 
