@@ -1,6 +1,6 @@
 import urls from '../../config'
 import getCookie from '../cookie'
-import myFetch from './myFetch'
+import myFetch from '../myFetch'
 
 const headers = {
     'Content-Type': 'application/json',

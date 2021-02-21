@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Container from './styledContainer'
 import { Form, Button, Image, Alert } from 'react-bootstrap';
-import getCookie from '../../helpers/cookie';
-import urls from '../../config'
+import { postImage } from '../../helpers/imageBrandModelRequests'
 import { useParams, useHistory } from 'react-router-dom';
 import { getOne } from '../../helpers/carRequests'
 
@@ -10,7 +9,7 @@ import { getOne } from '../../helpers/carRequests'
 export default () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [validation, setValidation] = useState(false);
- 
+
 
   const { id } = useParams();
   const history = useHistory();
@@ -20,16 +19,13 @@ export default () => {
       if (car.images.length > 0) {
         const arr = [];
         car.images.map(image => {
-          return arr.push({'href': image}) 
+          return arr.push({ 'href': image })
         })
         setSelectedFiles(arr)
       }
-      return 
+      return
     });
- },[id] );
-
- 
-
+  }, [id]);
 
   const handleChange = (files) => {
     const fileArr = [];
@@ -37,9 +33,9 @@ export default () => {
       const file = files[i];
       if (!file.name.match(/\.(jpg|jpeg|png|gif)$/)) {
         setValidation('Please select valid image.');
-      }else if (file.size > 1640000) {
+      } else if (file.size > 1640000) {
         setValidation('Някой от файловете е прекалено голям!')
-      }else {
+      } else {
         setValidation(false);
       }
       fileArr.push({ file, href: URL.createObjectURL(file) })
@@ -51,22 +47,14 @@ export default () => {
     if (!selectedFiles[0].file) {
       history.push(`/admin`)
       return
-    }  
+    }
     const data = new FormData()
     selectedFiles.map(fileObj => {
       return data.append('file', fileObj.file)
     })
-    fetch(`${urls.postImage}/${id}`, {
-      method: 'POST',
-      body: data,
-      headers: {
-        'Authorization': getCookie('x-auth-token')
-      }
-    })
-      .then(x => x.json())
-      .then(x => history.push(`/admin`))
-      .catch(err => console.log(err))
+    postImage(id, data, () => history.push(`/admin`))
   }
+
   const imageReview = () => {
     if (selectedFiles.length > 0) {
       if (validation) {
@@ -77,8 +65,6 @@ export default () => {
       })
     }
   }
-
-
 
   return (
     <Container>

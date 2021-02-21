@@ -2,8 +2,10 @@ import React from 'react';
 import Container from './styledContainer';
 import Layout from '../../components/pageLayout'
 import Slideshow from '../../components/detailsSlideshow'
-import { CarTable, Description, Extras } from '../../components/detailsPageComps'
-import { getCar } from '../../helpers';
+import CarTable from './carTable'
+import Description from './description'
+import Extras from './extras'
+import { getOne as getCar } from '../../helpers/carRequests'
 import { useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 //const cloudinaryUpload = (file, preset) => {
@@ -26,7 +28,6 @@ export default () => {
     const { id } = useParams()
     
     React.useEffect(() => {
-        
         getCar(id, setCar)
     }, [id])
 
