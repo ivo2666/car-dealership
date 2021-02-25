@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContactInf from '../contactInf';
-import ContactMap from '../contactMap';
-import Servises from '../footerServises';
+import ContactInfSection from '../contactInfSection';
+import ContactMapSection from '../contactMapSection';
+import Servises from '../footerServisesSection';
 
 const Footer = styled.footer`
 background: black;
@@ -13,8 +13,8 @@ align-content: space-around;
 `
 export default () => (
     <Footer>
-        <ContactInf />
-        <ContactMap />
+        <ContactInfSection />
+        <ContactMapSection />
         <Servises />
     </Footer>
 )

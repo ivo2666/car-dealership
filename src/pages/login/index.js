@@ -1,56 +1,68 @@
 import React, {useContext ,useState} from 'react';
-import { Form, Button } from 'react-bootstrap';
-import styled from 'styled-components';
+import { Form, Button, Alert } from 'react-bootstrap';
 import UserContext from '../../context'; 
 import authenticate from '../../helpers/auhtenticate';
 import { useHistory } from "react-router-dom"
-
-const Login = styled.main`
-form {
-    width: 50%;
-    margin: 70px auto;
-}
-`
+import Container from './styledCont'
+import Field from '../../components/field'
+import PageLayout from '../../components/pageLayout';
 
 export default () => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [user, setUser] = useState({
+    username: '', 
+    password: ''
+  })
+  const [validation, setValidation] = useState(false)
   const context = useContext(UserContext);
   const history = useHistory()
 
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    await authenticate('http://localhost:9999/api/user/login', {
-        username,
-        password
-      }, (user) => {
+    await authenticate('http://localhost:9999/api/user/login',
+     user, 
+    (user) => {
         context.logIn(user)
         history.push('/admin')
       }, (e) => {
-        console.log('Error', e)
+        if (e.message === 'Failed to fetch') {
+          setValidation('Няма връзка със сървъра')
+        }else{
+          setValidation(e.message)
+        }
       }
     )
   }
 
-    return(
-        <Login>
-            <Form onSubmit={handleSubmit}>
-  <Form.Group controlId="formBasicEmail" value={username}
-          onChange={e => setUsername(e.target.value)}>
-    <Form.Label>Username</Form.Label>
-    <Form.Control type="username" placeholder="Username" />
-  </Form.Group>
+  const handleChange = (field) => {
+    setUser({ ...user, ...field })
+  }
 
-  <Form.Group controlId="formBasicPassword" value={password}
-          onChange={e => setPassword(e.target.value)}>
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
+    return(
+        <PageLayout>
+          <Container>
+          <Form onSubmit={handleSubmit}>
+          <Field
+          name='username'
+          value={user.username}
+          onChange={handleChange}
+          label="Username"
+          placeholder="Username"
+/>
+          <Field
+          name='password'
+          type='password'
+          value={user.password}
+          onChange={handleChange}
+          label="Password"
+          placeholder="password"
+/>
+{validation ? <Alert variant='danger'>{validation}</Alert> : <></>}
   <Button variant="primary" type="submit">
     Login
   </Button>
 </Form>
-        </Login>
+        </Container>
+        </PageLayout>
     )
 }

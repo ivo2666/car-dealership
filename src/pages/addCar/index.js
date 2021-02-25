@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Col, Button, Alert } from 'react-bootstrap';
 import Container from './styleCont';
 import PageLayout from '../../components/pageLayout'
-import Field from '../../components/forms'
+import Field from '../../components/field'
 import ModelField from './modelField';
 import BrandField from './brandfield';
 import validationChek from './validationChek';

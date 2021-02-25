@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Field from '../../components/forms';
+import Field from '../../components/field';
 import { getBrands } from '../../helpers/imageBrandModelRequests';
 
 export default ({Col, value, onBrandChange}) => {

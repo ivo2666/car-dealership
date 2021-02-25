@@ -33,7 +33,7 @@ module.exports = {
                 .then((user) => Promise.all([user, user.matchPassword(password)]))
                 .then(([user, match]) => {
                     if (!match) {
-                        res.status(204).send('Invalid password');
+                        res.status(200).send({message: "Invalid password"});
                         return;
                     }
 
@@ -43,7 +43,9 @@ module.exports = {
                 })
                 .catch(err => {
                     if (err.message === "Cannot read property 'matchPassword' of null") {
-                        res.sendStatus(204);
+                        res.status(200).send({message: 'Invalid username'});
+                    }else if (err.message === err.message.includes('connection <monitor> to timed out')) {
+                        res.status(200).send({message: 'Invalid username'});
                     }else {
                         next(err)
                     }

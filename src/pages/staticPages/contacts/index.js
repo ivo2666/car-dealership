@@ -1,26 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
 import Layout from '../../../components/pageLayout';
-import ContactInf from '../../../components/contactInf';
-import ContactMap from '../../../components/contactMap';
+import ContactInfSection from '../../../components/contactInfSection';
+import ContactMapSection from '../../../components/contactMapSection';
+import Container from './styledCont'
 
-const Contats = styled.main`
-min-height: 550px;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-around;
-background-color: #4f4f4f;
-padding: 2% 5% 0 5%;
-`
 
 
 export default () => {
     return(
         <Layout>
-            <Contats>
-                <ContactInf />
-                <ContactMap />
-        </Contats>
+            <Container>
+                <ContactInfSection />
+                <ContactMapSection />
+        </Container>
         </Layout>
     )
 }

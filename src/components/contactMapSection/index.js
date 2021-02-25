@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from '../ContactsSection';
+import Section from '../ContactsSectionLayout';
 
 export default () => {
     return (

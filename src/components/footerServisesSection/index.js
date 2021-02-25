@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from '../ContactsSection';
+import Section from '../ContactsSectionLayout';
 import {Link} from 'react-router-dom';
 
 export default () => {

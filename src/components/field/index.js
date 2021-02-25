@@ -9,9 +9,9 @@ const value = e.target.value;
         props.onChange(obj)
     }
     return (
-        <Form.Group as={props.as}>
+        <Form.Group as={props.as} >
             <Form.Label>{props.label}</Form.Label>
-            <Form.Control  onChange={handleChange} name={props.name} as={props.type} value={props.value} placeholder={props.placeholder} >
+            <Form.Control type={props.type} onChange={handleChange} name={props.name} value={props.value} placeholder={props.placeholder} >
                 {props.children}
             </Form.Control>
         </Form.Group>
