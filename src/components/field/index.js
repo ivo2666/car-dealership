@@ -11,7 +11,7 @@ const value = e.target.value;
     return (
         <Form.Group as={props.as} >
             <Form.Label>{props.label}</Form.Label>
-            <Form.Control type={props.type} onChange={handleChange} name={props.name} value={props.value} placeholder={props.placeholder} >
+            <Form.Control as={props.type} type={props.password} onChange={handleChange} name={props.name} value={props.value} placeholder={props.placeholder} >
                 {props.children}
             </Form.Control>
         </Form.Group>

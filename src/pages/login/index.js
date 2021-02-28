@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom"
 import Container from './styledCont'
 import Field from '../../components/field'
 import PageLayout from '../../components/pageLayout';
+import urls from '../../config'
 
 export default () => {
   const [user, setUser] = useState({
@@ -19,7 +20,7 @@ export default () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    await authenticate('http://localhost:9999/api/user/login',
+    await authenticate(urls.login,
      user, 
     (user) => {
         context.logIn(user)
@@ -51,7 +52,7 @@ export default () => {
 />
           <Field
           name='password'
-          type='password'
+          password='password'
           value={user.password}
           onChange={handleChange}
           label="Password"

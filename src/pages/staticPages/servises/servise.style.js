@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Card } from 'react-bootstrap';
 
 export default styled(Card)`
-    width: 16rem;
+    width: 15rem;
 background-color: rgba(0, 0, 0, 0.3);
 text-align: center;
 margin: 25px;

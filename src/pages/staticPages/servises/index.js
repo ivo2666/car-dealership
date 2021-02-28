@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PageLayot from '../../../components/pageLayout'
-import car from '../../../images/ferrary.jpg'
+import urls from '../../../config'
 import {
     insurance,
     lizing,
@@ -15,7 +15,7 @@ import Servise from './servise';
 const Servises = styled.main`
 //min-height: 550px;
 background: #212121;
-background-image: url(${car});
+background-image: url(${`${urls.server}/Bugatti-Chiron.jpg`});
 background-size: cover;
 background-repeat: no-repeat;
 background-position: bottom center;

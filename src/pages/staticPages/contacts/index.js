@@ -4,8 +4,6 @@ import ContactInfSection from '../../../components/contactInfSection';
 import ContactMapSection from '../../../components/contactMapSection';
 import Container from './styledCont'
 
-
-
 export default () => {
     return(
         <Layout>
