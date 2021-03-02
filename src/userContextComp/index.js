@@ -47,8 +47,8 @@ export default (props) => {
         const data = await response.json()
         if (data.status) {
           logIn({
-            username: response.user.username,
-            id: response.user._id
+            username: data.user.username,
+            id: data.user._id
           })
         } else {
           logOut()
