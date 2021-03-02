@@ -37,7 +37,7 @@ module.exports = {
                         return;
                     }
 
-                    const token = utils.jwt.createToken({ id: user._id });
+                    const token = utils.jwt.createToken({ id: user._id }, '010203', { expiresIn: '31d'});
                     const {username, _id} = user;
                     res.header("Authorization", token).send({username, _id});
                 })
@@ -73,7 +73,7 @@ module.exports = {
                 })
                 .catch(err => {
                     if (['jwt expired', 'blacklisted token', 'jwt must be provided'].includes(err.message)) {
-                        res.status(401).send('UNAUTHORIZED!');
+                        res.status(401).send(err.message);
                         return;
                     }
   

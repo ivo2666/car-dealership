@@ -12,6 +12,7 @@ export default styled.div`
 @media only screen and (min-width: 600px){
     height: 430px;
 width: 700px;    
+cursor: zoom-in;
 
 .prev, .next {
   cursor: pointer;

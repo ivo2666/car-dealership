@@ -2,13 +2,14 @@ import styled from 'styled-components';
 import { Card } from 'react-bootstrap';
 
 export default styled(Card)`
-    width: 15rem;
-background-color: rgba(0, 0, 0, 0.3);
+    width: 12rem;
+background-color: rgba(0, 0, 0, 0.5);
 text-align: center;
-margin: 25px;
+margin: 35px;
 &:hover{
-        color:inherit;
-        border-bottom: 1px solid skyblue;
+    background-color: rgba(255, 255, 255, 0.3);
+        color:black;
+        border-bottom: 1px solid black;
     }
 
 

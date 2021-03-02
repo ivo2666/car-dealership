@@ -5,7 +5,7 @@ import Card from './servise.style';
 
 export default (props) => {
     return (
-        <Link to={props.href}>
+        <Link to={props.href} hovercolor="white">
         <Card>
             
             <Card.Img variant='top' src={props.src}/>
