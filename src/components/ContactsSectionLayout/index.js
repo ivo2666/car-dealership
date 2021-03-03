@@ -11,7 +11,7 @@ const Section = styled.div`
         text-decoration: none;
         color: white;
         &:hover {
-            color: #2752E1;
+            color: skyblue;
         }
     }
 `

@@ -23,11 +23,10 @@ export default () => {
 
     const changeHandler = (e) => {
         const value = e.target.value;
-        const arr = Array.from(car.extras)
         if (e.target.checked) {
-            arr.push(value)
-            setCar({...car, extras: arr})
+            setCar({...car, extras: [...car.extras, e.target.value]})
         }else {
+            const arr = [...car.extras]
             const index = arr.findIndex(x => x === value)
             arr.splice(index, 1)
             return setCar({...car, extras: arr})

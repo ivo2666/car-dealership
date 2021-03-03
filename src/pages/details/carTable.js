@@ -30,7 +30,7 @@ table, tr {
 
 export default ({car}) => (
     <>
-    <Title>Допълнителна нформация</Title>
+    <Title>Допълнителна информация</Title>
     <AdditionalInf>
         <tbody>
         <tr>

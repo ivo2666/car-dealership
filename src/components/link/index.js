@@ -10,6 +10,7 @@ const StyledLink = styled(Link)`
     &:hover {
     color: ${props => props.hovercolor ? props.hovercolor : 'skyblue'}; 
     text-decoration: none;
+    cursor: pointer;
   }
 `
 

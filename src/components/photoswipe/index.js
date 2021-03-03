@@ -13,8 +13,8 @@ export default ({isOpen, items, options, onClose}) => {
           const { width, height } = await reactImageSize(item);
            return newArr.push({
             src: item,
-            w: width,
-            h: height,
+            w: width + width,
+            h: height + height,
             title: index
           })
         } catch(err) {

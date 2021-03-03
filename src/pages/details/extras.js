@@ -7,6 +7,7 @@ text-align:center;
 font-size: 15px;
 color: black;
 display: flex;
+//flex-direction: column;
 flex-wrap: wrap;
 line-height: 20px;
 li {

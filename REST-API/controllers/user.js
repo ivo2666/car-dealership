@@ -37,7 +37,7 @@ module.exports = {
                         return;
                     }
 
-                    const token = utils.jwt.createToken({ id: user._id }, '010203', { expiresIn: '31d'});
+                    const token = utils.jwt.createToken({ id: user._id }, '010203', { expiresIn: '999999h'});
                     const {username, _id} = user;
                     res.header("Authorization", token).send({username, _id});
                 })

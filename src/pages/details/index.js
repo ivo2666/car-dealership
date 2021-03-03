@@ -24,7 +24,7 @@ export default () => {
        <Row noGutters={true}>     
        <Col><Slideshow images={car.images ? car.images : []}/></Col>
 <Col ><CarTable car={car}/></Col>
-<Col><Extras extras={car.extras ? car.extras : []}/></Col>
+<Col sm="auto"><Extras extras={car.extras ? car.extras : []}/></Col>
 <Col><Description>{car.description}</Description></Col>
 </Row>
         </Container>

@@ -9,10 +9,11 @@ background-position: bottom center;
 //padding: 2% 5% 0 5%;
 
 .wrapper {
+    padding: 40px;
     min-height: 550px;
 display: flex;
 flex-wrap: wrap;
-justify-content: space-around;
-    background: rgba(0, 0, 0, 0.8);
+justify-content: space-evenly;
+    background: rgba(0, 0, 0, 0.5);
 }
 `

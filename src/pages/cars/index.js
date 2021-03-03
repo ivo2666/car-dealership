@@ -18,8 +18,11 @@ const Cars = () => {
             src={car.images[0]}
             brand={car.brand}
             model={car.model}
-            engine={car.modification}
+            modification={car.modification}
             price={car.price}
+            birdayYear={car.birdayYear}
+            engine={car.engine}
+            km={car.km}
             id={car._id}
             key={car._id}
           />})}

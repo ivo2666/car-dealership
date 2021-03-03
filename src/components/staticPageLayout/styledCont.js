@@ -9,7 +9,7 @@ background-position: bottom center;
 
 .content {
     min-height: 700px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.5);
     font-family: "Roboto Condensed", sans-serif;
     color: white;
     display: flex;

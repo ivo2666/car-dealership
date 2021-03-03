@@ -15,6 +15,7 @@ background-position: bottom center;
     align-items: center;
 
     .row {
+        background: rgba(0, 0, 0, 0.5);
         justify-content: center;
     }
 
