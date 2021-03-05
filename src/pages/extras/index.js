@@ -1,23 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import data from './data'
-import styled from 'styled-components'
-import urls from '../../config'
+import Container from './styledCont';
+import PageLayout from '../../components/pageLayout'
 import { useHistory, useParams } from 'react-router-dom';
-import getCookie from '../../helpers/cookie'
-import getCar from '../../helpers/getCar'
-
-const Container = styled.div`
-form {
-    margin: 3%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif
-}
-input, label {
-    cursor: pointer;
-}
-`
-
-
+import {getOne, put} from '../../helpers/carRequests'
 
 export default () => {
     const [car, setCar] = useState({});
@@ -26,39 +13,20 @@ export default () => {
     const history = useHistory();
 
     useEffect(() => {
-         getCar(id, setCar);
+         getOne(id, setCar);
       }, [id] );
 
     const submitHandler = async (e) => {
         e.preventDefault()
-        
-        fetch(`${urls.postCar}/${id}`, {
-            method: 'PUT',
-                body: JSON.stringify({extras: car.extras}),
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': getCookie('x-auth-token')
-            }
-          })
-          .then(promis => {
-            return promis.json();
-          })
-        .then(resCar => {
-            return history.push(`/addCar/images/${resCar.id}`)
-        })
-        .catch(err => {
-            return console.log(err);
-        }) 
-            
+        put({extras: car.extras}, id, ({id}) => history.push(`/addCar/images/${id}`))
     }
 
     const changeHandler = (e) => {
         const value = e.target.value;
-        const arr = Array.from(car.extras)
         if (e.target.checked) {
-            arr.push(value)
-            setCar({...car, extras: arr})
+            setCar({...car, extras: [...car.extras, e.target.value]})
         }else {
+            const arr = [...car.extras]
             const index = arr.findIndex(x => x === value)
             arr.splice(index, 1)
             return setCar({...car, extras: arr})
@@ -82,6 +50,7 @@ export default () => {
     })
     
     return (
+        <PageLayout>
         <Container>
             <Form onSubmit={submitHandler}>
                     <Row>
@@ -92,7 +61,7 @@ export default () => {
   </Button>
             </Form>
         </Container>
-
+        </PageLayout>
     )
 }
 

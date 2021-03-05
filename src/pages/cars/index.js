@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PageLayot from '../../components/pageLayout'
 import Card from '../../components/carReview'
-import urls from '../../config';
+import { get as getCars } from '../../helpers/carRequests'
+
 const Cars = () => {
     const [cars, setCars] = useState([]);
 
     useEffect(() => {
-        fetch(urls.getCars)
-          .then(x => x.json())
-          .then(data => {
-            setCars(data)
-          })
-          .catch(err => console.log(err))
+        getCars(setCars)
       }, [])
 
     return (
@@ -22,8 +18,11 @@ const Cars = () => {
             src={car.images[0]}
             brand={car.brand}
             model={car.model}
-            engine={car.modification}
+            modification={car.modification}
             price={car.price}
+            birdayYear={car.birdayYear}
+            engine={car.engine}
+            km={car.km}
             id={car._id}
             key={car._id}
           />})}

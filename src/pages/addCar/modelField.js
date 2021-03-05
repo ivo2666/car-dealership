@@ -1,26 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Field from '../../components/forms'
-import urls from '../../config'
-
+import Field from '../../components/field'
+import { getModels } from '../../helpers/imageBrandModelRequests'
 
 export default ({Col, brand, onModelChange, model, value}) => {
     const [models, setModels] = useState([])
   const [selectModel, setSelectModel] = useState(true)
 
   useEffect(() => {
-    fetch(`${urls.getModels}/${brand}`)
-    .then(x => x.json())
-    .then(md => setModels(md.models))
-    .catch(err => console.log(err))
+    getModels(brand, setModels)
 },[brand])
-
-
-  //const addModels = (e) => {
-  //  if (brands[e.target.options.selectedIndex - 1]) {
-  //    setModels(brands[e.target.options.selectedIndex - 1].models)
-  //    setSelectModel(true)
-  //  }
-  //}
 
   const handleChange = (data) => {
     if (data === 'Напиши сам') {

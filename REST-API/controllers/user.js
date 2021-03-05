@@ -33,17 +33,19 @@ module.exports = {
                 .then((user) => Promise.all([user, user.matchPassword(password)]))
                 .then(([user, match]) => {
                     if (!match) {
-                        res.status(204).send('Invalid password');
+                        res.status(200).send({message: "Invalid password"});
                         return;
                     }
 
-                    const token = utils.jwt.createToken({ id: user._id });
+                    const token = utils.jwt.createToken({ id: user._id }, '010203', { expiresIn: '999999h'});
                     const {username, _id} = user;
                     res.header("Authorization", token).send({username, _id});
                 })
                 .catch(err => {
                     if (err.message === "Cannot read property 'matchPassword' of null") {
-                        res.sendStatus(204);
+                        res.status(200).send({message: 'Invalid username'});
+                    }else if (err.message === err.message.includes('connection <monitor> to timed out')) {
+                        res.status(200).send({message: 'Invalid username'});
                     }else {
                         next(err)
                     }
@@ -71,7 +73,7 @@ module.exports = {
                 })
                 .catch(err => {
                     if (['jwt expired', 'blacklisted token', 'jwt must be provided'].includes(err.message)) {
-                        res.status(401).send('UNAUTHORIZED!');
+                        res.status(401).send(err.message);
                         return;
                     }
   

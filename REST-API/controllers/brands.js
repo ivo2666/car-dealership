@@ -3,7 +3,9 @@ const models = require('../models');
 module.exports = {
     get: (req, res, next) => {
         models.Brand.find()
-            .then((brands) => res.send(brands[0])
+            .then((brands) => {
+                return res.send(brands[0].brands)
+            } 
 )
             .catch(next);
     }

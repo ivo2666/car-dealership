@@ -1,26 +1,33 @@
-import 'react-photoswipe/lib/photoswipe.css';
-import {PhotoSwipe} from 'react-photoswipe';
-import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
+import StyledPhotoswipe from './styledCont'
+import  reactImageSize  from 'react-image-size';
 
-const MyPhotoSwipe = styled(PhotoSwipe)`
-.pswp__bg {
-    opacity: 0.8 !important;
+export default ({isOpen, items, options, onClose}) => {
+  const [modItems, setModItems] = useState([])
+
+  useEffect(() => {
+    const changeData = async (data, cb) => {
+      const newArr = []
+      await data.map(async (item, index) => {
+        try {
+          const { width, height } = await reactImageSize(item);
+           return newArr.push({
+            src: item,
+            w: width + width,
+            h: height + height,
+            title: index
+          })
+        } catch(err) {
+          console.log(err);
+        }})
+        cb(newArr)
+    }
+    changeData(items, setModItems)  
+  }, [items])
+
+  
+  return (
+    
+<StyledPhotoswipe isOpen={isOpen} items={modItems} options={options} onClose={onClose}/>
+  )
 }
-
-`
- 
-//let isOpen = true;
- 
-
- 
-//let options = {
-  //http://photoswipe.com/documentation/options.html
-//};
- 
-//handleClose = () => {
-//  isOpen: false
-//};
- 
-//<PhotoSwipe isOpen={isOpen} items={items} options={options} onClose={handleClose}/>
-
-export default MyPhotoSwipe

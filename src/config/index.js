@@ -1,14 +1,16 @@
-const server = 'http://localhost:9999/api'
+const server = 'http://localhost:9999'
 
 const urls = {
-
-login: `${server}/user/login`,
-verify: `${server}/user/verify`,
-getBrands: `${server}/brands`,
-getModels: `${server}/models`,
-postCar: `${server}/cars`,
-postImage: `${server}/uploadImage`,
-getCars: `${server}/cars`
+server: server,
+login: `${server}/api/user/login`,
+verify: `${server}/api/user/verify`,
+getBrands: `${server}/api/brands`,
+getModels: `${server}/api/models`,
+postCar: `${server}/api/cars`,
+putCar: `${server}/api/cars`,
+postImage: `${server}/api/uploadImage`,
+getCars: `${server}/api/cars`,
+getCar: `${server}/api/cars`
 }
 
 export default urls 

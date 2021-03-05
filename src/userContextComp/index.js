@@ -5,8 +5,8 @@ import urls from '../config';
 
 export default (props) => {
 
-    const [user, setUser] = useState(null)
-  
+  const [user, setUser] = useState(null)
+
   const logIn = (user) => {
     setUser({
       ...user,
@@ -19,39 +19,48 @@ export default (props) => {
     setUser({
       loggedIn: false
     })
-}
+  }
+
+
 
   useEffect(() => {
+
     const token = getCookie('x-auth-token')
-    if(!token) {
+    if (!token) {
       logOut()
       return
     }
 
-    fetch(urls.verify, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token
-      }
-    })
-    .then(promise => {
-      return promise.json()
-    })
-    .then(response => {
-      if(response.status) {
-        logIn({
-          username: response.user.username,
-          id: response.user._id
+    const verify = async (token) => {
+      try {
+        const response = await fetch(urls.verify, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+          }
         })
-      } else {
-        logOut()
+
+        if (response.status !== 200) {
+          return
+        }
+        const data = await response.json()
+        if (data.status) {
+          logIn({
+            username: data.user.username,
+            id: data.user._id
+          })
+        } else {
+          logOut()
+        }
+      } catch (error) {
+        console.log(error);
       }
-    })
-    .catch(err => console.log(err))
+    }
+    verify(token)
   }, [])
 
-  
+
   //console.log('user', user)
 
   return (

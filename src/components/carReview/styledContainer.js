@@ -26,6 +26,10 @@ h1 {
     font-weight: 100;
 }
 
+.price {
+    font-weight: 700;
+}
+
 img {
     width: 100%;
     border: 1px solid white;

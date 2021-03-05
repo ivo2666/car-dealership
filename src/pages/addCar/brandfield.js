@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Field from '../../components/forms';
-import urls from '../../config';
+import Field from '../../components/field';
+import { getBrands } from '../../helpers/imageBrandModelRequests';
 
 export default ({Col, value, onBrandChange}) => {
 const [brands, setBrands] = useState([]);
-//const [value, setValue] = useState('Избери');
 
 useEffect(() => {
-    fetch(urls.getBrands)
-    .then(x => x.json())
-    .then(br => setBrands(br.brands))
-    .catch(err => console.log(err))
+    getBrands(setBrands)
 },[])
 
 const handleChange = (value) => {
-    //setValue(e.target.value);
     onBrandChange(value)
 } 
 
