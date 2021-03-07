@@ -6,5 +6,6 @@ import Barter from './barter';
 import Delivery from './delivery';
 import Consultation from './consultation';
 import Contacts from './contacts';
+import NotFound from './notFound';
 
-export default { ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts };
+export default { ForUs, NotFound, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts };
