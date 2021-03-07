@@ -8,6 +8,7 @@ import BrandField from './brandfield';
 import validationChek from './validationChek';
 import { getOne, put, post } from '../../helpers/carRequests'
 import { useHistory, useParams } from "react-router-dom"
+import { eventErrHandler } from "../../helpers";
 
 export default () => {
   const [validation, setValidation] = useState(<></>)
@@ -39,7 +40,7 @@ export default () => {
   }, [id]);
 
   const handleChange = (field) => {
-    setCar({ ...car, ...field })
+    eventErrHandler(setCar({ ...car, ...field }))
   }
 
   const submitHandler = (e) => {
@@ -59,7 +60,7 @@ export default () => {
     <PageLayout>
       <Container>
         {validation}
-        <Form onSubmit={submitHandler}>
+        <Form onSubmit={() => eventErrHandler(submitHandler)}>
           <Form.Row>
             <BrandField onBrandChange={handleChange} Col={Col} value={car.brand} />
             <ModelField brand={car.brand} model={car.model} onModelChange={handleChange} Col={Col} />

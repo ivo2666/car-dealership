@@ -1,6 +1,7 @@
-import getCar from './getCar'
+//import getCar from './getCar'
 import auhtenticate from './auhtenticate'
 import getCookie from './cookie'
-import postCar from './postCar'
+//import postCar from './postCar'
+import eventErrHandler from './eventErrHandler'
 
-export { getCar, getCookie, postCar, auhtenticate }
+export { getCookie, auhtenticate, eventErrHandler }

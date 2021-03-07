@@ -5,6 +5,7 @@ import Container from './styledCont';
 import PageLayout from '../../components/pageLayout'
 import { useHistory, useParams } from 'react-router-dom';
 import {getOne, put} from '../../helpers/carRequests'
+import { eventErrHandler } from "../../helpers"; 
 
 export default () => {
     const [car, setCar] = useState({});
@@ -37,13 +38,13 @@ export default () => {
         if (car.extras && car.extras.includes(i)) {
             return (
                 <Col key={index} sm={3}>
-                       <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" defaultChecked label={i} />
+                       <Form.Check onChange={() => eventErrHandler(changeHandler)} id={i} inline value={i} type="checkbox" defaultChecked label={i} />
                    </Col>
                )
         }else {
             return (
                 <Col key={index} sm={3}>
-                       <Form.Check onChange={changeHandler} id={i} inline value={i} type="checkbox" label={i} />
+                       <Form.Check onChange={() => eventErrHandler(changeHandler)} id={i} inline value={i} type="checkbox" label={i} />
                    </Col>
                )
         }
@@ -52,7 +53,7 @@ export default () => {
     return (
         <PageLayout>
         <Container>
-            <Form onSubmit={submitHandler}>
+            <Form onSubmit={() => eventErrHandler(submitHandler)}>
                     <Row>
                         {items}
                     </Row>

@@ -7,6 +7,7 @@ import Container from './styledCont'
 import Field from '../../components/field'
 import PageLayout from '../../components/pageLayout';
 import urls from '../../config'
+import { eventErrHandler } from "../../helpers";
 
 export default () => {
   const [user, setUser] = useState({
@@ -19,20 +20,24 @@ export default () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    await authenticate(urls.login,
-     user, 
-    (user) => {
-        context.logIn(user)
-        history.push('/admin')
-      }, (e) => {
-        if (e.message === 'Failed to fetch') {
-          setValidation('Няма връзка със сървъра')
-        }else{
-          setValidation(e.message)
-        }
-      }
-    )
+    try {
+      await authenticate(urls.login,
+        user, 
+       (user) => {
+           context.logIn(user)
+           history.push('/admin')
+         }, (e) => {
+           if (e.message === 'Failed to fetch') {
+             setValidation('Няма връзка със сървъра')
+           }else{
+             setValidation(e.message)
+           }
+         }
+       )
+    } catch (err) {
+      console.log(err);
+    }
+    
   }
 
   const handleChange = (field) => {
@@ -42,11 +47,11 @@ export default () => {
     return(
         <PageLayout>
           <Container>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={() => eventErrHandler(handleSubmit)}>
           <Field
           name='username'
           value={user.username}
-          onChange={handleChange}
+          onChange={() => eventErrHandler(handleChange)}
           label="Username"
           placeholder="Username"
 />
@@ -54,7 +59,7 @@ export default () => {
           name='password'
           password='password'
           value={user.password}
-          onChange={handleChange}
+          onChange={() => eventErrHandler(handleChange)}
           label="Password"
           placeholder="password"
 />

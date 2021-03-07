@@ -4,6 +4,7 @@ import { Form, Button, Image, Alert } from 'react-bootstrap';
 import { postImage } from '../../helpers/imageBrandModelRequests'
 import { useParams, useHistory } from 'react-router-dom';
 import { getOne } from '../../helpers/carRequests'
+import { eventErrHandler } from "../../helpers";
 
 
 export default () => {
@@ -71,11 +72,11 @@ export default () => {
       <Form>
         <div className="form-group files">
           <Form.Label>Качване на файлове</Form.Label>
-          <Form.Control accept=".png, .jpg, .jpeg" onChange={e => handleChange(e.target.files)} type="file" className="form-control" multiple />
+          <Form.Control accept=".png, .jpg, .jpeg" onChange={e => eventErrHandler(handleChange(e.target.files))} type="file" className="form-control" multiple />
         </div>
       </Form>
       <div className='imageReview'>{imageReview()}</div>
-      <Button onClick={handleClick} >Качи файловете</Button>
+      <Button onClick={() => eventErrHandler(handleClick)} >Качи файловете</Button>
     </Container>
   )
 }

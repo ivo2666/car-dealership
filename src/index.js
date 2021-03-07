@@ -16,13 +16,6 @@ ReactDOM.render(
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
 
-
-//logout button
-//footer servises bugs
-//car review add inf
-//loading  comp
-//404 page
-//details page backButton bug
-//errorbounderry
+//languages
 //surver side rendering
 //documentation
