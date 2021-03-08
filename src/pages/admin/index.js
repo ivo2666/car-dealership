@@ -57,6 +57,9 @@ export default () => {
             model={car.model}
             modification={car.modification}
             price={car.price}
+            km={car.km}
+            birdayYear={car.birdayYear}
+            engine={car.engine}
             key={car._id}
             id={car._id}
           >

@@ -38,13 +38,13 @@ export default () => {
         if (car.extras && car.extras.includes(i)) {
             return (
                 <Col key={index} sm={3}>
-                       <Form.Check onChange={() => eventErrHandler(changeHandler)} id={i} inline value={i} type="checkbox" defaultChecked label={i} />
+                       <Form.Check onChange={e => eventErrHandler(() => changeHandler(e))} id={i} inline value={i} type="checkbox" defaultChecked label={i} />
                    </Col>
                )
         }else {
             return (
                 <Col key={index} sm={3}>
-                       <Form.Check onChange={() => eventErrHandler(changeHandler)} id={i} inline value={i} type="checkbox" label={i} />
+                       <Form.Check onChange={e => eventErrHandler(() => changeHandler(e))} id={i} inline value={i} type="checkbox" label={i} />
                    </Col>
                )
         }
@@ -53,7 +53,7 @@ export default () => {
     return (
         <PageLayout>
         <Container>
-            <Form onSubmit={() => eventErrHandler(submitHandler)}>
+            <Form onSubmit={e => eventErrHandler(() => submitHandler(e))}>
                     <Row>
                         {items}
                     </Row>

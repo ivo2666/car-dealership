@@ -40,7 +40,7 @@ export default () => {
   }, [id]);
 
   const handleChange = (field) => {
-    eventErrHandler(setCar({ ...car, ...field }))
+    eventErrHandler(() => setCar({ ...car, ...field }))
   }
 
   const submitHandler = (e) => {
@@ -60,7 +60,7 @@ export default () => {
     <PageLayout>
       <Container>
         {validation}
-        <Form onSubmit={() => eventErrHandler(submitHandler)}>
+        <Form onSubmit={e => eventErrHandler(() => submitHandler(e))}>
           <Form.Row>
             <BrandField onBrandChange={handleChange} Col={Col} value={car.brand} />
             <ModelField brand={car.brand} model={car.model} onModelChange={handleChange} Col={Col} />

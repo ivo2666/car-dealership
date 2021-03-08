@@ -20,24 +20,20 @@ export default () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    try {
-      await authenticate(urls.login,
-        user, 
-       (user) => {
-           context.logIn(user)
-           history.push('/admin')
-         }, (e) => {
-           if (e.message === 'Failed to fetch') {
-             setValidation('Няма връзка със сървъра')
-           }else{
-             setValidation(e.message)
-           }
-         }
-       )
-    } catch (err) {
-      console.log(err);
-    }
-    
+
+    await authenticate(urls.login,
+     user, 
+    (user) => {
+        context.logIn(user)
+        history.push('/admin')
+      }, (e) => {
+        if (e.message === 'Failed to fetch') {
+          setValidation('Няма връзка със сървъра')
+        }else{
+          setValidation(e.message)
+        }
+      }
+    )
   }
 
   const handleChange = (field) => {
@@ -47,11 +43,11 @@ export default () => {
     return(
         <PageLayout>
           <Container>
-          <Form onSubmit={() => eventErrHandler(handleSubmit)}>
+          <Form onSubmit={e => eventErrHandler(() => handleSubmit(e))}>
           <Field
           name='username'
           value={user.username}
-          onChange={() => eventErrHandler(handleChange)}
+          onChange={handleChange}
           label="Username"
           placeholder="Username"
 />
@@ -59,7 +55,7 @@ export default () => {
           name='password'
           password='password'
           value={user.password}
-          onChange={() => eventErrHandler(handleChange)}
+          onChange={handleChange}
           label="Password"
           placeholder="password"
 />
