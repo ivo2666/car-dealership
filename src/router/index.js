@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import UserContext from '.././context';
+import { UserContext } from '../contexts';
 
 import { Home, Extras, Images, Admin, Login, AddCar, Cars, Details, Static } from '../pages';
 import {

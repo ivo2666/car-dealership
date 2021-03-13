@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import UserContext from '../context'
+import { UserContext } from '../contexts'
 import getCookie from '../helpers/cookie'
 import urls from '../config';
 
