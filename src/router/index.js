@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../contexts';
-
+import PageLayout from '../components/pageLayout'
 import { Home, Extras, Images, Admin, Login, AddCar, Cars, Details, Static } from '../pages';
 import {
     BrowserRouter,
@@ -9,7 +9,7 @@ import {
   Redirect
 } from "react-router-dom";
 
-const { ForUs, Servises, Lizing, Insurance, Barter, Consultation, Delivery, Contacts, NotFound } = Static;
+const { ForUs, Services, Lizing, Insurance, Barter, Consultation, Delivery, Contacts, NotFound } = Static;
 
 export default function Router() {
     const context = useContext(UserContext);
@@ -17,18 +17,19 @@ export default function Router() {
     
     return (
         <BrowserRouter>
+        <PageLayout>
         <Switch>
             <Route path="/" exact component={Home}/>
             <Route path="/cars" exact component={Cars}/>
             
             <Route path="/details/:id" exact component={Details}/>
             <Route path="/forUs" exact component={ForUs}/>
-            <Route path="/servises" exact component={Servises}/>
-            <Route path="/servises/lizing" exact component={Lizing}/>
-            <Route path="/servises/insurance" exact component={Insurance}/>
-            <Route path="/servises/barter" exact component={Barter}/>
-            <Route path="/servises/consultation" exact component={Consultation}/>
-            <Route path="/servises/delivery" exact component={Delivery}/>
+            <Route path="/services" exact component={Services}/>
+            <Route path="/services/lizing" exact component={Lizing}/>
+            <Route path="/services/insurance" exact component={Insurance}/>
+            <Route path="/services/barter" exact component={Barter}/>
+            <Route path="/services/consultation" exact component={Consultation}/>
+            <Route path="/services/delivery" exact component={Delivery}/>
             <Route path="/contacts" exact component={Contacts}/>
 
             <Route path="/admin" exact>
@@ -52,6 +53,7 @@ export default function Router() {
 
             <Route path="*" component={NotFound}/>
         </Switch>
+        </PageLayout>
         </BrowserRouter>
     )
     }

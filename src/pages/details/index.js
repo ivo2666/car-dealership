@@ -1,6 +1,5 @@
 import React from 'react';
 import Container from './styledContainer';
-import Layout from '../../components/pageLayout'
 import Slideshow from '../../components/detailsSlideshow'
 import CarTable from './carTable'
 import Description from './description'
@@ -37,8 +36,8 @@ export default () => {
     }
 
     return (
-        <Layout>
+        <>
             {body()}
-        </Layout>
+        </>
     )
 }

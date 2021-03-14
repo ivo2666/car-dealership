@@ -1,5 +1,4 @@
 import React from 'react';
-import Layout from '../../components/pageLayout';
 import Container from './styledCont'
 import urls from '../../config'
 import { LanguageContext } from "../../contexts";
@@ -9,7 +8,6 @@ import { LanguageContext } from "../../contexts";
 export default (props) => {
     const language = React.useContext(LanguageContext).language
     return (
-        <Layout>
             <Container background={`url(${`${urls.server}/Bugatti-Chiron.jpg`})`}>
             <div className='content'>
             <div className='text'>
@@ -18,6 +16,5 @@ export default (props) => {
             </div>
         </div>
             </Container>
-        </Layout>
     )
 }

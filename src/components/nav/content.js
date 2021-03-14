@@ -2,14 +2,14 @@ const content = {
     english:  {
         cars: 'Cars',
         forUs: 'About us',
-        servises: 'Servises',
+        services: 'services',
         contacts: 'Contacts',
         logout: 'logout'
     },
     bulgarian: {
         cars: 'Коли',
         forUs: 'За нас',
-        servises: 'Услуги',
+        services: 'Услуги',
         contacts: 'Контакти',
         logout: 'Излез'
     }

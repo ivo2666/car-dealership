@@ -8,7 +8,7 @@ const content = {
         leasing: 'Лизинг'
     },
     english: {
-        title: 'Servises:',
+        title: 'services:',
         insurance: 'Registration and insurance',
         barter: 'Buying and exchanging cars',
         consultation: 'Consultation when buying a car',

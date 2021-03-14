@@ -1,6 +1,6 @@
 import React from 'react';
 import  Link  from '../../../components/link';
-import Card from './servise.style';
+import Card from './service.style';
 
 
 export default (props) => {
