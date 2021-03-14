@@ -3,7 +3,7 @@ import Style from './nav.style';
 import Flags from '../flags'
 import Link from '../link';
 import UserContext from '../../context'
-
+import { eventErrHandler } from "../../helpers";
 
 
 export default ({mobile, visible}) => {
@@ -21,7 +21,7 @@ const clickHandler = () => {
                         <Link to="/forUs">ЗА НАС</Link>
                         <Link to="/servises">УСЛУГИ</Link>
                         <Link to="/contacts">КОНТАКТИ</Link>
-                        {loggedIn ? <Link onClick={clickHandler} to="#">Излез</Link> : <></>}
+                        {loggedIn ? <Link onClick={() => eventErrHandler(clickHandler)} to="#">Излез</Link> : <></>}
                         <Flags />
                 </Style>
         )

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Container from './styledCont'
 import Photoswipe from '../../components/photoswipe'
+import { eventErrHandler } from '../../helpers';
+//import { eventErrHandler } from '../../helpers'
 
 
 const Slider = (props) => {
@@ -13,11 +14,11 @@ const Slider = (props) => {
 
 
     const prevHandler = () => {
-        if (slideIndex - 1 < 0) {
-            setSlideIndex(props.images.length - 1)
-        } else {
-            setSlideIndex(slideIndex - 1)
-        }
+            if (slideIndex - 1 < 0) {
+                setSlideIndex(props.images.length - 1)
+            } else {
+                setSlideIndex(slideIndex - 1)
+            }
     }
 
     const nextHandler = () => {
@@ -59,10 +60,10 @@ const Slider = (props) => {
     return (
         <>
             <Container>
-                <Photoswipe isOpen={isOpen} items={props.images} onClose={closeHandl} />
-      <img onClick={clickHandler} onTouchEnd={touchendHandler} onTouchMove={touchMoveHandler} onTouchStart={touchStartHandler} alt='car' src={slides[slideIndex]} />
-                <Link className='prev' to='#' onClick={prevHandler}>&#10094;</Link>
-                <Link className='next' to='#' onClick={nextHandler}>&#10095;</Link>
+                <Photoswipe isOpen={isOpen} items={props.images} onClose={() => eventErrHandler(closeHandl)} />
+      <img onClick={() => eventErrHandler(clickHandler)} onTouchEnd={() => eventErrHandler(touchendHandler)} onTouchMove={() => eventErrHandler(touchMoveHandler)} onTouchStart={touchStartHandler} alt='car' src={slides[slideIndex]} />
+                <span className='prev'  onClick={() => eventErrHandler(prevHandler)}>&#10094;</span>
+                <span className='next'  onClick={() => eventErrHandler(nextHandler)}>&#10095;</span>
             </Container>
         </>
     )

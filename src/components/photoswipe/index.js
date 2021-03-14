@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StyledPhotoswipe from './styledCont'
 import  reactImageSize  from 'react-image-size';
+import ErrorBoundary from '../../components/erorrBoundary'
 
 export default ({isOpen, items, options, onClose}) => {
   const [modItems, setModItems] = useState([])
@@ -27,7 +28,8 @@ export default ({isOpen, items, options, onClose}) => {
 
   
   return (
-    
+    <ErrorBoundary>
 <StyledPhotoswipe isOpen={isOpen} items={modItems} options={options} onClose={onClose}/>
+</ErrorBoundary>
   )
 }

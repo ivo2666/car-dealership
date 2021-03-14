@@ -55,8 +55,11 @@ export default () => {
             src={car.images[0]}
             brand={car.brand}
             model={car.model}
-            engine={car.modification}
+            modification={car.modification}
             price={car.price}
+            km={car.km}
+            birdayYear={car.birdayYear}
+            engine={car.engine}
             key={car._id}
             id={car._id}
           >

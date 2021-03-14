@@ -7,6 +7,7 @@ import Container from './styledCont'
 import Field from '../../components/field'
 import PageLayout from '../../components/pageLayout';
 import urls from '../../config'
+import { eventErrHandler } from "../../helpers";
 
 export default () => {
   const [user, setUser] = useState({
@@ -42,7 +43,7 @@ export default () => {
     return(
         <PageLayout>
           <Container>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={e => eventErrHandler(() => handleSubmit(e))}>
           <Field
           name='username'
           value={user.username}

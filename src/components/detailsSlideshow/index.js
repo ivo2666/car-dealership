@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import Container from './styledCont'
 import Slider from '../slider';
+import { eventErrHandler } from '../../helpers'
 
 export default ({images}) => {
     const [ slideIndex, setSlideIndex] = useState(0);
 
+    const galleryClickHandler = (index) => {
+        return setSlideIndex(index)
+    }
+
     const galleryRender = images.map((image, index) =>
         <img src={image} index={index} key={index} 
-            onClick={() => setSlideIndex(index)} alt="car" />)
+            onClick={() => eventErrHandler(() => galleryClickHandler(index))} alt="car" />)
 
     return (
         <Container>

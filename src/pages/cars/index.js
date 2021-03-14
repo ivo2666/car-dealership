@@ -5,14 +5,14 @@ import { get as getCars } from '../../helpers/carRequests'
 import Spinner from '../../components/loadingSpinner'
 
 const Cars = () => {
-    const [cars, setCars] = useState([]);
+    const [cars, setCars] = useState(null);
 
     useEffect(() => {
         getCars(setCars)
       }, [])
 
       const body = () => {
-        if (cars.length < 1) {
+        if (!cars) {
           return <Spinner /> 
         }else {
           return (
