@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ContactInfSection from '../contactInfSection';
 import ContactMapSection from '../contactMapSection';
-import Servises from '../footerServisesSection';
+import Services from '../../components/footerServicesSection';
 
 const Footer = styled.footer`
 background: black;
@@ -15,6 +15,6 @@ export default () => (
     <Footer>
         <ContactInfSection />
         <ContactMapSection />
-        <Servises />
+        <Services />
     </Footer>
 )

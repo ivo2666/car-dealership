@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PageLayot from '../../components/pageLayout'
 import Card from '../../components/carReview'
 import { get as getCars } from '../../helpers/carRequests'
 import Spinner from '../../components/loadingSpinner'
@@ -35,9 +34,9 @@ const Cars = () => {
       }
 
     return (
-        <PageLayot>
+        <>
             {body()}
-        </PageLayot>
+        </>
     )
 }
 

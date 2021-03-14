@@ -3,6 +3,7 @@ import uk from '../../images/flags/united-kingdom.png'
 import bul from '../../images/flags/bulgaria.png'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { LanguageContext } from '../../contexts';
 
 const Flag = styled.img`
 width: 30px;
@@ -16,13 +17,16 @@ a {
 }
 `
 
-export default () => (
-    <Flags>
+export default () => {
+    const changeLang = React.useContext(LanguageContext).changeLang
+    return (
+        <Flags>
+            <Link to="#">
+            <Flag onClick={() => changeLang('english')} src={uk} alt='flag'/>
+        </Link>
         <Link to="#">
-        <Flag src={uk} alt='flag'/>
-    </Link>
-    <Link to="#">
-        <Flag src={bul} alt='flag'/>
-    </Link>
-    </Flags>
-)
+            <Flag onClick={() => changeLang('bulgarian')} src={bul} alt='flag'/>
+        </Link>
+        </Flags>
+    )
+}

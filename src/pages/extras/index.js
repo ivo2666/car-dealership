@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import data from './data'
 import Container from './styledCont';
-import PageLayout from '../../components/pageLayout'
 import { useHistory, useParams } from 'react-router-dom';
 import {getOne, put} from '../../helpers/carRequests'
 import { eventErrHandler } from "../../helpers"; 
@@ -51,7 +50,6 @@ export default () => {
     })
     
     return (
-        <PageLayout>
         <Container>
             <Form onSubmit={e => eventErrHandler(() => submitHandler(e))}>
                     <Row>
@@ -62,7 +60,6 @@ export default () => {
   </Button>
             </Form>
         </Container>
-        </PageLayout>
     )
 }
 

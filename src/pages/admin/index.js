@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap'
 import EditDeletePanel from '../../components/editDeletePanel'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Header from '../../components/header'
 import { get as getCars } from '../../helpers/carRequests'
 
 const CardWrapper = styled.section`
@@ -42,7 +41,6 @@ export default () => {
 
   return (
     <Admin>
-      <Header />
       <Link id='add-car-link' to='/addCar'>
         <Button id='add-car-butt' variant="primary" size="lg" block>
           Добави кола

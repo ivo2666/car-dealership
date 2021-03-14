@@ -1,11 +1,10 @@
 import React, {useContext ,useState} from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import UserContext from '../../context'; 
+import { UserContext } from '../../contexts'; 
 import authenticate from '../../helpers/auhtenticate';
 import { useHistory } from "react-router-dom"
 import Container from './styledCont'
 import Field from '../../components/field'
-import PageLayout from '../../components/pageLayout';
 import urls from '../../config'
 import { eventErrHandler } from "../../helpers";
 
@@ -41,7 +40,6 @@ export default () => {
   }
 
     return(
-        <PageLayout>
           <Container>
           <Form onSubmit={e => eventErrHandler(() => handleSubmit(e))}>
           <Field
@@ -65,6 +63,5 @@ export default () => {
   </Button>
 </Form>
         </Container>
-        </PageLayout>
     )
 }

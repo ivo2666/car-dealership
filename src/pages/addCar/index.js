@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Col, Button, Alert } from 'react-bootstrap';
 import Container from './styleCont';
-import PageLayout from '../../components/pageLayout'
 import Field from '../../components/field'
 import ModelField from './modelField';
 import BrandField from './brandfield';
@@ -57,7 +56,6 @@ export default () => {
   }
 
   return (
-    <PageLayout>
       <Container>
         {validation}
         <Form onSubmit={e => eventErrHandler(() => submitHandler(e))}>
@@ -145,6 +143,5 @@ export default () => {
   </Button>
         </Form>
       </Container>
-    </PageLayout>
   )
 }
