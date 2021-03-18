@@ -1,11 +1,10 @@
 import React from 'react';
-import Router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserComp from './userContextComp'
 import ErrorBoundary from './components/erorrBoundary'
 import { LanguageContext } from './contexts'
 
-function App() {
+function App(props) {
   const [language, setLanguage] = React.useState('bulgarian')
   const changeLang = lang => {
     setLanguage(lang)
@@ -14,7 +13,7 @@ function App() {
       <ErrorBoundary>
         <UserComp>
           <LanguageContext.Provider value={{language: language, changeLang: changeLang}}>
-        <Router />
+        {props.children}
         </LanguageContext.Provider>
         </UserComp>
       </ErrorBoundary>

@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 import { UserContext } from '../contexts';
-import PageLayout from '../components/pageLayout'
 import { Home, Extras, Images, Admin, Login, AddCar, Cars, Details, Static } from '../pages';
 import {
-    BrowserRouter,
   Switch,
   Route,
   Redirect
@@ -16,44 +14,41 @@ export default function Router() {
     const loggedIn = context.user && context.user.loggedIn;
     
     return (
-        <BrowserRouter>
-        <PageLayout>
         <Switch>
             <Route path="/" exact component={Home}/>
-            <Route path="/cars" exact component={Cars}/>
+            <Route path="/cars"  component={Cars}/>
             
             <Route path="/details/:id" exact component={Details}/>
-            <Route path="/forUs" exact component={ForUs}/>
+            <Route path="/forUs"  component={ForUs}/>
             <Route path="/services" exact component={Services}/>
-            <Route path="/services/lizing" exact component={Lizing}/>
-            <Route path="/services/insurance" exact component={Insurance}/>
-            <Route path="/services/barter" exact component={Barter}/>
-            <Route path="/services/consultation" exact component={Consultation}/>
-            <Route path="/services/delivery" exact component={Delivery}/>
-            <Route path="/contacts" exact component={Contacts}/>
+            <Route path="/services/lizing"  component={Lizing}/>
+            <Route path="/services/insurance"  component={Insurance}/>
+            <Route path="/services/barter"  component={Barter}/>
+            <Route path="/services/consultation"  component={Consultation}/>
+            <Route path="/services/delivery"  component={Delivery}/>
+            <Route path="/contacts"  component={Contacts}/>
 
-            <Route path="/admin" exact>
+            <Route path="/admin" >
                 {loggedIn ? (<Admin />) : (<Login /> )}
             </Route>
-            <Route exact path="/addCar">
+            <Route  path="/addCar">
             {loggedIn ? (<AddCar />) : (<Login />)}
             </Route>
-            <Route path="/login" exact>
+            <Route path="/login" >
             {loggedIn ? (<Redirect to='/admin' /> ) : (<Login />)}
             </Route>
-            <Route path="/addCar/extras/:id" exact>
+            <Route path="/addCar/extras/:id" >
             {loggedIn ? (<Extras />) : (<Login />)}
             </Route>
-            <Route path="/addCar/images/:id" exact>
+            <Route path="/addCar/images/:id" >
             {loggedIn ? (<Images />) : (<Login />)}
             </Route>
-            <Route path="/addCar/:id" exact>
+            <Route path="/addCar/:id" >
             {loggedIn ? (<AddCar />) : (<Login />)}
             </Route>
 
             <Route path="*" component={NotFound}/>
         </Switch>
-        </PageLayout>
-        </BrowserRouter>
+        
     )
     }

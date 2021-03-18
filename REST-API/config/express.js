@@ -1,4 +1,3 @@
-const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const cors = require('cors');
@@ -10,10 +9,8 @@ module.exports = (app) => {
     exposedHeaders: "Authorization"
   }));
 
-  app.use(bodyParser.json());
+  app.use(express.json());
 
   app.use(cookieParser(secret));
-
-  app.use(express.static('public'))
 
 };

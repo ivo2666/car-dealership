@@ -1,12 +1,21 @@
 import React from 'react';
+import Navigation from './router'
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import PageLayout from './components/pageLayout'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App>
+    <BrowserRouter>
+    <PageLayout>
+    <Navigation />
+    </PageLayout>
+    </BrowserRouter>
+    </App>
   </React.StrictMode>,
   document.getElementById('root')
 );

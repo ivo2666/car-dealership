@@ -6,7 +6,7 @@ import urls from '../../../config'
 
 export default () => {
     return(
-            <Container background={`${urls.server}/Bugatti-Chiron.jpg`}> 
+            <Container background={`${urls.server}/uploadImages/Bugatti-Chiron.jpg`}> 
             <div className="wrapper">
                 <ContactInfSection />
                 <ContactMapSection />

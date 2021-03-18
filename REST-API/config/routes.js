@@ -1,3 +1,5 @@
+import serverRenderer from './middleware/renderer';
+
 const router = require('../routes');
 const express = require('express')
 
@@ -13,7 +15,12 @@ module.exports = (app) => {
 
     app.use('/api/uploadImage', router.images);
 
-    app.use('/', express.static('uploadImages'))
+    app.use('/uploadImages', express.static('uploadImages'))
 
-    app.use('*', (req, res, next) => res.send('<h1> Something weeent wrong. Try again. :thumbsup: </h1>'))
+    app.use('^/$', serverRenderer)
+
+    app.use(express.static('build'))
+
+    app.use('*', serverRenderer)
+
 };

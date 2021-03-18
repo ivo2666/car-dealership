@@ -3,7 +3,7 @@ import { Spinner } from 'react-bootstrap'
 import styled from 'styled-components'
 
 const Container = styled.div`
-height: ${window.innerWidth}px;
+height: ${typeof window !== "undefined" ? window.innerWidth : 500}px;
 justify-content:center;
 display:flex;
 padding: 10%;

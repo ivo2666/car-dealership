@@ -10,7 +10,7 @@ import { eventErrHandler } from "../../helpers";
 
 
 export default () => {
-    const [width, setWidth] = React.useState(window.innerWidth)
+    const [width, setWidth] = React.useState(typeof window !== "undefined" ? window.innerWidth : 500)
     const [visible, setVisible] = React.useState('')
 
     React.useEffect(() => {
