@@ -1,6 +1,4 @@
 import React from 'react';
-import uk from '../../images/flags/united-kingdom.png'
-import bul from '../../images/flags/bulgaria.png'
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { LanguageContext } from '../../contexts';
@@ -22,10 +20,10 @@ export default () => {
     return (
         <Flags>
             <Link to="#">
-            <Flag onClick={() => changeLang('english')} src={uk} alt='flag'/>
+            <Flag onClick={() => changeLang('english')} src='flags/united-kingdom.png' alt='united-kingdom-flag'/>
         </Link>
         <Link to="#">
-            <Flag onClick={() => changeLang('bulgarian')} src={bul} alt='flag'/>
+            <Flag onClick={() => changeLang('bulgarian')} src='flags/bulgaria.png' alt='bulgaria-flag'/>
         </Link>
         </Flags>
     )

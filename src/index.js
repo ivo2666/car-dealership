@@ -10,11 +10,11 @@ import PageLayout from './components/pageLayout'
 ReactDOM.render(
   <React.StrictMode>
     <App>
-    <BrowserRouter>
-    <PageLayout>
-    <Navigation />
-    </PageLayout>
-    </BrowserRouter>
+      <BrowserRouter>
+        <PageLayout>
+          <Navigation />
+        </PageLayout>
+      </BrowserRouter>
     </App>
   </React.StrictMode>,
   document.getElementById('root')

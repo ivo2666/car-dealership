@@ -1,10 +1,9 @@
 import styled from 'styled-components'
-import urls from '../../../config'
 
 export default styled.main`
 //min-height: 550px;
 background: #212121;
-background-image: url(${`${urls.server}/uploadImages/Bugatti-Chiron.jpg`});
+background-image: url('Bugatti-Chiron.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 background-position: bottom center;

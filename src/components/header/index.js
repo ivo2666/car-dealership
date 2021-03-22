@@ -2,8 +2,6 @@ import React from 'react';
 import StyledContainer from './styleContainer';
 import Logo from '../logo';
 import Nav from '../nav';
-import menuIcon from '../../images/hbMenu.png'
-import closeMenu from '../../images/xMenu.png'
 import { Image, Row, Col } from 'react-bootstrap';
 import { eventErrHandler } from "../../helpers";
 
@@ -29,7 +27,7 @@ export default () => {
             <Col  md={4} xs={6} ><Logo /></Col>
             <Col  className="iconCont">
             {mobile ? 
-            <Image className='icon' onClick={() => eventErrHandler(clickHandler)} src={visible ? closeMenu : menuIcon}/>
+            <Image className='icon' onClick={() => eventErrHandler(clickHandler)} src={visible ? 'xMenu.png' : 'hbMenu.png'}/>
              : <Nav visible={'yes'} mobile={mobile}/>}
              </Col>
              </Row>

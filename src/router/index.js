@@ -15,8 +15,13 @@ export default function Router() {
     
     return (
         <Switch>
-            <Route path="/" exact component={Home}/>
-            <Route path="/cars"  component={Cars}/>
+            <Route path="/" exact>
+                <Home />
+            </Route>
+
+            <Route path="/cars" >
+                <Cars />
+            </Route>
             
             <Route path="/details/:id" exact component={Details}/>
             <Route path="/forUs"  component={ForUs}/>
@@ -31,7 +36,7 @@ export default function Router() {
             <Route path="/admin" >
                 {loggedIn ? (<Admin />) : (<Login /> )}
             </Route>
-            <Route  path="/addCar">
+            <Route exact path="/addCar">
             {loggedIn ? (<AddCar />) : (<Login />)}
             </Route>
             <Route path="/login" >

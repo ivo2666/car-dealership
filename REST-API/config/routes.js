@@ -19,7 +19,7 @@ module.exports = (app) => {
 
     app.use('^/$', serverRenderer)
 
-    app.use(express.static('build'))
+    app.use(express.static('public'))
 
     app.use('*', serverRenderer)
 

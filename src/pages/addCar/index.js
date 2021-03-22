@@ -30,6 +30,7 @@ export default () => {
 
   const { id } = useParams();
   const history = useHistory();
+  console.log(history);
   const method = id ? (data, cb) => put(data, id, cb) : (data, cb) => post(data, cb);
 
   useEffect( () => {

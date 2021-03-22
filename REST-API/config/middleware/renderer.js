@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-// import our main App component
 import App from '../../../src/App';
-//import Home from '../../../src/pages/home';
 import Navigation from '../../../src/router';
 import PageLayout from '../../../src/components/pageLayout';
 import { StaticRouter } from 'react-router-dom';
@@ -25,13 +23,13 @@ export default (req, res, next) => {
 
         // render the app as a string
         const html = ReactDOMServer.renderToString(
-        <App>
-            <StaticRouter>
-                <PageLayout>
-            <Navigation />
-            </PageLayout>
-            </StaticRouter>
-        </App>
+            <App>
+                <StaticRouter location={req.baseUrl}>
+                    <PageLayout>
+                        <Navigation />
+                    </PageLayout>
+                </StaticRouter>
+            </App>
         );
 
         // inject the rendered app into our html and send it
