@@ -9,7 +9,7 @@ import PageLayout from './components/pageLayout'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App>
+    <App {...window.__STATE__}>
       <BrowserRouter>
         <PageLayout>
           <Navigation />

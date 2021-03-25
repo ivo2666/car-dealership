@@ -1,7 +1,7 @@
 import React from 'react';
 import Container from './styledContainer';
 import { Image, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import  Link  from '../link'
 
 
 

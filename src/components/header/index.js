@@ -4,6 +4,7 @@ import Logo from '../logo';
 import Nav from '../nav';
 import { Image, Row, Col } from 'react-bootstrap';
 import { eventErrHandler } from "../../helpers";
+import urls from '../../config'
 
 
 
@@ -27,7 +28,7 @@ export default () => {
             <Col  md={4} xs={6} ><Logo /></Col>
             <Col  className="iconCont">
             {mobile ? 
-            <Image className='icon' onClick={() => eventErrHandler(clickHandler)} src={visible ? 'xMenu.png' : 'hbMenu.png'}/>
+            <Image className='icon' onClick={() => eventErrHandler(clickHandler)} src={visible ? `${urls.server}/xMenu.png` : `${urls.server}/hbMenu.png`}/>
              : <Nav visible={'yes'} mobile={mobile}/>}
              </Col>
              </Row>

@@ -5,7 +5,12 @@ const models = require('../models');
 module.exports = (redirectAuthenticated = true) => {
 
     return function (req, res, next) {
-        const token = req.headers.authorization || '';
+        const token = req.cookies['x-auth-token'] || ''
+
+        if (!token) {
+            next()
+            return
+        }
 
         Promise.all([
             jwt.verifyToken(token),
@@ -16,7 +21,7 @@ module.exports = (redirectAuthenticated = true) => {
 
                 models.User.findById(data.id)
                     .then((user) => {
-                        req.user = user;
+                        req.user = user.id;
                         next();
                     });
             })

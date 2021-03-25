@@ -23,7 +23,7 @@ export default function Router() {
                 <Cars />
             </Route>
             
-            <Route path="/details/:id" exact component={Details}/>
+            <Route path="/details/:id" component={Details}/>
             <Route path="/forUs"  component={ForUs}/>
             <Route path="/services" exact component={Services}/>
             <Route path="/services/lizing"  component={Lizing}/>

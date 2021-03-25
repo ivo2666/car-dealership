@@ -1,4 +1,4 @@
-const server = 'http://localhost:9999'
+const server = 'http://192.168.0.100:9999'
 
 const urls = {
 server: server,

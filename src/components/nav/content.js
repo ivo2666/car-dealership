@@ -2,7 +2,7 @@ const content = {
     english:  {
         cars: 'Cars',
         forUs: 'About us',
-        services: 'services',
+        services: 'Services',
         contacts: 'Contacts',
         logout: 'logout'
     },

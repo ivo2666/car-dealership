@@ -1,5 +1,6 @@
 import serverRenderer from './middleware/renderer';
-
+import getCars from './middleware/getCars'
+const auth = require('../utils/auth')
 const router = require('../routes');
 const express = require('express')
 
@@ -17,10 +18,10 @@ module.exports = (app) => {
 
     app.use('/uploadImages', express.static('uploadImages'))
 
-    app.use('^/$', serverRenderer)
+    app.use('^/$', auth(), getCars, serverRenderer)
 
-    app.use(express.static('public'))
+    app.use(express.static('build'))
 
-    app.use('*', serverRenderer)
+    app.use('*', auth(), getCars, serverRenderer)
 
 };

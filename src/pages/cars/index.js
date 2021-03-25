@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Card from '../../components/carReview'
 import { get as getCars } from '../../helpers/carRequests'
 import Spinner from '../../components/loadingSpinner'
+import { UserContext } from "../../contexts";
 
 const Cars = () => {
-    const [cars, setCars] = useState(null);
+  const context = useContext(UserContext)
+    const [cars, setCars] = useState(context.cars ? context.cars : null);
 
     useEffect(() => {
-        getCars(setCars)
-      }, [])
+        if (!context.cars) {
+          getCars(setCars)
+        }
+      }, [context.cars])
 
       const body = () => {
         if (!cars) {
