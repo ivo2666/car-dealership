@@ -3,5 +3,6 @@ export default (func) => {
         func()
     } catch (err) {
         console.log( `Error: ${err} / ${func.name}`);
+        throw new Error(err)
     }
 }

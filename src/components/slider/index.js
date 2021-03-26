@@ -34,14 +34,15 @@ const Slider = (props) => {
     },[props.slideIndex])
 
     const touchStartHandler = (e) => {
-        startTouch = e.touches[0].clientX
+        eventErrHandler(() => startTouch = e.touches[0].clientX)
+            
     }
 
     const touchMoveHandler = (e) => {
-        endTouch = e.touches[0].clientX;
+        eventErrHandler(() => endTouch = e.touches[0].clientX)
     }
 
-    const touchendHandler = (e) => {
+    const touchendHandler = () => {
         if (startTouch < endTouch) {
             nextHandler()
         }else if(endTouch === null) {
@@ -61,7 +62,7 @@ const Slider = (props) => {
         <>
             <Container>
                 <Photoswipe isOpen={isOpen} items={props.images} onClose={() => eventErrHandler(closeHandl)} />
-      <img onClick={() => eventErrHandler(clickHandler)} onTouchEnd={() => eventErrHandler(touchendHandler)} onTouchMove={() => eventErrHandler(touchMoveHandler)} onTouchStart={touchStartHandler} alt='car' src={slides[slideIndex]} />
+      <img onClick={() => eventErrHandler(clickHandler)} onTouchEnd={() => eventErrHandler(touchendHandler)} onTouchMove={touchMoveHandler} onTouchStart={touchStartHandler} alt='car' src={slides[slideIndex]} />
                 <span className='prev'  onClick={() => eventErrHandler(prevHandler)}>&#10094;</span>
                 <span className='next'  onClick={() => eventErrHandler(nextHandler)}>&#10095;</span>
             </Container>
