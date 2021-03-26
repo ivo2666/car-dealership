@@ -2,15 +2,14 @@ import React from 'react';
 import StyledContainer from './styleContainer';
 import Logo from '../logo';
 import Nav from '../nav';
-import menuIcon from '../../images/hbMenu.png'
-import closeMenu from '../../images/xMenu.png'
 import { Image, Row, Col } from 'react-bootstrap';
 import { eventErrHandler } from "../../helpers";
+import urls from '../../config'
 
 
 
 export default () => {
-    const [width, setWidth] = React.useState(window.innerWidth)
+    const [width, setWidth] = React.useState(typeof window !== "undefined" ? window.innerWidth : 500)
     const [visible, setVisible] = React.useState('')
 
     React.useEffect(() => {
@@ -29,7 +28,7 @@ export default () => {
             <Col  md={4} xs={6} ><Logo /></Col>
             <Col  className="iconCont">
             {mobile ? 
-            <Image className='icon' onClick={() => eventErrHandler(clickHandler)} src={visible ? closeMenu : menuIcon}/>
+            <Image className='icon' onClick={() => eventErrHandler(clickHandler)} src={visible ? `${urls.server}/xMenu.png` : `${urls.server}/hbMenu.png`}/>
              : <Nav visible={'yes'} mobile={mobile}/>}
              </Col>
              </Row>

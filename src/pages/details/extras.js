@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Title from './title';
 
 const Extras = styled.ul`
-text-align:center;
+//text-align:center;
 font-size: 15px;
 color: black;
 display: flex;

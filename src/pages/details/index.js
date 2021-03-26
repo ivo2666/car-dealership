@@ -5,17 +5,22 @@ import CarTable from './carTable'
 import Description from './description'
 import Extras from './extras'
 import { getOne as getCar } from '../../helpers/carRequests'
-import { useParams } from 'react-router-dom';
 import { Col, Row } from 'react-bootstrap';
 import Spinner from '../../components/loadingSpinner'
+import { UserContext } from '../../contexts';
+import { useParams } from "react-router-dom";
 
 export default () => {
-    const [car, setCar] = React.useState(undefined);
-    const { id } = useParams()
+    const {id} = useParams()
+    const context = React.useContext(UserContext)
+    const carFromState = context.cars ? context.cars.find(car => car.id === id) : undefined
+    const [car, setCar] = React.useState(carFromState);
 
     React.useEffect(() => {
-        getCar(id, setCar)
-    }, [id])
+        if (!carFromState) {
+            getCar(id, setCar)    
+        }
+    }, [id, carFromState])
 
     const body = () => {
         if (car) {
@@ -23,7 +28,7 @@ export default () => {
                 <Container>
                     <h1>{`${car.brand} ${car.model}`}</h1>
                     <Row noGutters={true}>
-                        <Col><Slideshow images={car.images ? car.images : []} /></Col>
+                        <Col xs={12} xl={7}><Slideshow images={car.images ? car.images : []} /></Col>
                         <Col ><CarTable car={car} /></Col>
                         <Col sm="auto"><Extras extras={car.extras ? car.extras : []} /></Col>
                         <Col><Description>{car.description}</Description></Col>

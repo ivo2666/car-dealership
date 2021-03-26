@@ -1,3 +1,6 @@
+import serverRenderer from './middleware/renderer';
+import getCars from './middleware/getCars'
+const auth = require('../utils/auth')
 const router = require('../routes');
 const express = require('express')
 
@@ -13,7 +16,12 @@ module.exports = (app) => {
 
     app.use('/api/uploadImage', router.images);
 
-    app.use('/', express.static('uploadImages'))
+    app.use('/uploadImages', express.static('uploadImages'))
 
-    app.use('*', (req, res, next) => res.send('<h1> Something weeent wrong. Try again. :thumbsup: </h1>'))
+    app.use('^/$', auth(), getCars, serverRenderer)
+
+    app.use(express.static('build'))
+
+    app.use('*', auth(), getCars, serverRenderer)
+
 };

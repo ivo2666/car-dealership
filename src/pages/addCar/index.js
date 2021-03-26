@@ -30,6 +30,7 @@ export default () => {
 
   const { id } = useParams();
   const history = useHistory();
+  console.log(history);
   const method = id ? (data, cb) => put(data, id, cb) : (data, cb) => post(data, cb);
 
   useEffect( () => {
@@ -50,7 +51,7 @@ export default () => {
       setValidation(<Alert variant='danger'>{valid}</Alert>)
     }
     else {
-      method(car, ({id}) => history.push(`/addCar/extras/${id}`))
+      method(car, (carResp) => history.push(`/addCar/extras/${carResp._id ? carResp._id : id}`))
          
     }
   }

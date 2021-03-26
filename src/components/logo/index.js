@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo-white.png';
+import urls from '../../config'
 
 const Logo = styled.img`
 //width: 250px;
@@ -15,6 +15,6 @@ display: block;
 
 export default () => (
     <Link to='/'>
-        <Logo src={logo} alt='logo' height='70px'/>
+        <Logo src={`${urls.server}/logo-white.png`} alt='logo' height='70px'/>
     </Link>    
 )

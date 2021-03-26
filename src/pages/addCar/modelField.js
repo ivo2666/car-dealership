@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Field from '../../components/field'
 import { getModels } from '../../helpers/imageBrandModelRequests'
-import { eventErrHandler } from "../../helpers";
 
 export default ({Col, brand, onModelChange, model, value}) => {
     const [models, setModels] = useState([])
@@ -24,13 +23,13 @@ export default ({Col, brand, onModelChange, model, value}) => {
   }
 
   if (selectModel) {
-    return <Field value={model} onChange={() => eventErrHandler(handleChange)} type='select' label='Модел' name='model'  as={Col} controlId="formGridModel"  >
+    return <Field value={model} onChange={handleChange} type='select' label='Модел' name='model'  as={Col} controlId="formGridModel"  >
       <option value="Избери">Избери</option>
       <option value='Напиши сам'>Напиши сам</option>
       {models.map((model, index) => <option key={index} value={model}>{model}</option>)}
     </Field>
   } else {
-    return <Field value={model} onChange={() => eventErrHandler(handletextChange)} label='Модел' as={Col} controlId="formGridModel" name='model'></Field>
+    return <Field value={model} onChange={handletextChange} label='Модел' as={Col} controlId="formGridModel" name='model'></Field>
   }
     
 } 

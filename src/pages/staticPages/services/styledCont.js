@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import urls from '../../../config'
+import urls from "../../../config";
 
 export default styled.main`
 //min-height: 550px;

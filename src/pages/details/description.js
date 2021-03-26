@@ -6,7 +6,7 @@ const Description = styled.p`
 color: #4f4f4f;
 line-height: 31px;
 margin: 10px;
-text-align:center;
+//text-align:center;
 `
 
 export default (props) => {

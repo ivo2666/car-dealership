@@ -32,11 +32,11 @@ const cleanUploadImages = require('../utils/cleanUploadImages')
                 return;
             }
             if (!Array.isArray(file.file)) {
-                filesUrls.push(`${config.host}/${file.file.name}`)
+                filesUrls.push(`${config.host}/uploadImages/${file.file.name}`)
             }else {
                 for (let i = 0; i < file.file.length; i++) {
                     const f = file.file[i];
-                    filesUrls.push(`${config.host}/${f.name}`)
+                    filesUrls.push(`${config.host}/uploadImages/${f.name}`)
                 }
             }
             

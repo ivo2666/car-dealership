@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import StyledPhotoswipe from './styledCont'
-import  reactImageSize  from 'react-image-size';
+import  probe  from 'probe-image-size';
 import ErrorBoundary from '../../components/erorrBoundary'
 
 export default ({isOpen, items, options, onClose}) => {
@@ -11,7 +11,7 @@ export default ({isOpen, items, options, onClose}) => {
       const newArr = []
       await data.map(async (item, index) => {
         try {
-          const { width, height } = await reactImageSize(item);
+          const { width, height } = await probe(item);
            return newArr.push({
             src: item,
             w: width + width,

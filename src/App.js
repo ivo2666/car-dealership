@@ -1,22 +1,49 @@
 import React from 'react';
-import Router from './router'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import UserComp from './userContextComp'
 import ErrorBoundary from './components/erorrBoundary'
-import { LanguageContext } from './contexts'
+import { LanguageContext, UserContext } from './contexts'
 
-function App() {
+function App(props) {
+  const [user, setUser] = React.useState(props.user ? {
+    username: props.user,
+    id: props.user,
+    loggedIn: true
+  } : null)
+
+  const cars = props.cars || null
+
   const [language, setLanguage] = React.useState('bulgarian')
+
   const changeLang = lang => {
     setLanguage(lang)
   }
+
+  const logIn = (user) => {
+    setUser({
+      ...user,
+      loggedIn: true,
+    })
+  }
+
+  const logOut = () => {
+    document.cookie = "x-auth-token= ; expires = Thu, 01 Jan 1970 00:00:00 GMT"
+    setUser({
+      loggedIn: false
+    })
+  }
+
   return (
       <ErrorBoundary>
-        <UserComp>
+        <UserContext.Provider value={{
+      user,
+      logIn,
+      logOut,
+      cars
+    }}>
           <LanguageContext.Provider value={{language: language, changeLang: changeLang}}>
-        <Router />
+        {props.children}
         </LanguageContext.Provider>
-        </UserComp>
+        </UserContext.Provider>
       </ErrorBoundary>
   );
 }
