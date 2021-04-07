@@ -8,10 +8,11 @@ export default ({Col, brand, onModelChange, model, value}) => {
 
   useEffect(() => {
     getModels(brand, setModels)
+    setSelectModel(true)
 },[brand])
 
   const handleChange = (data) => {
-    if (data === 'Напиши сам') {
+    if (data.model === 'Напиши сам') {
       return setSelectModel(false)
     }else {
       return onModelChange(data)

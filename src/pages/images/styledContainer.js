@@ -2,9 +2,15 @@ import styled from 'styled-components'
 
 export default styled.div`
 padding: 20px;
+
+.imgCont {
+    display: inline-block;
+}
+
 img {
   height: 140px;
   margin: 10px;
+  max-width: 97%;
 }
 
 .files input {
