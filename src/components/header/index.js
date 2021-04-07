@@ -32,7 +32,7 @@ export default () => {
              : <Nav visible={'yes'} mobile={mobile}/>}
              </Col>
              </Row>
-            <Nav mobile={mobile} visible={visible}/> 
+            <Nav mobile={mobile} visible={visible} onClick={() => eventErrHandler(clickHandler)}/> 
         </StyledContainer>
     )
 }

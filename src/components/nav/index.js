@@ -7,7 +7,7 @@ import { eventErrHandler } from "../../helpers";
 import content from './content';
 
 
-export default ({mobile, visible}) => {
+export default ({mobile, visible, onClick}) => {
 
 const context = useContext(UserContext)
 const loggedIn = context.user && context.user.loggedIn
@@ -17,12 +17,16 @@ const clickHandler = () => {
         context.logOut();
 }
 
+const mobileCloseHandl = () => {
+        onClick()
+}
+
         return (
                 <Style mobile={mobile} visible={visible}>
-                        <Link to="/cars">{content[language].cars}</Link>
-                        <Link to="/forUs">{content[language].forUs}</Link>
-                        <Link to="/services">{content[language].services}</Link>
-                        <Link to="/contacts">{content[language].contacts}</Link>
+                        <Link to="/cars" onClick={mobileCloseHandl}>{content[language].cars}</Link>
+                        <Link to="/forUs" onClick={mobileCloseHandl}>{content[language].forUs} </Link>
+                        <Link to="/services" onClick={mobileCloseHandl}>{content[language].services}</Link>
+                        <Link to="/contacts" onClick={mobileCloseHandl}>{content[language].contacts}</Link>
                         {loggedIn ? <Link onClick={() => eventErrHandler(clickHandler)} to="#">Излез</Link> : <></>}
                         <Flags />
                 </Style>

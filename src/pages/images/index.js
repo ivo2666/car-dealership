@@ -5,7 +5,8 @@ import { postImage } from '../../helpers/imageBrandModelRequests'
 import { useParams, useHistory } from 'react-router-dom';
 import { getOne } from '../../helpers/carRequests'
 import { eventErrHandler } from "../../helpers";
-
+import { resizeImage } from '../../helpers/resizeImage';
+//import Del from "./deleteImageComp";
 
 export default () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -28,20 +29,22 @@ export default () => {
     });
   }, [id]);
 
-  const handleChange = (files) => {
+  const handleChange = async (files) => {
     const fileArr = [];
     for (let i = 0; i < files.length; i++) {
-      const file = files[i];
+      let file = files[i];
       if (!file.name.match(/\.(jpg|jpeg|png|gif)$/)) {
         setValidation('Please select valid image.');
-      } else if (file.size > 1640000) {
-        setValidation('Някой от файловете е прекалено голям!')
+      } else if (file.size > 1000000) {
+        const image = await resizeImage(file)
+        file = image
+        setValidation(false)
       } else {
         setValidation(false);
       }
       fileArr.push({ file, href: URL.createObjectURL(file) })
     }
-    setSelectedFiles(fileArr)
+    setSelectedFiles([...selectedFiles, ...fileArr])
   }
 
   const handleClick = (e) => {
@@ -56,13 +59,23 @@ export default () => {
     postImage(id, data, () => history.push(`/admin`))
   }
 
+  const handleDelClick = (e) => {
+    const index = Number(e.target.id);
+    const array = selectedFiles
+    array.splice(index, 1)
+    setSelectedFiles([...array])
+  }
+
   const imageReview = () => {
     if (selectedFiles.length > 0) {
       if (validation) {
         return <Alert variant='danger' >{validation}</Alert>
       }
       return selectedFiles.map((fileObj, index) => {
-        return <Image src={fileObj.href} alt='car' rounded key={index} />
+        return (<div key={index} className='imgCont'>
+          <Image src={fileObj.href} alt='car' rounded />
+          <Button onClick={e => eventErrHandler(() => handleDelClick(e))} id={index} >X</Button>
+          </div>)
       })
     }
   }
