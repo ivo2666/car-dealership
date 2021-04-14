@@ -29,10 +29,10 @@ export default () => {
             <Col  className="iconCont">
             {mobile ? 
             <Image className='icon' onClick={() => eventErrHandler(clickHandler)} src={visible ? `${urls.server}/xMenu.png` : `${urls.server}/hbMenu.png`}/>
-             : <Nav visible={'yes'} mobile={mobile}/>}
+             : <Nav visible={'yes'} mobile={mobile} onClick={() => {}}/>}
              </Col>
              </Row>
-            <Nav mobile={mobile} visible={visible} onClick={() => eventErrHandler(clickHandler)}/> 
+            <Nav mobile={mobile} visible={visible} onClick={clickHandler}/> 
         </StyledContainer>
     )
 }
