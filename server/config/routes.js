@@ -1,5 +1,7 @@
 import serverRenderer from './middleware/renderer';
 import getCars from './middleware/getCars'
+import mobile from '../utils/mobileBG'
+
 const auth = require('../utils/auth')
 const router = require('../routes');
 const express = require('express')
@@ -21,6 +23,8 @@ module.exports = (app) => {
     app.use('^/$', auth(), getCars, serverRenderer)
 
     app.use(express.static('build'))
+
+    app.use('/getFromMobile.bg', mobile)
 
     app.use('*', auth(), getCars, serverRenderer)
 
