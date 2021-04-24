@@ -39,15 +39,14 @@ async function download(url, name, next) {
     }
 }
 
-async function getImages(dom, next) {
+async function getImages(dom, title, next) {
     try {
         const newUrls = [];
-        const title = dom.querySelector(titleSelector).textContent
         const images = dom.querySelectorAll(imagesSelector(title))
         for (const imgTag of images) {
             const src = imgTag.src;
-            const name = src.split('_')[1];
             const url = `https:${src.replace('med', 'big')}`;
+            const name = url.split('big/')[1];
             newUrls.push(await download(url, name, next))
         }
         return newUrls
@@ -57,15 +56,16 @@ async function getImages(dom, next) {
     }
 }
 
-async function getData(dom, images, next) {
+async function getData(dom, next) {
     try {
-        const title = dom.querySelector(titleSelector).textContent.split(' ');
+        const title = dom.querySelector(titleSelector).textContent
+        const titleArr = title.split(' ');
         const body = dom.querySelectorAll(dataSelector);
         const extras = Array.from(dom.querySelectorAll(extrasSelector))
         const data = {
-            brand: title.shift(),
-            modification: title.pop(),
-            model: title.length > 1 ? title.join(' ') : title[0],
+            brand: titleArr.shift(),
+            modification: titleArr.pop(),
+            model: titleArr.length > 1 ? titleArr.join(' ') : titleArr[0],
             birdayMonth: body[1].textContent.split(" ")[0],
             birdayYear: Number(body[1].textContent.split(" ")[1].replace('г.', '')),
             engine: body[3].textContent,
@@ -78,7 +78,7 @@ async function getData(dom, images, next) {
             color: body[15].textContent,
             extras: extras.map(extra => extra.textContent.replace('• ', '')),
             description: getDescription(dom),
-            images: images
+            images: await getImages(dom, title, next)
         }
         return data
     } catch (err) {
@@ -116,8 +116,7 @@ export default async (req, res, next) => {
         const resArr = [];
         for (const car of cars) {
             const dom = await getDom(`https:${car.href}`)
-            const images = await getImages(dom, next);
-            const data = await getData(dom, images, next);
+            const data = await getData(dom, next);
             resArr.push(await storeData(data, next))
         }
         res.send(resArr)
