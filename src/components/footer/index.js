@@ -6,6 +6,7 @@ import Services from '../../components/footerServicesSection';
 
 const Footer = styled.footer`
 background: black;
+padding:40px;
 display: flex;
 flex-wrap: wrap;
 justify-content: space-around;

@@ -36,7 +36,7 @@
     "windows-1251": "^1.0.0"
   },
   "scripts": {
-    "start": "react-scripts test",
+    "start": "react-scripts start",
     "startNodemon": "nodemon server/bootstrap.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
