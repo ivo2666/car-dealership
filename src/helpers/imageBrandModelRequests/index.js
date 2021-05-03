@@ -12,12 +12,23 @@ import myFetch from '../myFetch'
   })
  }
 
- function getBrands(cb) {
-   myFetch(urls.getBrands, cb)
+ function delImage (id, data, cb) {
+   myFetch(`${urls.delImage}/${id}`, cb, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Authorization': getCookie('x-auth-token'),
+      'Content-type': 'application/json'
+    }
+  })
+ }
+
+async function getBrands(cb) {
+   await myFetch(urls.getBrands, cb)
  }
 
  function getModels(brand, cb, obj) {
    myFetch(`${urls.getModels}/${brand}`, cb, obj)
  }
 
- export { postImage, getBrands, getModels }
+ export { postImage, getBrands, getModels, delImage }

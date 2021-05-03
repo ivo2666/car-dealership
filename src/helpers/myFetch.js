@@ -9,5 +9,6 @@ export default async (url, callback, obj) => {
         }
         result = await response.json() 
             callback(result)
+            return result
     } catch (err){ console.log(err) }
 }
