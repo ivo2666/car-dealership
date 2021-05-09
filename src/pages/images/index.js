@@ -53,7 +53,12 @@ export default () => {
       }
       return fileObj
     })
-    postImage(id, data, () => history.push(`/admin`))
+    if (data.length > 0) {
+      postImage(id, data, () => history.push(`/admin`))  
+    }else {
+      history.push(`/admin`)
+    }
+    
   }
 
   const handleDelClick = (e) => {

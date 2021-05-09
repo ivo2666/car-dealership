@@ -7,6 +7,8 @@ const { auth } = require('../utils');
 
 router.post('/:id', auth(), controllers.images.post);
 
+router.post('/', auth(), controllers.images.apiPost);
+
 router.put('/del/:id', auth(), controllers.images.del);
 
 

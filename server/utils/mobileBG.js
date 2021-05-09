@@ -46,8 +46,8 @@ async function getImages(dom, title, next) {
         for (const imgTag of images) {
             const src = imgTag.src;
             const url = `https:${src.replace('med', 'big')}`;
-            const name = url.split('big/')[1];
-            newUrls.push(await download(url, name, next))
+            
+            newUrls.push(await download(url))
         }
         return newUrls
     } catch (err) {
