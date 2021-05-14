@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 export default () => {
     const {id} = useParams()
     const context = React.useContext(UserContext)
-    const carFromState = context.cars ? context.cars.find(car => car.id === id) : undefined
+    const carFromState = context.cars && context.cars.find(car => car.id === id);
     const [car, setCar] = React.useState(carFromState);
 
     React.useEffect(() => {

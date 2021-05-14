@@ -29,23 +29,24 @@ module.exports = {
     },
 
     apiPost(req, res, next) {
-        try {
-            const urls = req.body.urls;
-            const newUrls = urls.map(async url => {
-                const name = url.split('big/')[1];
-                const response = await fetch(url);
-                const buffer = await response.buffer();
-                const newUrl = `${config.host}/uploadImages/${name}`;
-                fs.writeFile(`${process.cwd()}/uploadImages/${name}`, buffer, () => {
-                    console.log(newUrl);
-                })
-                return newUrl
-            })
-            res.send(newUrls);
-        } catch (err) {
-            console.log(err);
-            next(err)
-        }
+            try {
+                const download = async (urls) => {
+                    Promise.all(urls.map(async url => {
+                        const name = url.split('big/')[1];
+                        const response = await fetch(url);
+                        const buffer = await response.buffer();
+                        const newUrl = `${config.host}/uploadImages/${name}`;
+                        fs.writeFile(`${process.cwd()}/uploadImages/${name}`, buffer, () => {
+                            console.log(newUrl);
+                        })
+                        return newUrl
+                    }))
+                   .then(newUrls => res.send(newUrls))
+                }
+                download(req.body.urls)
+            } catch (err) {
+                next(err)
+            }
     },
 
     post: (req, res, next) => {
