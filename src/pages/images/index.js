@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Container from './styledContainer'
 import { Form, Button, Image, Alert } from 'react-bootstrap';
-import { postImage } from '../../helpers/imageBrandModelRequests'
+import { postImage, delImage } from '../../helpers/imageBrandModelRequests'
 import { useParams, useHistory } from 'react-router-dom';
 import { getOne } from '../../helpers/carRequests'
 import { eventErrHandler } from "../../helpers";
 import { resizeImage } from '../../helpers/resizeImage';
-//import Del from "./deleteImageComp";
 
 export default () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -18,15 +17,13 @@ export default () => {
 
   useEffect(() => {
     getOne(id, (car) => {
-      if (car.images.length > 0) {
-        const arr = [];
+      const arr = [];
         car.images.map(image => {
           return arr.push({ 'href': image })
         })
         setSelectedFiles(arr)
-      }
-      return
     });
+    return () => setSelectedFiles([])
   }, [id]);
 
   const handleChange = async (files) => {
@@ -48,37 +45,40 @@ export default () => {
   }
 
   const handleClick = (e) => {
-    if (!selectedFiles[0].file) {
-      history.push(`/admin`)
-      return
-    }
+    
     const data = new FormData()
     selectedFiles.map(fileObj => {
-      return data.append('file', fileObj.file)
+      if (fileObj.file) {
+        return data.append('file', fileObj.file)  
+      }
+      return fileObj
     })
-    postImage(id, data, () => history.push(`/admin`))
+    if (data.length > 0) {
+      postImage(id, data, () => history.push(`/admin`))  
+    }else {
+      history.push(`/admin`)
+    }
+    
   }
 
   const handleDelClick = (e) => {
-    const index = Number(e.target.id);
-    const array = selectedFiles
-    array.splice(index, 1)
-    setSelectedFiles([...array])
+    const href = e.target.previousSibling.src;
+    delImage(id, { name: href }, setSelectedFiles)
   }
 
-  const imageReview = () => {
-    if (selectedFiles.length > 0) {
-      if (validation) {
-        return <Alert variant='danger' >{validation}</Alert>
-      }
-      return selectedFiles.map((fileObj, index) => {
+  const imageReview = selectedFiles.length > 0 ? validation ?
+        <Alert variant='danger' >{validation}</Alert>
+      :
+      selectedFiles.map((fileObj, index) => {
         return (<div key={index} className='imgCont'>
           <Image src={fileObj.href} alt='car' rounded />
-          <Button onClick={e => eventErrHandler(() => handleDelClick(e))} id={index} >X</Button>
+          <Button onClick={handleDelClick}>X</Button>
           </div>)
       })
-    }
-  }
+      : 
+      <div>No images</div>
+    
+  
 
   return (
     <Container>
@@ -88,8 +88,8 @@ export default () => {
           <Form.Control accept=".png, .jpg, .jpeg" onChange={e => eventErrHandler(() => handleChange(e.target.files))} type="file" className="form-control" multiple />
         </div>
       </Form>
-      <div className='imageReview'>{imageReview()}</div>
-      <Button onClick={e => eventErrHandler(() => handleClick(e))} >Качи файловете</Button>
+      <div className='imageReview'>{imageReview}</div>
+      <Button onClick={e => eventErrHandler(() => handleClick(e))}>Качи файловете</Button>
     </Container>
   )
 }

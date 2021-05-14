@@ -5,6 +5,10 @@ import { getBrands } from '../../helpers/imageBrandModelRequests';
 export default ({Col, value, onBrandChange}) => {
 const [brands, setBrands] = useState([]);
 
+if (brands && value && !brands.find(x => x === value)) {
+    brands.push(value)
+}
+
 useEffect(() => {
     getBrands(setBrands)
 },[])

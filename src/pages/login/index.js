@@ -24,7 +24,9 @@ export default () => {
      user, 
     (user) => {
         context.logIn(user)
-        history.push('/admin')
+        if (history.location === '/login') {
+          history.push('/admin')
+        }
       }, (e) => {
         if (e.message === 'Failed to fetch') {
           setValidation('Няма връзка със сървъра')

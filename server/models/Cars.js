@@ -87,6 +87,9 @@ const carsSchema = new Schema({
     description: {
         type: String,
         required: true,
+    },
+    mobileId: {
+        type: String,
     }
 
 });

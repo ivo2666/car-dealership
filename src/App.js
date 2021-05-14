@@ -10,10 +10,13 @@ function App(props) {
     loggedIn: true
   } : null)
 
-  const cars = props.cars || null
-
+  const [cars, setCars] = React.useState(props.cars || null)
   const [language, setLanguage] = React.useState('bulgarian')
 
+  const updateCars = (cars) => {
+    setCars(cars)
+  }
+  
   const changeLang = lang => {
     setLanguage(lang)
   }
@@ -38,7 +41,8 @@ function App(props) {
       user,
       logIn,
       logOut,
-      cars
+      cars,
+      updateCars
     }}>
           <LanguageContext.Provider value={{language: language, changeLang: changeLang}}>
         {props.children}

@@ -12,7 +12,7 @@ import { eventErrHandler } from "../../helpers";
 export default () => {
   const [validation, setValidation] = useState(<></>)
   const [car, setCar] = useState({
-    brand: 'Mercedes',
+    brand: '',
     model: '',
     modification: '',
     engine: 'Бензин',
